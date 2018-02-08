@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+* {
+    color: #fff;
+    font-family: 'VT323', monospace;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+}
+*:focus {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 13px;
+}
+::-webkit-scrollbar-track {
+    background: #333;
+}
+::-webkit-scrollbar-thumb {
+    background: #fb016e;
+    border: 3px solid #333;
+}
+
+html, body, #app {
+    height: 100%;
+}
+body {
+    background: #013e79;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: normal;
+}
+button {
+    background: #fb016e;
+    font-size: 30px;
+    line-height: 0;
+    padding: 5px;
+    border: none;
+}
+button:focus {
+    outline: none;
+}
+
+input {
+    background: #333;
+    font-size: 25px;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    border: none;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.loading-panel, .options-panel, .base-panel {
+    float: left;
+    height: 100%;
+    position: relative;
+}
+.loading-panel {
+    background: #013e79;
+    opacity: 1;
+    z-index: 9999;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .2s;
+}
+.options-panel {
+    background: #111;
+    box-sizing: border-box;
+    z-index: 2;
+    padding: 15px;
+    width: 350px;
+}
+.base-panel {
+    width: calc(100% - 350px);
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+.blink {
+    animation: blink 1s steps(2, start) infinite;
+}
+
+.logo {
+    height: 55px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.logo img {
+    margin-right: 20px;
+    height: 100%;
+    float: left;
+}
+.logo h1 {
+    display: inline;
+}
+.logo h1, .logo span {
+    color: #fb016e;
+    font-size: 55px;
+    line-height: 55px;
+}
+
+.color-picker {
+    margin: 10px 0;
+}
+.color {
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.add-shape {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.add-button {
+    float: right;
+    z-index: 4;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+.add-dialog-wrapper {
+    background: #222;
+    overflow: hidden;
+    z-index: 3;
+    border-top: 7px solid #fb016e;
+    border-bottom: 7px solid #fb016e;
+    position: relative;
+    transition: width .3s .1s, height .3s, top .3s;
+}
+.add-dialog {
+    overflow-y: scroll;
+    width: 320px;
+    height: 300px;
+}
+
+.dialog-shape {
+    padding: 5px;
+    width: 41px;
+    height: 41px;
+    display: inline-block;
+}
+
+.base {
+    background: #fafafa;
+    overflow: hidden;
+    border-radius: 9999px;
+    width: 700px;
+    padding-top: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: inline-block;
+}
+.selected {
+    z-index: 1;
+    border: 2px solid #fb016e;
+}
+.shape svg {
+    vertical-align: top;
+}
+.dragger {
+    background: #fb016e;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(50%,50%);
+}
+
+.credit {
+    margin: 0 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.credit img {
+    vertical-align: bottom;
+    margin-right: 5px;
+    height: 20px;
+}
+.credit span {
+    color: #fb016e;
+    font-size: 20px;
+    line-height: 20px;
+    display: inline-block;
+}
