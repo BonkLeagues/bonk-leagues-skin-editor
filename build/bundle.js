@@ -342,37 +342,6 @@ module.exports = emptyFunction;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.connect = exports.connectAdvanced = exports.createProvider = exports.Provider = undefined;
-
-var _Provider = __webpack_require__(56);
-
-var _Provider2 = _interopRequireDefault(_Provider);
-
-var _connectAdvanced = __webpack_require__(26);
-
-var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
-
-var _connect = __webpack_require__(62);
-
-var _connect2 = _interopRequireDefault(_connect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Provider = _Provider2.default;
-exports.createProvider = _Provider.createProvider;
-exports.connectAdvanced = _connectAdvanced2.default;
-exports.connect = _connect2.default;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
@@ -465,7 +434,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 };
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -525,7 +494,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -549,7 +518,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -618,6 +587,37 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.connect = exports.connectAdvanced = exports.createProvider = exports.Provider = undefined;
+
+var _Provider = __webpack_require__(56);
+
+var _Provider2 = _interopRequireDefault(_Provider);
+
+var _connectAdvanced = __webpack_require__(26);
+
+var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
+
+var _connect = __webpack_require__(62);
+
+var _connect2 = _interopRequireDefault(_connect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Provider = _Provider2.default;
+exports.createProvider = _Provider.createProvider;
+exports.connectAdvanced = _connectAdvanced2.default;
+exports.connect = _connect2.default;
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -634,8 +634,8 @@ module.exports = warning;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(5);
-  var warning = __webpack_require__(7);
+  var invariant = __webpack_require__(4);
+  var warning = __webpack_require__(6);
   var ReactPropTypesSecret = __webpack_require__(9);
   var loggedTypeFailures = {};
 }
@@ -2483,7 +2483,7 @@ var _reactDom = __webpack_require__(33);
 
 var _redux = __webpack_require__(10);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
 
 var _reduxThunk = __webpack_require__(69);
 
@@ -2547,8 +2547,8 @@ store.dispatch(_loadShapes2.default);
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var m = __webpack_require__(4),
-    n = __webpack_require__(6),
+var m = __webpack_require__(3),
+    n = __webpack_require__(5),
     p = __webpack_require__(2),
     q = "function" === typeof Symbol && Symbol["for"],
     r = q ? Symbol["for"]("react.element") : 60103,
@@ -2680,10 +2680,10 @@ if (process.env.NODE_ENV !== "production") {
   (function () {
     'use strict';
 
-    var _assign = __webpack_require__(4);
-    var emptyObject = __webpack_require__(6);
-    var invariant = __webpack_require__(5);
-    var warning = __webpack_require__(7);
+    var _assign = __webpack_require__(3);
+    var emptyObject = __webpack_require__(5);
+    var invariant = __webpack_require__(4);
+    var warning = __webpack_require__(6);
     var emptyFunction = __webpack_require__(2);
     var checkPropTypes = __webpack_require__(8);
 
@@ -4083,14 +4083,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var aa = __webpack_require__(1),
     l = __webpack_require__(14),
-    B = __webpack_require__(4),
+    B = __webpack_require__(3),
     C = __webpack_require__(2),
     ba = __webpack_require__(15),
     da = __webpack_require__(16),
     ea = __webpack_require__(17),
     fa = __webpack_require__(18),
     ia = __webpack_require__(19),
-    D = __webpack_require__(6);
+    D = __webpack_require__(5);
 function E(a) {
   for (var b = arguments.length - 1, c = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
     c += "\x26args[]\x3d" + encodeURIComponent(arguments[d + 1]);
@@ -6128,7 +6128,7 @@ module.exports = isNode;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(5);var warning=__webpack_require__(7);var ExecutionEnvironment=__webpack_require__(14);var _assign=__webpack_require__(4);var emptyFunction=__webpack_require__(2);var EventListener=__webpack_require__(15);var getActiveElement=__webpack_require__(16);var shallowEqual=__webpack_require__(17);var containsNode=__webpack_require__(18);var focusNode=__webpack_require__(19);var emptyObject=__webpack_require__(6);var checkPropTypes=__webpack_require__(8);var hyphenateStyleName=__webpack_require__(38);var camelizeStyleName=__webpack_require__(40);/**
+ */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(4);var warning=__webpack_require__(6);var ExecutionEnvironment=__webpack_require__(14);var _assign=__webpack_require__(3);var emptyFunction=__webpack_require__(2);var EventListener=__webpack_require__(15);var getActiveElement=__webpack_require__(16);var shallowEqual=__webpack_require__(17);var containsNode=__webpack_require__(18);var focusNode=__webpack_require__(19);var emptyObject=__webpack_require__(5);var checkPropTypes=__webpack_require__(8);var hyphenateStyleName=__webpack_require__(38);var camelizeStyleName=__webpack_require__(40);/**
  * WARNING: DO NOT manually require this module.
  * This is a replacement for `invariant(...)` used by the error code system
  * and will _only_ be required by the corresponding babel pass.
@@ -10045,9 +10045,9 @@ exports.default = createProvider();
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var emptyFunction = __webpack_require__(2);
-var invariant = __webpack_require__(5);
-var warning = __webpack_require__(7);
-var assign = __webpack_require__(4);
+var invariant = __webpack_require__(4);
+var warning = __webpack_require__(6);
+var assign = __webpack_require__(3);
 
 var ReactPropTypesSecret = __webpack_require__(9);
 var checkPropTypes = __webpack_require__(8);
@@ -10568,7 +10568,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
 
 var emptyFunction = __webpack_require__(2);
-var invariant = __webpack_require__(5);
+var invariant = __webpack_require__(4);
 var ReactPropTypesSecret = __webpack_require__(9);
 
 module.exports = function () {
@@ -11734,7 +11734,9 @@ exports.default = function () {
                         y: 0
                     },
                     rotation: 0,
-                    scale: 1
+                    scale: 1,
+                    hf: false,
+                    vf: false
                 }]);
             }
         case 'DELETE_SELECTED_SHAPE':
@@ -11764,7 +11766,9 @@ exports.default = function () {
                         return _extends({}, shape, {
                             position: action.position || shape.position,
                             rotation: action.rotation || shape.rotation,
-                            scale: action.scale || shape.scale
+                            scale: action.scale || shape.scale,
+                            hf: typeof action.hf === 'undefined' ? shape.hf : action.hf,
+                            vf: typeof action.vf === 'undefined' ? shape.vf : action.vf
                         });
                     } else {
                         return shape;
@@ -11890,7 +11894,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
 
 var _reduxUndo = __webpack_require__(29);
 
@@ -11898,11 +11902,11 @@ var _Options = __webpack_require__(77);
 
 var _Options2 = _interopRequireDefault(_Options);
 
-var _SkinBase = __webpack_require__(82);
+var _SkinBase = __webpack_require__(78);
 
 var _SkinBase2 = _interopRequireDefault(_SkinBase);
 
-var _Credit = __webpack_require__(85);
+var _Credit = __webpack_require__(81);
 
 var _Credit2 = _interopRequireDefault(_Credit);
 
@@ -12003,21 +12007,25 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
 
-var _Color = __webpack_require__(78);
+var _Color = __webpack_require__(82);
 
 var _Color2 = _interopRequireDefault(_Color);
 
-var _AddShape = __webpack_require__(79);
+var _AddShape = __webpack_require__(83);
 
 var _AddShape2 = _interopRequireDefault(_AddShape);
 
-var _OptionsInput = __webpack_require__(86);
+var _OptionsInput = __webpack_require__(85);
 
 var _OptionsInput2 = _interopRequireDefault(_OptionsInput);
 
-var _colors = __webpack_require__(81);
+var _OptionsCheckbox = __webpack_require__(86);
+
+var _OptionsCheckbox2 = _interopRequireDefault(_OptionsCheckbox);
+
+var _colors = __webpack_require__(87);
 
 var _colors2 = _interopRequireDefault(_colors);
 
@@ -12073,7 +12081,13 @@ var Options = function (_React$Component) {
                     _react2.default.createElement(_OptionsInput2.default, { type: 'scale' }),
                     _react2.default.createElement(_OptionsInput2.default, { type: 'rotation' }),
                     _react2.default.createElement(_OptionsInput2.default, { type: 'position.x' }),
-                    _react2.default.createElement(_OptionsInput2.default, { type: 'position.y' })
+                    _react2.default.createElement(_OptionsInput2.default, { type: 'position.y' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'checkboxes' },
+                        _react2.default.createElement(_OptionsCheckbox2.default, { type: 'hf' }),
+                        _react2.default.createElement(_OptionsCheckbox2.default, { type: 'vf' })
+                    )
                 ),
                 _react2.default.createElement(_AddShape2.default, null)
             );
@@ -12121,220 +12135,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Color = function Color(_ref) {
-    var color = _ref.color,
-        anySelected = _ref.anySelected,
-        _onClick = _ref.onClick;
-    return _react2.default.createElement('div', { className: 'color', onClick: function onClick() {
-            return _onClick(anySelected);
-        }, style: {
-            background: '#' + color
-        } });
-};
-
-var mapStateToProps = function mapStateToProps(state, props) {
-    return {
-        anySelected: state.shapes.present.filter(function (shape) {
-            return shape.selected;
-        }).length > 0
-    };
-};
-var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
-    return {
-        onClick: function onClick(anySelected) {
-            if (anySelected) {
-                dispatch({
-                    type: 'CHANGE_SELECTED_COLOR',
-                    color: props.color
-                });
-            } else {
-                dispatch({
-                    type: 'CHANGE_BASE_COLOR',
-                    color: props.color
-                });
-            }
-        }
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Color);
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(3);
-
-var _DialogShape = __webpack_require__(80);
-
-var _DialogShape2 = _interopRequireDefault(_DialogShape);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AddShape = function (_React$Component) {
-    _inherits(AddShape, _React$Component);
-
-    function AddShape(props) {
-        _classCallCheck(this, AddShape);
-
-        var _this = _possibleConstructorReturn(this, (AddShape.__proto__ || Object.getPrototypeOf(AddShape)).call(this, props));
-
-        _this.toggleDialog = function () {
-            _this.setState({
-                dialog: !_this.state.dialog
-            });
-        };
-
-        _this.state = {
-            dialog: false
-        };
-        return _this;
-    }
-
-    _createClass(AddShape, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            var size = 41;
-            return _react2.default.createElement(
-                'div',
-                { className: 'add-shape' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'add-dialog-wrapper', style: this.state.dialog ? {
-                            width: '320px',
-                            height: '300px',
-                            top: '4px'
-                        } : {
-                            width: '30px',
-                            height: '16px',
-                            top: '30px'
-                        } },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'add-dialog' },
-                        this.props.shapes.map(function (shape, i) {
-                            return _react2.default.createElement(_DialogShape2.default, { shape: shape.replace(/fill\=\".+?\"/g, 'fill="#fff"').replace(/height\=\".+?px\" width\=\".+?px\"/, 'height="' + size + 'px" width="' + size + 'px"').replace(/width\=\".+?\" height\=\".+?\"/, 'width="' + size + '" height="' + size + '"'), toggleDialog: _this2.toggleDialog, id: i, key: i });
-                        })
-                    )
-                ),
-                _react2.default.createElement(
-                    'button',
-                    { className: 'add-button', onClick: this.toggleDialog },
-                    '+'
-                )
-            );
-        }
-    }]);
-
-    return AddShape;
-}(_react2.default.Component);
-
-var mapStateToProps = function mapStateToProps(state, props) {
-    return {
-        shapes: state.allShapes
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(AddShape);
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var DialogShape = function DialogShape(_ref) {
-    var shape = _ref.shape,
-        _onClick = _ref.onClick,
-        toggleDialog = _ref.toggleDialog;
-    return _react2.default.createElement('div', { className: 'dialog-shape', onClick: function onClick(e) {
-            _onClick();
-            if (!e.shiftKey) toggleDialog();
-        }, dangerouslySetInnerHTML: { __html: shape } });
-};
-
-var mapStateToProps = function mapStateToProps(state, props) {
-    return {};
-};
-var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
-    return {
-        onClick: function onClick() {
-            dispatch({ type: 'DESELECT_ALL' });
-            dispatch({
-                type: 'ADD_SHAPE',
-                id: props.id
-            });
-        }
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DialogShape);
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ["ef9a9a", "f48fb1", "ce93d8", "b39ddb", "9fa8da", "90caf9", "81d4fa", "80deea", "80cbc4", "a5d6a7", "c5e1a5", "e6ee9c", "fff59d", "ffe082", "ffcc80", "ffab91", "e57373", "f06292", "ba68c8", "9575cd", "7986cb", "64b5f6", "4fc3f7", "4dd0e1", "4db6ac", "81c784", "aed581", "dce775", "fff176", "ffd54f", "ffb74d", "ff8a65", "ef5350", "ec407a", "ab47bc", "7e57c2", "5c6bc0", "42a5f5", "29b6f6", "26c6da", "26a69a", "66bb6a", "9ccc65", "d4e157", "ffee58", "ffca28", "ffa726", "ff7043", "f44336", "e91e63", "9c27b0", "673ab7", "3f51b5", "2196f3", "03a9f4", "00bcd4", "009688", "4caf50", "8bc34a", "cddc39", "ffeb3b", "ffc107", "ff9800", "ff5722", "e53935", "d81b60", "8e24aa", "5e35b1", "3949ab", "1e88e5", "039be5", "00acc1", "00897b", "43a047", "7cb342", "c0ca33", "fdd835", "ffb300", "fb8c00", "f4511e", "d32f2f", "c2185b", "7b1fa2", "512da8", "303f9f", "1976d2", "0288d1", "0097a7", "00796b", "388e3c", "689f38", "afb42b", "fbc02d", "ffa000", "f57c00", "e64a19", "c62828", "ad1457", "6a1b9a", "4527a0", "283593", "1565c0", "0277bd", "00838f", "00695c", "2e7d32", "558b2f", "9e9d24", "f9a825", "ff8f00", "ef6c00", "d84315", "b71c1c", "880e4f", "4a148c", "311b92", "1a237e", "0d47a1", "01579b", "006064", "004d40", "1b5e20", "33691e", "827717", "f57f17", "ff6f00", "e65100", "bf360c", "fafafa", "f5f5f5", "eeeeee", "e0e0e0", "bdbdbd", "9e9e9e", "757575", "616161", "424242", "212121", "000000", "1abc9c", "448aff", "d32f2f"];
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -12343,13 +12143,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
 
-var _MoveableShape = __webpack_require__(83);
+var _MoveableShape = __webpack_require__(79);
 
 var _MoveableShape2 = _interopRequireDefault(_MoveableShape);
 
-var _translation = __webpack_require__(84);
+var _translation = __webpack_require__(80);
 
 var _translation2 = _interopRequireDefault(_translation);
 
@@ -12483,7 +12283,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SkinBase);
 
 /***/ }),
-/* 83 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12493,13 +12293,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12517,23 +12319,16 @@ var MoveableShape = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (MoveableShape.__proto__ || Object.getPrototypeOf(MoveableShape)).call(this, props));
 
-        _this.state = {
-            rect: null,
-            position: _this.props.shape.position,
-            rotation: _this.props.shape.rotation,
-            scale: _this.props.shape.scale
-        };
+        _this.state = _extends({
+            rect: null
+        }, _this.props.shape);
         return _this;
     }
 
     _createClass(MoveableShape, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(newProps) {
-            this.setState({
-                position: newProps.position,
-                rotation: newProps.rotation,
-                scale: newProps.scale
-            });
+            this.setState(_extends({}, newProps));
         }
     }, {
         key: 'render',
@@ -12558,9 +12353,9 @@ var MoveableShape = function (_React$Component) {
                             });
                         }
                     } },
-                _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: this.props.shapeHTML }, onMouseDown: function onMouseDown(e) {
+                _react2.default.createElement('span', { className: (this.state.hf ? 'hf' : '') + ' ' + (this.state.vf ? 'vf' : ''), onMouseDown: function onMouseDown(e) {
                         return _this2.props.onShapeDown(e, _this2);
-                    } }),
+                    }, dangerouslySetInnerHTML: { __html: this.props.shapeHTML } }),
                 this.props.shape.selected && _react2.default.createElement('div', { className: 'dragger', onMouseDown: function onMouseDown() {
                         return _this2.props.onDraggerDown(_this2);
                     } })
@@ -12572,12 +12367,9 @@ var MoveableShape = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state, props) {
-    return {
-        shapeHTML: state.allShapes[props.shape.shapeID].replace(/fill\=\".+?\"/g, 'fill="#' + (props.shape.color || '000') + '"'),
-        position: props.shape.position,
-        rotation: props.shape.rotation,
-        scale: props.shape.scale
-    };
+    return _extends({
+        shapeHTML: state.allShapes[props.shape.shapeID].replace(/fill\=\".+?\"/g, 'fill="#' + (props.shape.color || '000') + '"')
+    }, props.shape);
 };
 var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
     return {
@@ -12593,7 +12385,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MoveableShape);
 
 /***/ }),
-/* 84 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12651,7 +12443,7 @@ exports.default = function (e, state) {
 };
 
 /***/ }),
-/* 85 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12681,7 +12473,64 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 86 */
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Color = function Color(_ref) {
+    var color = _ref.color,
+        anySelected = _ref.anySelected,
+        _onClick = _ref.onClick;
+    return _react2.default.createElement('div', { className: 'color', onClick: function onClick() {
+            return _onClick(anySelected);
+        }, style: {
+            background: '#' + color
+        } });
+};
+
+var mapStateToProps = function mapStateToProps(state, props) {
+    return {
+        anySelected: state.shapes.present.filter(function (shape) {
+            return shape.selected;
+        }).length > 0
+    };
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
+    return {
+        onClick: function onClick(anySelected) {
+            if (anySelected) {
+                dispatch({
+                    type: 'CHANGE_SELECTED_COLOR',
+                    color: props.color
+                });
+            } else {
+                dispatch({
+                    type: 'CHANGE_BASE_COLOR',
+                    color: props.color
+                });
+            }
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Color);
+
+/***/ }),
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12697,7 +12546,152 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(3);
+var _reactRedux = __webpack_require__(7);
+
+var _DialogShape = __webpack_require__(84);
+
+var _DialogShape2 = _interopRequireDefault(_DialogShape);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AddShape = function (_React$Component) {
+    _inherits(AddShape, _React$Component);
+
+    function AddShape(props) {
+        _classCallCheck(this, AddShape);
+
+        var _this = _possibleConstructorReturn(this, (AddShape.__proto__ || Object.getPrototypeOf(AddShape)).call(this, props));
+
+        _this.toggleDialog = function () {
+            _this.setState({
+                dialog: !_this.state.dialog
+            });
+        };
+
+        _this.state = {
+            dialog: false
+        };
+        return _this;
+    }
+
+    _createClass(AddShape, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var size = 41;
+            return _react2.default.createElement(
+                'div',
+                { className: 'add-shape' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'add-dialog-wrapper', style: this.state.dialog ? {
+                            width: '320px',
+                            height: '300px',
+                            top: '4px'
+                        } : {
+                            width: '30px',
+                            height: '16px',
+                            top: '30px'
+                        } },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'add-dialog' },
+                        this.props.shapes.map(function (shape, i) {
+                            return _react2.default.createElement(_DialogShape2.default, { shape: shape.replace(/fill\=\".+?\"/g, 'fill="#fff"').replace(/height\=\".+?px\" width\=\".+?px\"/, 'height="' + size + 'px" width="' + size + 'px"').replace(/width\=\".+?\" height\=\".+?\"/, 'width="' + size + '" height="' + size + '"'), toggleDialog: _this2.toggleDialog, id: i, key: i });
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { className: 'add-button', onClick: this.toggleDialog },
+                    '+'
+                )
+            );
+        }
+    }]);
+
+    return AddShape;
+}(_react2.default.Component);
+
+var mapStateToProps = function mapStateToProps(state, props) {
+    return {
+        shapes: state.allShapes
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(AddShape);
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DialogShape = function DialogShape(_ref) {
+    var shape = _ref.shape,
+        _onClick = _ref.onClick,
+        toggleDialog = _ref.toggleDialog;
+    return _react2.default.createElement('div', { className: 'dialog-shape', onClick: function onClick(e) {
+            _onClick();
+            if (!e.shiftKey) toggleDialog();
+        }, dangerouslySetInnerHTML: { __html: shape } });
+};
+
+var mapStateToProps = function mapStateToProps(state, props) {
+    return {};
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
+    return {
+        onClick: function onClick() {
+            dispatch({ type: 'DESELECT_ALL' });
+            dispatch({
+                type: 'ADD_SHAPE',
+                id: props.id
+            });
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DialogShape);
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12736,10 +12730,10 @@ var OptionsInput = function (_React$Component) {
 
             return _react2.default.createElement(
                 'label',
-                null,
+                { className: 'options-input' },
                 _react2.default.createElement(
                     'div',
-                    { style: { fontSize: '25px', marginBottom: '7px' } },
+                    { className: 'title' },
                     function () {
                         switch (_this2.props.type) {
                             case 'scale':
@@ -12815,6 +12809,116 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(OptionsInput);
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OptionsCheckbox = function (_React$Component) {
+    _inherits(OptionsCheckbox, _React$Component);
+
+    function OptionsCheckbox(props) {
+        _classCallCheck(this, OptionsCheckbox);
+
+        var _this = _possibleConstructorReturn(this, (OptionsCheckbox.__proto__ || Object.getPrototypeOf(OptionsCheckbox)).call(this, props));
+
+        _this.onChange = function () {
+            _this.setState({
+                ticked: !_this.state.ticked
+            });
+            _this.props.onChange(!_this.state.ticked);
+        };
+
+        _this.state = {
+            ticked: false
+        };
+        return _this;
+    }
+
+    _createClass(OptionsCheckbox, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'label',
+                { className: 'options-checkbox' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'title' },
+                    function () {
+                        switch (_this2.props.type) {
+                            case 'hf':
+                                return 'H Flip: ';
+                            case 'vf':
+                                return 'V Flip: ';
+                        }
+                    }()
+                ),
+                _react2.default.createElement('div', { className: 'checkbox ' + (this.state.ticked ? 'ticked' : ''), onClick: this.onChange })
+            );
+        }
+    }]);
+
+    return OptionsCheckbox;
+}(_react2.default.Component);
+
+var mapStateToProps = function mapStateToProps(state, props) {
+    var shape = state.shapes.present.filter(function (shape) {
+        return shape.selected;
+    })[0];
+    return shape ? {
+        shape: shape
+    } : {};
+};
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
+    return {
+        onChange: function onChange(ticked) {
+            dispatch(_defineProperty({
+                type: 'CHANGE_SHAPE_TRANSLATION'
+            }, props.type, ticked));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(OptionsCheckbox);
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ["ef9a9a", "f48fb1", "ce93d8", "b39ddb", "9fa8da", "90caf9", "81d4fa", "80deea", "80cbc4", "a5d6a7", "c5e1a5", "e6ee9c", "fff59d", "ffe082", "ffcc80", "ffab91", "e57373", "f06292", "ba68c8", "9575cd", "7986cb", "64b5f6", "4fc3f7", "4dd0e1", "4db6ac", "81c784", "aed581", "dce775", "fff176", "ffd54f", "ffb74d", "ff8a65", "ef5350", "ec407a", "ab47bc", "7e57c2", "5c6bc0", "42a5f5", "29b6f6", "26c6da", "26a69a", "66bb6a", "9ccc65", "d4e157", "ffee58", "ffca28", "ffa726", "ff7043", "f44336", "e91e63", "9c27b0", "673ab7", "3f51b5", "2196f3", "03a9f4", "00bcd4", "009688", "4caf50", "8bc34a", "cddc39", "ffeb3b", "ffc107", "ff9800", "ff5722", "e53935", "d81b60", "8e24aa", "5e35b1", "3949ab", "1e88e5", "039be5", "00acc1", "00897b", "43a047", "7cb342", "c0ca33", "fdd835", "ffb300", "fb8c00", "f4511e", "d32f2f", "c2185b", "7b1fa2", "512da8", "303f9f", "1976d2", "0288d1", "0097a7", "00796b", "388e3c", "689f38", "afb42b", "fbc02d", "ffa000", "f57c00", "e64a19", "c62828", "ad1457", "6a1b9a", "4527a0", "283593", "1565c0", "0277bd", "00838f", "00695c", "2e7d32", "558b2f", "9e9d24", "f9a825", "ff8f00", "ef6c00", "d84315", "b71c1c", "880e4f", "4a148c", "311b92", "1a237e", "0d47a1", "01579b", "006064", "004d40", "1b5e20", "33691e", "827717", "f57f17", "ff6f00", "e65100", "bf360c", "fafafa", "f5f5f5", "eeeeee", "e0e0e0", "bdbdbd", "9e9e9e", "757575", "616161", "424242", "212121", "000000", "1abc9c", "448aff", "d32f2f"];
 
 /***/ })
 /******/ ]);

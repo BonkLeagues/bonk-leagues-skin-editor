@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Color from './Color';
 import AddShape from './AddShape';
 import OptionsInput from './OptionsInput';
+import OptionsCheckbox from './OptionsCheckbox';
 
 import colors from '../modules/colors';
 
@@ -38,6 +39,11 @@ class Options extends React.Component {
                         <OptionsInput type="rotation" />
                         <OptionsInput type="position.x" />
                         <OptionsInput type="position.y" />
+                        
+                        <div className="checkboxes">
+                            <OptionsCheckbox type="hf" />
+                            <OptionsCheckbox type="vf" />
+                        </div>
                     </div>
                 }
 

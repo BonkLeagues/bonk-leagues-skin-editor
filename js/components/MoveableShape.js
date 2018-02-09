@@ -7,17 +7,13 @@ class MoveableShape extends React.Component {
 
         this.state = {
             rect: null,
-            position: this.props.shape.position,
-            rotation: this.props.shape.rotation,
-            scale: this.props.shape.scale
+            ...this.props.shape
         };
     }
 
     componentWillReceiveProps(newProps) {
         this.setState({
-            position: newProps.position,
-            rotation: newProps.rotation,
-            scale: newProps.scale
+            ...newProps
         });
     }
 
@@ -44,7 +40,7 @@ class MoveableShape extends React.Component {
                     });
                 }
             }}>
-                <span dangerouslySetInnerHTML={{__html: this.props.shapeHTML}} onMouseDown={e=>this.props.onShapeDown(e,this)}></span>
+                <span className={(this.state.hf?'hf':'')+' '+(this.state.vf?'vf':'')} onMouseDown={e=>this.props.onShapeDown(e,this)} dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}></span>
                 {
                     this.props.shape.selected &&
                     <div className="dragger" onMouseDown={()=>this.props.onDraggerDown(this)}></div>
@@ -59,9 +55,7 @@ var mapStateToProps = (state, props) => {
         shapeHTML:
         state.allShapes[props.shape.shapeID]
         .replace(/fill\=\".+?\"/g, 'fill="#'+(props.shape.color || '000')+'"'),
-        position: props.shape.position,
-        rotation: props.shape.rotation,
-        scale: props.shape.scale
+        ...props.shape
     };
 }
 var mapDispatchToProps = (dispatch, props) => {

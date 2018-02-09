@@ -12,7 +12,9 @@ export default function(state=[], action) {
                     y: 0
                 },
                 rotation: 0,
-                scale: 1
+                scale: 1,
+                hf: false,
+                vf: false
             }];
         }
         case 'DELETE_SELECTED_SHAPE': {
@@ -38,7 +40,9 @@ export default function(state=[], action) {
                     return {...shape,
                         position: action.position || shape.position,
                         rotation: action.rotation || shape.rotation,
-                        scale: action.scale || shape.scale
+                        scale: action.scale || shape.scale,
+                        hf: typeof action.hf === 'undefined' ? shape.hf : action.hf,
+                        vf: typeof action.vf === 'undefined' ? shape.vf : action.vf
                     };
                 } else {
                     return shape;

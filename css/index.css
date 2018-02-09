@@ -44,7 +44,7 @@ button:focus {
     outline: none;
 }
 
-input {
+input[type="text"] {
     background: #333;
     font-size: 25px;
     box-sizing: border-box;
@@ -52,6 +52,16 @@ input {
     border: none;
     margin-bottom: 5px;
     width: 100%;
+}
+
+.hf svg {
+    transform: scaleX(-1);
+}
+.vf svg {
+    transform: scaleY(-1);
+}
+.hf.vf svg {
+    transform: scale(-1,-1);
 }
 
 .loading-panel, .options-panel, .base-panel {
@@ -118,6 +128,34 @@ input {
     width: 20px;
     height: 20px;
     display: inline-block;
+}
+
+.title {
+    font-size: 25px;
+}
+.options-input .title {
+    margin-bottom: 7px;
+}
+.options-checkbox  {
+    margin-top: 10px;
+    margin-right: 30px;
+    display: inline-block;
+}
+.options-checkbox .title {
+    margin-right: 10px;
+    display: inline-block;
+}
+.checkbox {
+    background: #333;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    border: 6px solid #333;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.checkbox.ticked {
+    background: #fb016e;
 }
 
 .add-shape {

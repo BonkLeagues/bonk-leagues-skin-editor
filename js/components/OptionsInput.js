@@ -17,8 +17,8 @@ class OptionsInput extends React.Component {
     }
     render() {
         return (
-            <label>
-                <div style={{fontSize: '25px', marginBottom: '7px'}}>
+            <label className="options-input">
+                <div className="title">
                     {(()=> {
                         switch (this.props.type) {
                             case 'scale': return 'Scale: ';
