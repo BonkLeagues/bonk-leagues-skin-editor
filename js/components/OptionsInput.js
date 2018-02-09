@@ -15,6 +15,7 @@ class OptionsInput extends React.Component {
             data: newProps.shape && getKey(newProps.shape, this.props.type)
         });
     }
+
     render() {
         return (
             <label className="options-input">

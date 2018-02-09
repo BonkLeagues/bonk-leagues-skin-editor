@@ -6,8 +6,14 @@ class OptionsCheckbox extends React.Component {
         super(props);
 
         this.state = {
-            ticked: false
-        }
+            ticked: this.props.shape[this.props.type]
+        };
+    }
+
+    componentWillReceiveProps = newProps => {
+        this.setState({
+            ticked: newProps.shape && newProps.shape[this.props.type]
+        });
     }
 
     onChange = () => {
