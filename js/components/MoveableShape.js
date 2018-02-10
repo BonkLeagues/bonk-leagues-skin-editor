@@ -60,7 +60,7 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        onClick: () => {
+        onClick: e => {
             dispatch({
                 type: 'SELECT_SHAPE',
                 id: props.shape.uuid

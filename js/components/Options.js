@@ -39,7 +39,7 @@ class Options extends React.Component {
                         <OptionsInput type="rotation" />
                         <OptionsInput type="position.x" />
                         <OptionsInput type="position.y" />
-                        
+
                         <div className="checkboxes">
                             <OptionsCheckbox type="hf" />
                             <OptionsCheckbox type="vf" />

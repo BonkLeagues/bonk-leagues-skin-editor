@@ -1,8 +1,10 @@
+import uuidv1 from 'uuid/v1';
+
 export default function(state=[], action) {
     switch (action.type) {
         case 'ADD_SHAPE': {
             return [...state, {
-                uuid: Date.now(),
+                uuid: uuidv1(),
                 name: 'Shape '+ (state.length+1),
                 shapeID: action.id,
                 selected: true,
@@ -60,6 +62,10 @@ export default function(state=[], action) {
                     return shape;
                 }
             });
+        }
+
+        case 'SET_ALL_SHAPES': {
+            return action.shapes;
         }
 
         default: return state;

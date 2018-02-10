@@ -10,6 +10,7 @@ import allReducers from './reducers/allReducers';
 
 // Actions
 import loadShapes from './actions/loadShapes';
+import loadSkinCode from './actions/loadSkinCode';
 
 // Components
 import App from './components/App';
@@ -25,7 +26,9 @@ var store = createStore(
     )
 );
 
-store.dispatch(loadShapes);
+store.dispatch(loadShapes).then(()=>{
+    if (window.location.href.indexOf('?')>-1) store.dispatch(loadSkinCode);
+});
 
 render(
     <Provider store={store}>
