@@ -5,6 +5,7 @@ import { ActionCreators } from 'redux-undo';
 // Components
 import Options from './Options';
 import SkinBase from './SkinBase';
+import Export from './Export';
 import Credit from './Credit';
 
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
             <div tabIndex="0" onKeyDown={this.onKeyDown} onKeyUp={this.onKeyUp} style={{height: '100%'}}>
                 <Options />
                 <SkinBase />
+                <Export />
                 <Credit />
             </div>
         );

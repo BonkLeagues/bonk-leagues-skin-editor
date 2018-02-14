@@ -16,7 +16,8 @@ export default function(state=[], action) {
                 rotation: 0,
                 scale: 1,
                 hf: false,
-                vf: false
+                vf: false,
+                color: '000000'
             }];
         }
         case 'DELETE_SELECTED_SHAPE': {
