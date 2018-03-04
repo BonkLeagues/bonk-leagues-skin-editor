@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import keydown from 'react-keydown';
 
 class MoveableShape extends React.Component {
     constructor(props) {
@@ -19,8 +20,12 @@ class MoveableShape extends React.Component {
 
     render() {
         var scaleFactor = 700/30;
+
+        var selected = this.props.shape.selected;
+        var topLayer = selected && this.props.topLayer;
+
         return (
-            <div className={"shape" + (this.props.shape.selected?" selected":"")}
+            <div className={"shape" + (selected?" selected":"") + (topLayer?" top":"")}
                 onMouseDown={e => {
                     e.stopPropagation();
                     !this.props.shape.selected && this.props.onClick();
@@ -55,7 +60,8 @@ var mapStateToProps = (state, props) => {
         shapeHTML:
         state.allShapes[props.shape.shapeID]
         .replace(/fill\=\".+?\"/g, 'fill="#'+(props.shape.color || '000')+'"'),
-        ...props.shape
+        ...props.shape,
+        topLayer: state.topLayer
     };
 }
 var mapDispatchToProps = (dispatch, props) => {

@@ -43,6 +43,10 @@ button {
 button:focus {
     outline: none;
 }
+button:disabled {
+    background: #9a0043;
+    cursor: not-allowed;
+}
 
 input[type="text"] {
     background: #333;
@@ -130,6 +134,22 @@ input[type="text"] {
     display: inline-block;
 }
 
+.layer-buttons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.layer-buttons button {
+    font-size: 20px;
+    margin-bottom: 9px;
+    width: 50px;
+    height: 20px;
+    display: block;
+}
+.layer-buttons button img {
+    height: 75%;
+}
+
 .title {
     font-size: 25px;
 }
@@ -212,8 +232,10 @@ input[type="text"] {
     display: inline-block;
 }
 .selected {
-    z-index: 1;
     border: 2px solid #fb016e;
+}
+.top {
+    z-index: 1;
 }
 .shape svg {
     vertical-align: top;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
+import keydown from 'react-keydown';
 
 // Components
 import Options from './Options';
@@ -17,19 +18,19 @@ class App extends React.Component {
         };
     }
 
-    onKeyDown = e => {
-        if (!this.state.keyDown && e.keyCode!=17) {
-            this.setState({
-                keyDown: true
-            });
-
-            this.props.onKeyDown(e);
-        }
+    @keydown('ctrl+z')
+    undo(e) {
+        this.props.undo(e);
     }
-    onKeyUp = e => {
-        this.setState({
-            keyDown: false
-        });
+
+    @keydown('ctrl+y')
+    redo(e) {
+        this.props.redo(e);
+    }
+
+    @keydown('delete')
+    deleteShape(e) {
+        this.props.deleteShape(e);
     }
 
     render() {
@@ -49,18 +50,14 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        onKeyDown: e => {
-            if (e.ctrlKey && e.key === 'z') {
-                dispatch(ActionCreators.undo());
-            }
-            if (e.ctrlKey && e.key === 'y') {
-                dispatch(ActionCreators.redo());
-            }
-
-            // delete key
-            if (e.keyCode === 46) {
-                dispatch({type: 'DELETE_SELECTED_SHAPE'});
-            }
+        undo: e => {
+            dispatch(ActionCreators.undo());
+        },
+        redo: e => {
+            dispatch(ActionCreators.redo());
+        },
+        deleteShape: e => {
+            dispatch({type: 'DELETE_SELECTED_SHAPE'});
         }
     };
 }

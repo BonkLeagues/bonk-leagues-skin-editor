@@ -37,6 +37,31 @@ export default function(state=[], action) {
             });
         }
 
+        case 'SELECTED_SHAPE_UP': {
+            var shapeIndex = state.map(shape => shape.selected).indexOf(true);
+            return state.map((shape, i) => {
+                if (i === shapeIndex) {
+                    return state[i+1];
+                } else if (i === shapeIndex+1) {
+                    return state[i-1];
+                } else {
+                    return shape;
+                }
+            });
+        }
+        case 'SELECTED_SHAPE_DOWN': {
+            var shapeIndex = state.map(shape => shape.selected).indexOf(true);
+            return state.map((shape, i) => {
+                if (i === shapeIndex) {
+                    return state[i-1];
+                } else if (i === shapeIndex-1) {
+                    return state[i+1];
+                } else {
+                    return shape;
+                }
+            });
+        }
+
         case 'CHANGE_SHAPE_TRANSLATION': {
             return state.map(shape => {
                 if (shape.selected) {
