@@ -4,9 +4,12 @@ export default function(e, state) {
         var shapeRect = state.shapeRect;
         var position = state.editingShape.state.position;
 
+        console.log(shapeRect);
+        console.log(state.editingShape.props.origin);
+
         var origin = {
-            x: shapeRect.x + shapeRect.width/2 + parseFloat(position.x),
-            y: shapeRect.y + shapeRect.height/2 + parseFloat(position.y)
+            x: shapeRect.x + state.editingShape.props.origin.x + parseFloat(position.x),
+            y: shapeRect.y + state.editingShape.props.origin.y + parseFloat(position.y)
         };
         var dragger = {
             x: shapeRect.x + shapeRect.width + parseFloat(position.x),

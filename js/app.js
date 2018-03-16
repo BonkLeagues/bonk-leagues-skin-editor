@@ -14,15 +14,12 @@ import loadSkinCode from './actions/loadSkinCode';
 
 // Components
 import App from './components/App';
-// import Options from './components/Options';
-// import SkinBase from './components/SkinBase';
-// import Credit from './components/Credit';
 
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 var store = createStore(
     allReducers,
     composeEnhancers(
-        applyMiddleware(thunk, logger)
+        applyMiddleware(thunk)
     )
 );
 

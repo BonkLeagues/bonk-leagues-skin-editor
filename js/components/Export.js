@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 var Export = ({ skinCode, shapeObj, onClick }) => (
-    <div style={{
-        height: skinCode ? '100px' : '25px'
-    }} className="export">
+    <div onMouseEnter={()=>{skinCode && onClick(shapeObj)}} style={{height: skinCode ? '100px' : '25px'}} className="export">
         <button onClick={()=>onClick(shapeObj)}>Generate Skin Code</button>
         {
             skinCode &&

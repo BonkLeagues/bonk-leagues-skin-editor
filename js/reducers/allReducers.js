@@ -6,11 +6,13 @@ import baseColor from './baseColor';
 import allShapes from './allShapes';
 import skinCode from './skinCode';
 import topLayer from './topLayer';
+import overlay from './overlay';
 
 export default combineReducers({
     shapes: undoable(shapes),
     baseColor: undoable(baseColor),
     allShapes,
     skinCode,
-    topLayer
+    topLayer,
+    overlay
 });

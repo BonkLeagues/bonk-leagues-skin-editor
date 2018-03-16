@@ -34,17 +34,20 @@ class MoveableShape extends React.Component {
                     transform: `
                         translate(`+this.state.position.x+`px,`+this.state.position.y+`px)
                         translate(-50%,-50%)
-                        rotate(`+this.state.rotation+`deg)
                         scale(`+this.state.scale+`)
+                        rotate(`+this.state.rotation+`deg)
+                        translateX(`+(this.state.rect?(this.state.rect.width/2 - this.props.origin.x):'0')+`px)
+                        translateY(`+(this.state.rect?(this.state.rect.height/2 - this.props.origin.y):'0')+`px)
                     `
                 }}
-            ref={shape=>{
-                if (shape && !this.state.rect) {
-                    this.setState({
-                        rect: shape.getBoundingClientRect()
-                    });
-                }
-            }}>
+                ref={shape=>{
+                    if (shape && !this.state.rect) {
+                        this.setState({
+                            rect: shape.getBoundingClientRect()
+                        });
+                    }
+                }}
+            >
                 <span className={(this.state.hf?'hf':'')+' '+(this.state.vf?'vf':'')} onMouseDown={e=>this.props.onShapeDown(e,this)} dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}></span>
                 {
                     this.props.shape.selected &&
@@ -56,11 +59,16 @@ class MoveableShape extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
+    var shapeHTML = state.allShapes[props.shape.shapeID].replace(/fill\=\".+?\"/g, 'fill="#'+(props.shape.color || '000')+'"');
+    var confusingOffsetRegex = shapeHTML.match(/matrix\((1\.0|1),\s*(0\.0|0),\s*(0\.0|0),\s*(1\.0|1),\s*(.+),\s*(.+)\)/);
+
     return {
-        shapeHTML:
-        state.allShapes[props.shape.shapeID]
-        .replace(/fill\=\".+?\"/g, 'fill="#'+(props.shape.color || '000')+'"'),
+        shapeHTML,
         ...props.shape,
+        origin: {
+            x: parseFloat(confusingOffsetRegex[5])+2,
+            y: parseFloat(confusingOffsetRegex[6])+2
+        },
         topLayer: state.topLayer
     };
 }

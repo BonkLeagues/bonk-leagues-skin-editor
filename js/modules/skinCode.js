@@ -33,7 +33,7 @@ export function objectToSkinCode(skinData) {
 
 function numberToHex(n) {
     var hexCode = n.toString(16);
-    return new Buffer(hexCode.length<2?('0'+hexCode):hexCode, 'hex');
+    return new Buffer(hexCode.length< 2?('0'+hexCode):hexCode, 'hex');
 }
 function addToBuffer(skinBuffer, buffer) {
     return Buffer.concat([skinBuffer, buffer]);
@@ -114,7 +114,8 @@ function parseLayer(skinData, layer, index) {
 }
 
 function bufferToFloat(buffer) {
-    return Math.round(buffer.readFloatBE(0)*100)/100;
+    // return Math.round(buffer.readFloatBE(0)*100)/100;
+    return buffer.readFloatBE(0);
 }
 
 function subBuf(buffer, start, end) {

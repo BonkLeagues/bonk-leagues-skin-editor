@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import AddShape from './AddShape';
-import ColorPicker from './Options/ColorPicker';
-import LayerButtons from './Options/LayerButtons';
-import AllInputs from './Options/AllInputs';
+import ColorPicker from './ColorPicker';
+import LayerButtons from './LayerButtons';
+import AllInputs from './AllInputs';
 
 class Options extends React.Component {
     constructor(props) {

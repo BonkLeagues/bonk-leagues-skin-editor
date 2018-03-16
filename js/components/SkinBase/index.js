@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ShapeCount from './ShapeCount';
 import MoveableShape from './MoveableShape';
+import Overlay from './Overlay';
+import OverlayPanel from './OverlayPanel';
 
-import doTranslation from '../modules/translation';
+import doTranslation from '../../modules/translation';
 
 class SkinBase extends React.Component {
     constructor(props) {
@@ -62,12 +65,11 @@ class SkinBase extends React.Component {
                 onMouseMove={this.onMouseMove}
                 onMouseUp={this.onMouseUp}
             >
-                <div className="base"
-                    style={{
-                        background: '#'+this.props.baseColor,
-                        overflow: this.props.anySelected ? 'visible' : 'hidden'
-                    }}
-                >
+                <ShapeCount />
+                <div className="base" style={{
+                    background: '#'+this.props.baseColor,
+                    overflow: this.props.anySelected ? 'visible' : 'hidden'
+                }}>
                     {this.props.shapes.map((shape, i) =>
                         <MoveableShape
                             shape={shape}
@@ -77,7 +79,9 @@ class SkinBase extends React.Component {
                             key={shape.uuid}
                         />
                     )}
+                    <Overlay />
                 </div>
+                <OverlayPanel />
             </div>
         );
     }
