@@ -27,8 +27,6 @@ var banner = `
     hope you enjoy your stay.   :)
 `;
 
-var production = process.argv.indexOf('-p')>-1;
-
 module.exports = {
     entry: {
         'bundle': './js/app.js',
@@ -46,7 +44,7 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react', 'stage-1', 'stage-2'],
                     plugins: [
-                        ["transform-decorators-legacy"]
+                        ['transform-decorators-legacy']
                     ]
                 }
             }
@@ -55,7 +53,6 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                include: /\.min\.js$/,
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
@@ -63,12 +60,5 @@ module.exports = {
             include: /\.min\.js$/
         }),
         new webpack.BannerPlugin(banner)
-    ],
-    // resolve: {
-    //     alias: {
-    //         'react': 'preact-compat',
-    //         'react-dom': 'preact-compat'
-    //     }
-    // },
-    watch: process.argv.indexOf('-w')>-1
+    ]
 };

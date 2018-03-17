@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import changeOverlayPalette from '../../actions/changeOverlayPalette';
+
 class Overlay extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,10 @@ class Overlay extends React.Component {
         this.setState({display: false});
     }
     onLoad = () => {
-        this.setState({display: true});
+        this.setState({
+            display: true,
+            redoPalette: true
+        });
     }
 
     render() {
@@ -22,6 +27,14 @@ class Overlay extends React.Component {
             <img
                 onError={this.onError}
                 onLoad={this.onLoad}
+                ref={el=>{
+                    if (this.state.redoPalette) {
+                        this.props.changeOverlayElement(el);
+                        this.setState({
+                            redoPalette: false
+                        });
+                    }
+                }}
                 style={{
                     opacity: this.props.active ? .5 : 0,
                     zIndex: '133769420',
@@ -42,5 +55,15 @@ class Overlay extends React.Component {
 var mapStateToProps = (state, props) => {
     return {...state.overlay};
 }
+var mapDispatchToProps = (dispatch, props) => {
+    return {
+        changeOverlayElement: el => {
+            dispatch(changeOverlayPalette(el));
+        }
+    };
+}
 
-export default connect(mapStateToProps)(Overlay);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Overlay);

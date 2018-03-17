@@ -18,22 +18,25 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
+    "compression-webpack-plugin": "1.1.6",
+    "redux-logger": "3.0.6",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.11.1"
+  },
+  "dependencies": {
     "buffer": "5.0.8",
     "buffer-indexof": "1.1.1",
     "buffer-split": "1.0.0",
-    "compression-webpack-plugin": "1.1.6",
-    "preact": "8.2.7",
-    "preact-compat": "3.18.0",
+    "get-image-pixels": "1.0.1",
+    "get-rgba-palette": "2.0.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-dropzone": "4.2.9",
     "react-keydown": "1.9.6",
     "react-redux": "5.0.6",
     "redux": "3.7.2",
-    "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
     "redux-undo": "0.6.1",
-    "uuid": "3.2.1",
-    "webpack": "3.10.0",
-    "webpack-dev-server": "2.11.1"
+    "uuid": "3.2.1"
   }
 }

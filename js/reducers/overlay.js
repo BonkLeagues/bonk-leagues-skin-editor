@@ -1,16 +1,9 @@
 export default function(state={active: true, scale: 1}, action) {
     switch (action.type) {
-        case 'CHANGE_OVERLAY_ACTIVE': {
-            return {
-                ...state,
-                active: action.active
-            };
-        }
-        case 'CHANGE_OVERLAY_SRC': {
-            return {
-                ...state,
-                src: action.src
-            };
+        case 'CHANGE_OVERLAY_ACTIVE':
+        case 'CHANGE_OVERLAY_SRC':
+        case 'CHANGE_OVERLAY_PALETTE': {
+            return {...state, ...action};
         }
         case 'CHANGE_OVERLAY_SCALE': {
             return {

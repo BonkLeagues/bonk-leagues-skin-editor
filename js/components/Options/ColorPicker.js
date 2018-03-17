@@ -1,7 +1,7 @@
 import React from 'react';
 
 import colors from '../../modules/colors';
-import Color from './Color';
+import Color from '../Color';
 
 export default () => (
     <div className="color-picker">

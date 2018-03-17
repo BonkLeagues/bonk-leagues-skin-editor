@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var OverlayPanel = ({ active, onActiveChange, onSrcChange, onScaleChange }) => (
-    <div className="overlay-panel">
+import Color from '../Color';
+
+var OverlayPanel = ({ active, palette, onActiveChange, onSrcChange, onScaleChange }) => (
+    <div className="overlay-panel" onMouseDown={e=>e.stopPropagation()}>
+        <span>Overlay Controls</span>
         <div onClick={()=>onActiveChange(active)} className={'checkbox ' + (active ? 'ticked' : '')} />
-        <input onChange={onSrcChange} placeholder="Overlay URL..." type="text" />
         <input onChange={onScaleChange} defaultValue={100} min={25} max={300} type="range" />
+        <div className="palette">
+            {
+                palette &&
+                palette.map((color, i) =>
+                    <Color color={color} key={i} />
+                )
+            }
+        </div>
     </div>
 );
 
 var mapStateToProps = (state, props) => {
-    return {
-        active: state.overlay.active
-    };
+    return {...state.overlay};
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
