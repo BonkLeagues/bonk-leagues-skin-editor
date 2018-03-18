@@ -1,0 +1,83 @@
+.options-panel {
+    @extend %panel;
+
+    background: $bl-grey;
+    box-sizing: border-box;
+    z-index: 2;
+    padding: 15px;
+    width: 350px;
+
+    .color-picker {
+        margin: 10px 0;
+    }
+    .layer-buttons {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        button {
+            font-size: 20px;
+            margin-bottom: 9px;
+            width: 50px;
+            height: 20px;
+            display: block;
+
+            img {
+                height: 75%;
+            }
+        }
+    }
+    .options-input {
+        .title {
+            margin-bottom: 7px;
+        }
+        input {
+            width: 100%;
+        }
+    }
+    .options-checkbox  {
+        margin-top: 5px;
+        margin-right: 30px;
+        display: inline-block;
+
+        .title {
+            margin-right: 10px;
+            display: inline-block;
+        }
+    }
+    .add-shape {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+
+        .add-button {
+            float: right;
+            z-index: 4;
+            width: 30px;
+            height: 30px;
+            position: relative;
+        }
+        .add-dialog-wrapper {
+            background: $bl-grey-light;
+            overflow: hidden;
+            z-index: 3;
+            border-top: 7px solid $bl-pink;
+            border-bottom: 7px solid $bl-pink;
+            position: relative;
+            transition: width .3s .1s, height .3s, top .3s;
+
+            .add-dialog {
+                overflow-y: scroll;
+                width: 320px;
+                height: 300px;
+
+                .dialog-shape {
+                    padding: 5px;
+                    width: 41px;
+                    height: 41px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

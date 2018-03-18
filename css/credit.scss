@@ -1,0 +1,18 @@
+.credit {
+    margin: 0 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    img {
+       vertical-align: bottom;
+       margin-right: 5px;
+       height: 20px;
+    }
+    span {
+       color: $bl-pink;
+       font-size: 20px;
+       line-height: 20px;
+       display: inline-block;
+    }
+}

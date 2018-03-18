@@ -1,0 +1,126 @@
+%full-height {
+    height: 100%;
+}
+%panel {
+    @extend %full-height;
+
+    float: left;
+    position: relative;
+}
+
+* {
+    color: #fff;
+    font-family: 'VT323', monospace;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+
+    &:focus {
+        outline: none;
+    }
+}
+::-webkit-scrollbar {
+    width: 13px;
+}
+::-webkit-scrollbar-track {
+    background: $bl-grey-lighter;
+}
+::-webkit-scrollbar-thumb {
+    background: $bl-pink;
+    border: 3px solid $bl-grey-lighter;
+}
+
+html, #app {
+    @extend %full-height;
+}
+body {
+    @extend %full-height;
+
+    background: $bl-blue;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: normal;
+}
+button {
+    background: $bl-pink;
+    font-size: 30px;
+    line-height: 0;
+    padding: 5px;
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
+    &:disabled {
+        background: $bl-pink-dark;
+        cursor: not-allowed;
+    }
+}
+
+input[type="text"] {
+    background: $bl-grey-lighter;
+    font-size: 25px;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    border: none;
+    margin-bottom: 5px;
+    width: 100%;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    margin: 9.5px;
+    width: 150px;
+    position: relative;
+    top: -3px;
+
+    &::-webkit-slider-runnable-track {
+        background: $bl-pink;
+        height: 5px;
+    }
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: $bl-pink;
+        border-radius: 9999px;
+        margin-top: -5.5px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.title {
+    font-size: 25px;
+}
+
+.checkbox {
+    background: $bl-grey-lighter;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    border: 6px solid $bl-grey-lighter;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+
+    &.ticked {
+        background: $bl-pink;
+    }
+}
+
+.hf svg {
+    transform: scaleX(-1);
+}
+.vf svg {
+    transform: scaleY(-1);
+}
+.hf.vf svg {
+    transform: scale(-1,-1);
+}
+
+.color {
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}

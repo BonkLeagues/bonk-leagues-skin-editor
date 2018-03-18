@@ -37,16 +37,47 @@ module.exports = {
         filename: '[name].js'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react', 'stage-1', 'stage-2'],
-                    plugins: [
-                        ['transform-decorators-legacy']
-                    ]
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015', 'react', 'stage-1', 'stage-2'],
+                        plugins: [
+                            ['transform-decorators-legacy']
+                        ]
+                    }
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    },
+                    'sass-loader'
+                ]
+            },
+            { test: /\.woff$/, loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
+            { test: /\.woff2$/, loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
+            { test: /\.[ot]tf$/, loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
+            { test: /\.eot$/, loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192
+                        }
+                    }
+                ]
             }
         ]
     },

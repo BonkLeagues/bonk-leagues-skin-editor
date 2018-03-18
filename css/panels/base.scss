@@ -1,0 +1,47 @@
+.base-panel {
+    @extend %panel;
+
+    width: calc(100% - 350px);
+
+    .base {
+        background: #fafafa;
+        overflow: hidden;
+        border-radius: 9999px;
+        width: 700px;
+        padding-top: 700px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+        .shape {
+            font-size: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: inline-block;
+
+            svg {
+                vertical-align: top;
+            }
+
+            &.selected {
+                border: 2px solid $bl-pink;
+            }
+            &.top {
+                z-index: 1;
+            }
+
+            .dragger {
+                background: $bl-pink;
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                transform: translate(50%,50%);
+            }
+        }
+    }
+}
