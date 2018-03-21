@@ -18,6 +18,20 @@ module.exports = merge(common, {
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     {

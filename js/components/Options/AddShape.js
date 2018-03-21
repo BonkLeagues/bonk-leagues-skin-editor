@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import DialogShape from './DialogShape';
 
@@ -31,16 +32,25 @@ class AddShape extends React.Component {
                     height: '16px',
                     top: '30px'
                 }}>
-                    <div className="add-dialog">
-                        {this.props.shapes.map((shape, i) =>
-                            <DialogShape shape={
-                                shape
-                                .replace(/fill\=\".+?\"/g, 'fill="#fff"')
-                                .replace(/height\=\".+?px\" width\=\".+?px\"/, 'height="'+size+'px" width="'+size+'px"')
-                                .replace(/width\=\".+?\" height\=\".+?\"/, 'width="'+size+'" height="'+size+'"')
-                            } toggleDialog={this.toggleDialog} id={i} key={i} />
-                        )}
-                    </div>
+                    <Scrollbars
+                        style={{
+                            width: '320px',
+                            height: '300px'
+                        }}
+                        renderTrackVertical={props => <div {...props} className="track-vertical" />}
+                        renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
+                    >
+                        <div className="add-dialog">
+                            {this.props.shapes.map((shape, i) =>
+                                <DialogShape shape={
+                                    shape
+                                    .replace(/fill\=\".+?\"/g, 'fill="#fff"')
+                                    .replace(/height\=\".+?px\" width\=\".+?px\"/, 'height="'+size+'px" width="'+size+'px"')
+                                    .replace(/width\=\".+?\" height\=\".+?\"/, 'width="'+size+'" height="'+size+'"')
+                                } toggleDialog={this.toggleDialog} id={i} key={i} />
+                            )}
+                        </div>
+                    </Scrollbars>
                 </div>
                 <button className="add-button" onClick={this.toggleDialog}>+</button>
             </div>

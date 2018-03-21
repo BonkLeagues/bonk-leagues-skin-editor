@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 import Color from '../Color';
 
@@ -7,7 +9,12 @@ var OverlayPanel = ({ active, palette, onActiveChange, onSrcChange, onScaleChang
     <div className="overlay-panel" onMouseDown={e=>e.stopPropagation()}>
         <span>Overlay Controls</span>
         <div onClick={()=>onActiveChange(active)} className={'checkbox ' + (active ? 'ticked' : '')} />
-        <input onChange={onScaleChange} defaultValue={100} min={25} max={300} type="range" />
+        <Slider
+            defaultValue={100}
+            min={25}
+            max={300}
+            onChange={onScaleChange}
+        />
         <div className="palette">
             {
                 palette &&
@@ -36,10 +43,10 @@ var mapDispatchToProps = (dispatch, props) => {
                 src: e.target.value
             });
         },
-        onScaleChange: e => {
+        onScaleChange: scale => {
             dispatch({
                 type: 'CHANGE_OVERLAY_SCALE',
-                scale: e.target.value
+                scale
             });
         }
     };
