@@ -2,6 +2,10 @@ export default function(e, state) {
     var scaleFactor = 30/700;
     if (state.scaling) {
         var shapeRect = state.shapeRect;
+
+        var centerX = window.innerWidth/2 + 175 - shapeRect.width/2;
+        var centerY = window.innerHeight/2 - shapeRect.height/2;
+
         var { position, hf, vf } = state.editingShape.state;
         var origin = state.editingShape.props.origin;
 
@@ -11,12 +15,12 @@ export default function(e, state) {
         };
 
         var origin = {
-            x: shapeRect.x + flippedOrigin.x + parseFloat(position.x),
-            y: shapeRect.y + flippedOrigin.y + parseFloat(position.y)
+            x: centerX + flippedOrigin.x + parseFloat(position.x),
+            y: centerY + flippedOrigin.y + parseFloat(position.y)
         };
         var dragger = {
-            x: shapeRect.x + shapeRect.width + parseFloat(position.x),
-            y: shapeRect.y + shapeRect.height + parseFloat(position.y)
+            x: centerX + shapeRect.width + parseFloat(position.x),
+            y: centerY + shapeRect.height + parseFloat(position.y)
         };
 
         var cursorDiff = {
