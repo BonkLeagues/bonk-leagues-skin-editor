@@ -2,14 +2,17 @@ export default function(e, state) {
     var scaleFactor = 30/700;
     if (state.scaling) {
         var shapeRect = state.shapeRect;
-        var position = state.editingShape.state.position;
+        var { position, hf, vf } = state.editingShape.state;
+        var origin = state.editingShape.props.origin;
 
-        console.log(shapeRect);
-        console.log(state.editingShape.props.origin);
+        var flippedOrigin = {
+            x: hf ? (shapeRect.width - origin.x) : origin.x,
+            y: vf ? (shapeRect.height - origin.y) : origin.y
+        };
 
         var origin = {
-            x: shapeRect.x + state.editingShape.props.origin.x + parseFloat(position.x),
-            y: shapeRect.y + state.editingShape.props.origin.y + parseFloat(position.y)
+            x: shapeRect.x + flippedOrigin.x + parseFloat(position.x),
+            y: shapeRect.y + flippedOrigin.y + parseFloat(position.y)
         };
         var dragger = {
             x: shapeRect.x + shapeRect.width + parseFloat(position.x),
