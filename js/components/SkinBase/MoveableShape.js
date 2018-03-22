@@ -36,8 +36,8 @@ class MoveableShape extends React.Component {
                         translate(-50%,-50%)
                         scale(`+this.state.scale+`)
                         rotate(`+this.state.rotation+`deg)
-                        translateX(`+(this.state.hf?'-':'')+(this.state.rect?(this.state.rect.width/2 - this.props.origin.x):'0')+`px)
-                        translateY(`+(this.state.vf?'-':'')+(this.state.rect?(this.state.rect.height/2 - this.props.origin.y):'0')+`px)
+                        translateX(`+(this.state.hf?-1:1)*(this.state.rect?(this.state.rect.width/2 - this.props.origin.x):'0')+`px)
+                        translateY(`+(this.state.vf?-1:1)*(this.state.rect?(this.state.rect.height/2 - this.props.origin.y):'0')+`px)
                     `
                 }}
                 ref={shape=>{

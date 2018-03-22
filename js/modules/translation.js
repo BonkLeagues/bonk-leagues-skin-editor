@@ -1,7 +1,7 @@
 export default function(e, state) {
     var scaleFactor = 30/700;
     if (state.scaling) {
-        var shapeRect = state.shapeRect;
+        var { shapeRect } = state;
 
         var centerX = window.innerWidth/2 + 175 - shapeRect.width/2;
         var centerY = window.innerHeight/2 - shapeRect.height/2;
