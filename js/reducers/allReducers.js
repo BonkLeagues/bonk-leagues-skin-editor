@@ -7,6 +7,7 @@ import allShapes from './allShapes';
 import skinCode from './skinCode';
 import topLayer from './topLayer';
 import overlay from './overlay';
+import clipboard from './clipboard';
 
 export default combineReducers({
     shapes: undoable(shapes),
@@ -14,5 +15,6 @@ export default combineReducers({
     allShapes,
     skinCode,
     topLayer,
-    overlay
+    overlay,
+    clipboard
 });

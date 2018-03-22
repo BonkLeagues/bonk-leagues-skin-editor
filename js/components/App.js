@@ -10,6 +10,9 @@ import SkinBase from './SkinBase';
 import Export from './Export';
 import Credit from './Credit';
 
+import copyToClipboard from '../actions/copyToClipboard';
+import pasteFromClipboard from '../actions/pasteFromClipboard';
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -21,18 +24,24 @@ class App extends React.Component {
     }
 
     @keydown('ctrl+z')
-    undo(e) {
-        this.props.undo(e);
+    undo() {
+        this.props.undo();
     }
-
     @keydown('ctrl+y')
-    redo(e) {
-        this.props.redo(e);
+    redo() {
+        this.props.redo();
     }
-
+    @keydown('ctrl+c')
+    copyShape() {
+        this.props.copyShape();
+    }
+    @keydown('ctrl+v')
+    pasteShape() {
+        this.props.pasteShape();
+    }
     @keydown('delete')
-    deleteShape(e) {
-        this.props.deleteShape(e);
+    deleteShape() {
+        this.props.deleteShape();
     }
 
     onFileDrop = files => {
@@ -99,13 +108,19 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        undo: e => {
+        undo: () => {
             dispatch(ActionCreators.undo());
         },
-        redo: e => {
+        redo: () => {
             dispatch(ActionCreators.redo());
         },
-        deleteShape: e => {
+        copyShape: () => {
+            dispatch(copyToClipboard);
+        },
+        pasteShape: () => {
+            dispatch(pasteFromClipboard);
+        },
+        deleteShape: () => {
             dispatch({type: 'DELETE_SELECTED_SHAPE'});
         },
         changeOverlaySrc: src => {

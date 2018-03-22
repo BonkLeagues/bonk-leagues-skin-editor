@@ -41,15 +41,16 @@ export default function(e, state) {
 
         state.editingShape.setState({
             rotation: e.shiftKey ? state.editingShape.props.rotation : finalAngle * 180/Math.PI + ((e.clientY < origin.y) ? 180 : 0),
-            scale: (e.ctrlKey ? state.editingShape.props.scale : Math.sqrt(cursorDist/draggerDist))
+            scale: e.ctrlKey ? state.editingShape.props.scale : Math.sqrt(cursorDist/draggerDist)
         });
     } else if (state.moving) {
         var moveOffset = state.moveOffset;
+        var { position } = state.editingShape.props;
 
         state.editingShape.setState({
             position: {
-                x: (e.clientX - moveOffset.x),
-                y: (e.clientY - moveOffset.y)
+                x: e.ctrlKey ? position.x : (e.clientX - moveOffset.x),
+                y: e.shiftKey ? position.y : (e.clientY - moveOffset.y)
             }
         });
     }

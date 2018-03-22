@@ -94,6 +94,27 @@ export default function(state=[], action) {
             return action.shapes;
         }
 
+        case 'PASTE_FROM_CLIPBOARD': {
+            return [...state.map(shape => ({...shape, selected: false})),
+                {...action.shape,
+                    rotation: 0,
+                    scale: 1
+                }
+            ];
+        }
+        case 'CHANGE_PASTED_SCALE': {
+            return state.map(shape => {
+                if (shape.selected) {
+                    return {...shape,
+                        rotation: action.shape.rotation,
+                        scale: action.shape.scale
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+
         default: return state;
     }
 }
