@@ -25,23 +25,23 @@ class App extends React.Component {
 
     @keydown('ctrl+z')
     undo() {
-        this.props.undo();
+        if (this.props.shortcutsActive) this.props.undo();
     }
     @keydown('ctrl+y')
     redo() {
-        this.props.redo();
+        if (this.props.shortcutsActive) this.props.redo();
     }
     @keydown('ctrl+c')
     copyShape() {
-        this.props.copyShape();
+        if (this.props.shortcutsActive) this.props.copyShape();
     }
     @keydown('ctrl+v')
     pasteShape() {
-        this.props.pasteShape();
+        if (this.props.shortcutsActive) this.props.pasteShape();
     }
     @keydown('delete')
     deleteShape() {
-        this.props.deleteShape();
+        if (this.props.shortcutsActive) this.props.deleteShape();
     }
 
     onFileDrop = files => {
@@ -104,7 +104,9 @@ class App extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-    return {};
+    return {
+        shortcutsActive: state.topLayer
+    };
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
