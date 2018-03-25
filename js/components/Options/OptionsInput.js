@@ -34,7 +34,7 @@ class OptionsInput extends React.Component {
                         data: e.target.value
                     });
                     this.props.onChange(e.target.value, this.props.shape);
-                }} value={this.state.data} type="text" />
+                }} onFocus={this.props.onFocus} onBlur={this.props.onBlur} value={this.state.data} type="text" />
             </label>
         );
     }
@@ -83,6 +83,18 @@ var mapDispatchToProps = (dispatch, props) => {
                     [props.type]: data
                 });
             }
+        },
+        onFocus: () => {
+            dispatch({
+                type: 'SET_FOCUS',
+                focus: true
+            });
+        },
+        onBlur: () => {
+            dispatch({
+                type: 'SET_FOCUS',
+                focus: false
+            });
         }
     };
 }

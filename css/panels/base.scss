@@ -3,6 +3,13 @@
 
     width: calc(100% - 350px);
 
+    .shape-count {
+        pointer-events: none;
+        font-size: 30px;
+        z-index: 2;
+        padding: 10px;
+        position: relative;
+    }
     .base {
         background: #fafafa;
         overflow: hidden;
