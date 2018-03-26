@@ -9,7 +9,7 @@ var Export = ({ skinCode, shapeObj, onClick }) => (
             <div className="skin-codes">
                 <div><a href={"https://bonkleagues.github.io/skins.html#Skin|Bonk Leagues Skin Editor|"+encodeURIComponent(skinCode)} target="_blank">Save to Skin Manager</a></div>
                 - or use the skin code: -
-                <input type="text" id="export-txt" onClick={()=>document.getElementById('export-txt').select()} value={skinCode} readOnly />
+                <input type="text" onClick={e=>e.target.select()} value={skinCode} readOnly />
             </div>
         }
     </div>
