@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import undoable from 'redux-undo';
+import undoable, { includeAction } from 'redux-undo';
 
 import shapes from './shapes';
 import baseColor from './baseColor';
@@ -10,13 +10,10 @@ import overlay from './overlay';
 import clipboard from './clipboard';
 import focus from './focus';
 
+import undoableActions from './undoableActions';
+
 export default combineReducers({
-    shapes: undoable(shapes),
-    baseColor: undoable(baseColor),
-    allShapes,
-    skinCode,
-    topLayer,
-    overlay,
-    clipboard,
-    focus
+    shapes: undoable(shapes, { filter: includeAction(undoableActions) }),
+    baseColor: undoable(baseColor, { filter: includeAction(undoableActions) }),
+    allShapes, skinCode, topLayer, overlay, clipboard, focus
 });

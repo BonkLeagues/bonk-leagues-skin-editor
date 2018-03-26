@@ -6,6 +6,8 @@ import MoveableShape from './MoveableShape';
 import Overlay from './Overlay';
 import OverlayPanel from './OverlayPanel';
 
+import deselectAll from '../../actions/deselectAll';
+
 import doTranslation from '../../modules/translation';
 
 class SkinBase extends React.Component {
@@ -97,7 +99,7 @@ var mapStateToProps = (state, props) => {
 var mapDispatchToProps = (dispatch, props) => {
     return {
         onClick: () => {
-            dispatch({type: 'DESELECT_ALL'});
+            dispatch(deselectAll);
         },
 
         changeShapeTranslation: state => {
