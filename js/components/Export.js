@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 var Export = ({ skinCode, shapeObj, onClick }) => (
-    <div onMouseEnter={()=>{skinCode && onClick(shapeObj)}} style={{height: skinCode ? '100px' : '25px'}} className="export">
-        <button onClick={()=>onClick(shapeObj)}>Generate Skin Code</button>
+    <div onMouseEnter={()=>{skinCode && onClick(shapeObj)}} style={{height: skinCode ? '137px' : '27px'}} className="export">
+        <button onClick={()=>onClick(shapeObj)}>Save Skin</button>
         {
             skinCode &&
             <div className="skin-codes">
-                <input type="text" value={skinCode} readOnly />
-                <div>or <a href={"https://bonkleagues.github.io/skins.html#Untitled|Bonk Leagues Skin Editor|"+encodeURIComponent(skinCode)} target="_blank">click here</a></div>
+                <div><a href={"https://bonkleagues.github.io/skins.html#Skin|Bonk Leagues Skin Editor|"+encodeURIComponent(skinCode)} target="_blank">Save to Skin Manager</a></div>
+                - or use the skin code: -
+                <input type="text" id="export-txt" onClick={()=>document.getElementById('export-txt').select()} value={skinCode} readOnly />
             </div>
         }
     </div>

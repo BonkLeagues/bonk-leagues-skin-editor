@@ -39,7 +39,7 @@ class App extends React.Component {
     pasteShape() {
         if (!this.props.focusActive) this.props.pasteShape();
     }
-    @keydown('delete')
+    @keydown(['delete', 'backspace'])
     deleteShape() {
         if (!this.props.focusActive) this.props.deleteShape();
     }

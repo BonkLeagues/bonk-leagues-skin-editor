@@ -28,7 +28,7 @@ class Options extends React.Component {
                 onMouseEnter={this.props.disableTopLayer}
                 onMouseLeave={this.props.enableTopLayer}
             >
-                <h1 className="shape-name">{selected ? selected.name : 'Base'}</h1>
+                <h1 className="shape-name">{selected ? selected.name : 'Base Colour'}</h1>
                 {
                     selected &&
                     <LayerButtons

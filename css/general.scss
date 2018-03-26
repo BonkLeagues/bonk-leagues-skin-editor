@@ -9,7 +9,7 @@
 }
 
 * {
-    color: #fff;
+    color: $bl-pink;
     font-family: 'VT323', monospace;
     user-select: none;
     padding: 0;
@@ -20,7 +20,7 @@
     }
 }
 .track-vertical {
-    background: $bl-grey-lighter;
+    background: $bl-grey-light;
     width: 13px !important;
     top: 0;
     bottom: 0;
@@ -29,18 +29,18 @@
 .thumb-vertical {
     background: $bl-pink;
     box-sizing: border-box;
-    border: 3px solid $bl-grey-lighter;
+    border: 3px solid $bl-grey-light;
 }
-// ::-webkit-scrollbar {
-//     width: 13px;
-// }
-// ::-webkit-scrollbar-track {
-//     background: $bl-grey-lighter;
-// }
-// ::-webkit-scrollbar-thumb {
-//     background: $bl-pink;
-//     border: 3px solid $bl-grey-lighter;
-// }
+::-webkit-scrollbar {
+    width: 13px;
+}
+::-webkit-scrollbar-track {
+    background: $bl-grey-light;
+}
+::-webkit-scrollbar-thumb {
+    background: $bl-pink;
+    border: 3px solid $bl-grey-light;
+}
 
 html, #app {
     @extend %full-height;
@@ -55,13 +55,26 @@ body {
 h1 {
     font-size: 50px;
     font-weight: normal;
+    text-transform: uppercase;
 }
+
+.shape-name{
+    color: $bl-grey;
+    background: $bl-pink;
+    padding:6px 15px;
+    display:inline-block;
+}
+
 button {
     background: $bl-pink;
     font-size: 30px;
     line-height: 0;
     padding: 5px;
     border: none;
+    color: $bl-grey;
+    text-transform:uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0px $bl-pink-dark;
 
     &:focus {
         outline: none;
@@ -80,11 +93,13 @@ input[type="text"] {
     border: none;
     margin-bottom: 5px;
     width: 100%;
+    color:#ccc;
 }
 
 .rc-slider {
     width: 300px !important;
     display: inline-block;
+    cursor: pointer;
 
     .rc-slider-rail {
         background: $bl-grey-lighter;
@@ -96,7 +111,7 @@ input[type="text"] {
     }
     .rc-slider-handle {
         background: $bl-pink;
-        cursor: default !important;
+        cursor: pointer !important;
         border: none !important;
         box-shadow: none !important;
         width: 15px !important;
@@ -116,6 +131,7 @@ input[type="text"] {
     width: 25px;
     height: 25px;
     display: inline-block;
+    cursor: pointer;
 
     &.ticked {
         background: $bl-pink;
@@ -137,4 +153,7 @@ input[type="text"] {
     width: 20px;
     height: 20px;
     display: inline-block;
+}
+.color:hover {
+    box-shadow: inset 0px 0px 0px 2px #111;
 }

@@ -9,6 +9,8 @@
         font-size: 20px;
         line-height: 40px;
         margin: 10px;
+        margin-left: 15px;
+        text-transform: uppercase;
     }
     .checkbox {
         margin: 7.5px;
@@ -25,5 +27,8 @@
             margin-right: 7px;
             width: 30px;
         }
+    }
+    .overlay-panel-off{
+        display: none;
     }
 }
