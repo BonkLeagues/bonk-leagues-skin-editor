@@ -1,5 +1,5 @@
 export default dispatch => {
-    return fetch('http://bonkleaguebot.herokuapp.com/shapes.txt')
+    return fetch('https://bonkleaguebot.herokuapp.com/shapes.txt')
     .then(response => response.text())
     .then(shapes => {
         shapes = shapes
