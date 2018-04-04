@@ -9,7 +9,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(common, {
     entry: {
-        'bundle.min': './js/app.js'
+        'bundle.min': './src/js/app.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -65,7 +65,7 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             title: 'Bonk Leagues Skin Editor',
-            favicon: 'img/logo.png',
+            favicon: 'src/img/logo.png',
             inject: false,
             minify: {
                 removeAttributeQuotes: true,

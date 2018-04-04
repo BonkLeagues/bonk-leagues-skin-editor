@@ -9,7 +9,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 
 module.exports = merge(common, {
     entry: {
-        'bundle': './js/app.js'
+        'bundle': './src/js/app.js'
     },
     output: {
         path: path.resolve(__dirname, 'build'),
