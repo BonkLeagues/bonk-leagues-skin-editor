@@ -17,7 +17,7 @@ var banner = `
                  \`-:+sssssss
                       \`.:+o:
 
-    Bonk Leagues Skin Editor v1
+    Bonk Leagues Skin Editor v1.1
 
     Copyright (C) 2018 its_magic, Finbae
                         oh, and Dionysus
