@@ -27,7 +27,9 @@ var store = createStore(
 );
 
 store.dispatch(loadShapes).then(()=>{
-    if (window.location.href.indexOf('?')>-1) store.dispatch(loadSkinCode);
+    if (window.location.href.indexOf('?')>-1 || localStorage.getItem('skinCode')) {
+        store.dispatch(loadSkinCode);
+    }
 });
 
 render(

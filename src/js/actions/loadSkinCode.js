@@ -1,7 +1,12 @@
 import { skinCodeToObject } from '../modules/skinCode';
 
 export default dispatch => {
-    var skinCode = decodeURIComponent(window.location.href.split('?')[1]);
+    var skinCode;
+    if (window.location.href.indexOf('?')>-1) {
+        skinCode = decodeURIComponent(window.location.href.split('?')[1]);
+    } else {
+        skinCode = localStorage.getItem('skinCode');
+    }
 
     var skinData = skinCodeToObject(skinCode);
 

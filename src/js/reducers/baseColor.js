@@ -4,6 +4,10 @@ export default function(state='fafafa', action) {
             return action.color;
         }
 
+        case 'DELETE_ALL': {
+            return 'fafafa';
+        }
+
         default: return state;
     }
 }
