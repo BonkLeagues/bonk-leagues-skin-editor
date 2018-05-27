@@ -28,7 +28,7 @@ class MoveableShape extends React.Component {
             <div className={"shape" + (selected?" selected":"") + (topLayer?" top":"")}
                 onMouseDown={e => {
                     e.stopPropagation();
-                    !this.props.shape.selected && this.props.onClick();
+                    if (!this.props.shape.selected && !e.ctrlKey) this.props.onClick();
                 }}
                 style={{
                     transform: `

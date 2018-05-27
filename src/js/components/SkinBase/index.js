@@ -102,8 +102,23 @@ class SkinBase extends React.Component {
             var sensitivity = 1/1500;
             var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
 
+            var zoomRatio = newZoom / this.state.zoom;
+
+            var center = {
+                x: window.innerWidth/2 + 175 + this.state.panBy.x,
+                y: window.innerHeight/2 + this.state.panBy.y
+            };
+            var cursorDiff = {
+                x: e.clientX - center.x,
+                y: e.clientY - center.y
+            };
+
             this.setState({
-                zoom: newZoom
+                zoom: newZoom,
+                panBy: {
+                    x: this.state.panBy.x + cursorDiff.x * (1 - zoomRatio),
+                    y: this.state.panBy.y + cursorDiff.y * (1 - zoomRatio)
+                }
             });
         }
     }
