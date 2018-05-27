@@ -36,6 +36,8 @@ class SkinBase extends React.Component {
     }
 
     onShapeDown = (e, moveableShape) => {
+        if (e.ctrlKey) return this.onMouseDown(e);
+
         this.setState({
             moving: true,
             editingShape: moveableShape,
@@ -55,15 +57,17 @@ class SkinBase extends React.Component {
     }
 
     onMouseDown = e => {
-        if (this.props.anySelected) this.props.deselectAll();
-
-        if (e.ctrlKey) this.setState({
-            panning: true,
-            originalPos: {
-                x: e.clientX - this.state.panBy.x,
-                y: e.clientY - this.state.panBy.y
-            }
-        });
+        if (e.ctrlKey) {
+            this.setState({
+                panning: true,
+                originalPos: {
+                    x: e.clientX - this.state.panBy.x,
+                    y: e.clientY - this.state.panBy.y
+                }
+            });
+        } else {
+            if (this.props.anySelected) this.props.deselectAll();
+        }
     }
     onMouseMove = e => {
         if (this.state.panning) {

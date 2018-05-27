@@ -49,8 +49,6 @@ class MoveableShape extends React.Component {
                             width: rect.width / this.props.zoom,
                             height: rect.height / this.props.zoom,
                         };
-
-                        console.log(rect);
                         this.setState({ rect });
                     }
                 }}
