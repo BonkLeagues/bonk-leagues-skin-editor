@@ -42,9 +42,16 @@ class MoveableShape extends React.Component {
                 }}
                 ref={shape=>{
                     if (shape && !this.state.rect) {
-                        this.setState({
-                            rect: shape.getBoundingClientRect()
-                        });
+                        var rect = shape.getBoundingClientRect();
+                        rect = {
+                            x: rect.x * this.props.zoom,
+                            y: rect.y * this.props.zoom,
+                            width: rect.width / this.props.zoom,
+                            height: rect.height / this.props.zoom,
+                        };
+
+                        console.log(rect);
+                        this.setState({ rect });
                     }
                 }}
             >

@@ -7,11 +7,11 @@ export default function(e, state) {
         var centerY = window.innerHeight/2 - shapeRect.height/2;
 
         var { position, hf, vf } = state.editingShape.state;
-        var origin = state.editingShape.props.origin;
+        var originalOrigin = state.editingShape.props.origin;
 
         var flippedOrigin = {
-            x: hf ? (shapeRect.width - origin.x) : origin.x,
-            y: vf ? (shapeRect.height - origin.y) : origin.y
+            x: hf ? (shapeRect.width - originalOrigin.x) : originalOrigin.x,
+            y: vf ? (shapeRect.height - originalOrigin.y) : originalOrigin.y
         };
 
         var origin = {
@@ -23,9 +23,14 @@ export default function(e, state) {
             y: centerY + shapeRect.height + parseFloat(position.y)
         };
 
+        var cursorPos = {
+            x: ((e.clientX - centerX - originalOrigin.x) / state.zoom) + centerX + originalOrigin.x - (state.panBy.x / state.zoom),
+            y: ((e.clientY - centerY - originalOrigin.y) / state.zoom) + centerY + originalOrigin.y - (state.panBy.y / state.zoom)
+        };
+
         var cursorDiff = {
-            x: e.clientX - origin.x,
-            y: e.clientY - origin.y
+            x: cursorPos.x - origin.x,
+            y: cursorPos.y - origin.y
         };
         var draggerDiff = {
             x: dragger.x - origin.x,
@@ -36,21 +41,21 @@ export default function(e, state) {
         var draggerAngle = Math.atan(draggerDiff.x/draggerDiff.y);
         var finalAngle = draggerAngle - cursorAngle;
 
-        var cursorDist = cursorDiff.x*cursorDiff.x + cursorDiff.y*cursorDiff.y;
-        var draggerDist = draggerDiff.x*draggerDiff.x + draggerDiff.y*draggerDiff.y;
+        var cursorDist = cursorDiff.x**2 + cursorDiff.y**2;
+        var draggerDist = draggerDiff.x**2 + draggerDiff.y**2;
 
         state.editingShape.setState({
-            rotation: e.shiftKey ? state.editingShape.props.rotation : finalAngle * 180/Math.PI + ((e.clientY < origin.y) ? 180 : 0),
+            rotation: e.shiftKey ? state.editingShape.props.rotation : finalAngle * 180/Math.PI + ((cursorPos.y < origin.y) ? 180 : 0),
             scale: e.ctrlKey ? state.editingShape.props.scale : Math.sqrt(cursorDist/draggerDist)
         });
     } else if (state.moving) {
-        var moveOffset = state.moveOffset;
+        var { originalPos } = state;
         var { position } = state.editingShape.props;
 
         state.editingShape.setState({
             position: {
-                x: e.ctrlKey ? position.x : (e.clientX - moveOffset.x),
-                y: e.shiftKey ? position.y : (e.clientY - moveOffset.y)
+                x: position.x + (e.ctrlKey ? 0 : (e.clientX - originalPos.x) / state.zoom),
+                y: position.y + (e.shiftKey ? 0 : (e.clientY - originalPos.y) / state.zoom),
             }
         });
     }

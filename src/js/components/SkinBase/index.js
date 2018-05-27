@@ -19,12 +19,19 @@ class SkinBase extends React.Component {
             scaling: false,
             editingShape: null,
             shapeRect: null,
-            moveOffset: {
+            originalPos: {
                 x: null,
                 y: null
             },
 
-            keyDown: false
+            keyDown: false,
+
+            zoom: 1,
+            panning: false,
+            panBy: {
+                x: 0,
+                y: 0
+            }
         };
     }
 
@@ -33,9 +40,9 @@ class SkinBase extends React.Component {
             moving: true,
             editingShape: moveableShape,
             shapeRect: moveableShape.state.rect,
-            moveOffset: {
-                x: e.clientX - moveableShape.state.position.x,
-                y: e.clientY - moveableShape.state.position.y,
+            originalPos: {
+                x: e.clientX,
+                y: e.clientY,
             }
         });
     }
@@ -46,8 +53,29 @@ class SkinBase extends React.Component {
             shapeRect: moveableShape.state.rect
         });
     }
+
+    onMouseDown = e => {
+        if (this.props.anySelected) this.props.deselectAll();
+
+        if (e.ctrlKey) this.setState({
+            panning: true,
+            originalPos: {
+                x: e.clientX - this.state.panBy.x,
+                y: e.clientY - this.state.panBy.y
+            }
+        });
+    }
     onMouseMove = e => {
-        doTranslation(e, this.state);
+        if (this.state.panning) {
+            this.setState({
+                panBy: {
+                    x: e.clientX - this.state.originalPos.x,
+                    y: e.clientY - this.state.originalPos.y,
+                }
+            });
+        } else {
+            doTranslation(e, this.state);
+        }
     }
     onMouseUp = () => {
         if (this.state.moving || this.state.scaling) {
@@ -58,19 +86,41 @@ class SkinBase extends React.Component {
                 editingShape: null
             });
         }
+
+        this.setState({
+            panning: false
+        });
+    }
+
+    onMouseScroll = e => {
+        e.preventDefault();
+        if (e.ctrlKey) {
+            var sensitivity = 1/1500;
+            var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
+
+            this.setState({
+                zoom: newZoom
+            });
+        }
     }
 
     render() {
         return (
             <div className="base-panel"
-                onMouseDown={this.props.anySelected ? this.props.onClick : undefined}
+                onMouseDown={this.onMouseDown}
                 onMouseMove={this.onMouseMove}
                 onMouseUp={this.onMouseUp}
+                onWheel={this.onMouseScroll}
             >
                 <ShapeCount />
                 <div className="base" style={{
                     background: '#'+this.props.baseColor,
-                    overflow: this.props.anySelected ? 'visible' : 'hidden'
+                    overflow: this.props.anySelected ? 'visible' : 'hidden',
+                    transform: `
+                        translate(-50%, -50%)
+                        translate(`+this.state.panBy.x+`px, `+this.state.panBy.y+`px)
+                        scale(`+this.state.zoom+`)
+                    `
                 }}>
                     {this.props.shapes.map((shape, i) =>
                         <MoveableShape
@@ -78,6 +128,7 @@ class SkinBase extends React.Component {
                             onShapeDown={this.onShapeDown}
                             onDraggerDown={this.onDraggerDown}
                             name={shape.name}
+                            zoom={this.state.zoom}
                             key={shape.uuid}
                         />
                     )}
@@ -98,7 +149,7 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        onClick: () => {
+        deselectAll: () => {
             dispatch(deselectAll);
         },
 
