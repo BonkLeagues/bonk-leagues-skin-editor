@@ -35,7 +35,7 @@
             }
 
             &.selected {
-                border: 2px solid $bl-pink;
+                border: 2px solid rgba($bl-pink, .4);
             }
             &.top {
                 z-index: 1;
