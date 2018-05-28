@@ -31,6 +31,7 @@ class App extends React.Component {
     redo() {
         if (!this.props.focusActive) this.props.redo();
     }
+
     @keydown('ctrl+c')
     copyShape() {
         if (!this.props.focusActive) this.props.copyShape();
@@ -39,6 +40,7 @@ class App extends React.Component {
     pasteShape() {
         if (!this.props.focusActive) this.props.pasteShape();
     }
+
     @keydown(['delete', 'backspace'])
     deleteShape() {
         if (!this.props.focusActive) this.props.deleteShape();
@@ -46,6 +48,15 @@ class App extends React.Component {
     @keydown('esc')
     deselectAll() {
         if (!this.props.focusActive) this.props.deselectAll();
+    }
+
+    @keydown('up')
+    moveSelectionUp() {
+        if (!this.props.focusActive) this.props.moveSelectionUp();
+    }
+    @keydown('down')
+    moveSelectionDown() {
+        if (!this.props.focusActive) this.props.moveSelectionDown();
     }
 
     onFileDrop = files => {
@@ -120,17 +131,26 @@ var mapDispatchToProps = (dispatch, props) => {
         redo: () => {
             dispatch(ActionCreators.redo());
         },
+
         copyShape: () => {
             dispatch(copyToClipboard);
         },
         pasteShape: () => {
             dispatch(pasteFromClipboard);
         },
+
         deleteShape: () => {
             dispatch({type: 'DELETE_SELECTED_SHAPE'});
         },
         deselectAll: () => {
             dispatch({type: 'DESELECT_ALL'});
+        },
+
+        moveSelectionUp: () => {
+            dispatch({type: 'MOVE_SELECTION_UP'});
+        },
+        moveSelectionDown: () => {
+            dispatch({type: 'MOVE_SELECTION_DOWN'});
         },
 
         changeOverlaySrc: src => {

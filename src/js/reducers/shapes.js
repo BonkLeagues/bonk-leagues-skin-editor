@@ -62,6 +62,43 @@ export default function(state=[], action) {
             });
         }
 
+        case 'MOVE_SELECTION_UP': {
+            var shapeIndex = state.map(shape => shape.selected).indexOf(true);
+            if (shapeIndex >= state.length - 1) return state;
+
+            return state.map((shape, i) => {
+                if (i === shapeIndex) {
+                    return {...shape,
+                        selected: false
+                    };
+                } else if (i === shapeIndex + 1) {
+                    return {...shape,
+                        selected: true
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+        case 'MOVE_SELECTION_DOWN': {
+            var shapeIndex = state.map(shape => shape.selected).indexOf(true);
+            if (shapeIndex <= 0) return state;
+
+            return state.map((shape, i) => {
+                if (i === shapeIndex) {
+                    return {...shape,
+                        selected: false
+                    };
+                } else if (i === shapeIndex - 1) {
+                    return {...shape,
+                        selected: true
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+
         case 'CHANGE_SHAPE_TRANSLATION': {
             return state.map(shape => {
                 if (shape.selected) {
