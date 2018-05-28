@@ -54,7 +54,7 @@ export function skinCodeToObject(skinCode) {
     var skinBuffer = Buffer.from(skinCode, 'base64');
 
     var skinData;
-    if (bindexOf(skinBuffer, new Buffer('0a05000100', 'hex')) > -1) {
+    if (skinBuffer.length > 21) {
         var layerData = bsplit(skinBuffer, new Buffer('0a05000100', 'hex'));
         layerData[0] = bsplit(layerData[0], new Buffer('616c000100', 'hex'))[1];
 

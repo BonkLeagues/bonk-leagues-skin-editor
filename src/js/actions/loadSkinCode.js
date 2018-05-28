@@ -8,7 +8,11 @@ export default dispatch => {
         skinCode = localStorage.getItem('skinCode');
     }
 
+    console.log(skinCode);
+
     var skinData = skinCodeToObject(skinCode);
+
+    console.log(skinData);
 
     dispatch({
         type: 'CHANGE_BASE_COLOR',

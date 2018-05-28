@@ -73,6 +73,10 @@ var mapDispatchToProps = (dispatch, props) => {
 
         deleteAll: shapeObj => {
             dispatch({type: 'DELETE_ALL'});
+            dispatch({
+                type: 'GENERATE_SKIN_CODE',
+                obj: shapeObj
+            });
         }
     };
 }
