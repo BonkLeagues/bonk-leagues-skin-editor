@@ -34,7 +34,7 @@ class OptionsCheckbox extends React.Component {
                         }
                     })()}
                 </div>
-                <div className={'checkbox ' + (this.state.ticked?'ticked':'')} onClick={this.onChange} />
+                <div className={'checkbox' + (this.state.ticked ? ' ticked' : '')} onClick={this.onChange} />
             </label>
         );
     }

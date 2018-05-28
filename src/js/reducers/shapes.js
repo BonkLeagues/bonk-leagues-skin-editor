@@ -153,7 +153,7 @@ export default function(state=[], action) {
         }
 
         case 'DELETE_ALL': {
-            localStorage.setItem('skinCode', null);
+            localStorage.removeItem('skinCode');
             return [];
         }
 
