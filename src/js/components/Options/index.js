@@ -23,7 +23,7 @@ class Options extends React.Component {
 
     render() {
         var selected = this.props.shape;
-        return(
+        return (
             <div className="options-panel"
                 onMouseEnter={this.props.disableTopLayer}
                 onMouseLeave={this.props.enableTopLayer}
@@ -38,7 +38,7 @@ class Options extends React.Component {
                         downDisabled={this.props.downDisabled}
                     />
                 }
-                <ColorPicker highlightColor={selected ? selected.color : null} />
+                <ColorPicker highlightColor={selected ? selected.color : this.props.baseColor} />
                 {
                     this.props.shape &&
                     <AllInputs />
@@ -50,18 +50,16 @@ class Options extends React.Component {
     }
 }
 
-function round(x) {
-    return Math.round(x*100)/100;
-}
-
 var mapStateToProps = (state, props) => {
+    var baseColor = state.baseColor.present;
+
     var shapes = state.shapes.present;
 
     var shapeIndex = shapes.map(shape => shape.selected).indexOf(true);
     var shape = shapes[shapeIndex];
+
     return {
-        shape,
-        shapeIndex,
+        baseColor, shape, shapeIndex,
         upDisabled: shapeIndex == shapes.length-1,
         downDisabled: shapeIndex == 0
     };
