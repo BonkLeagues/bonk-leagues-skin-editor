@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var Color = ({ color, anySelected, onClick }) => (
-    <div className="color" onClick={()=>onClick(anySelected)} style={{
+var Color = ({ color, highlight, anySelected, onClick }) => (
+    <div className={'color' + (highlight ? ' highlighted' : '')} onClick={()=>onClick(anySelected)} style={{
         background: '#'+color
     }}></div>
 );

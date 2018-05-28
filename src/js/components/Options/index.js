@@ -38,7 +38,7 @@ class Options extends React.Component {
                         downDisabled={this.props.downDisabled}
                     />
                 }
-                <ColorPicker />
+                <ColorPicker highlightColor={selected ? selected.color : null} />
                 {
                     this.props.shape &&
                     <AllInputs />
