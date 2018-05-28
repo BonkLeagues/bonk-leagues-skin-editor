@@ -43,6 +43,10 @@ class App extends React.Component {
     deleteShape() {
         if (!this.props.focusActive) this.props.deleteShape();
     }
+    @keydown('esc')
+    deselectAll() {
+        if (!this.props.focusActive) this.props.deselectAll();
+    }
 
     onFileDrop = files => {
         if (files.length > 1) return;
@@ -125,6 +129,10 @@ var mapDispatchToProps = (dispatch, props) => {
         deleteShape: () => {
             dispatch({type: 'DELETE_SELECTED_SHAPE'});
         },
+        deselectAll: () => {
+            dispatch({type: 'DESELECT_ALL'});
+        },
+
         changeOverlaySrc: src => {
             dispatch({
                 type: 'CHANGE_OVERLAY_SRC',
