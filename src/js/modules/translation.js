@@ -1,13 +1,15 @@
 export default function(e, state) {
     var scaleFactor = 30/700;
     if (state.scaling) {
-        var { shapeRect } = state;
+        var { shapeRect, editingShape } = state;
+
+        console.log(editingShape);
 
         var centerX = window.innerWidth/2 + 175 - shapeRect.width/2;
         var centerY = window.innerHeight/2 - shapeRect.height/2;
 
-        var { position, hf, vf } = state.editingShape.state;
-        var originalOrigin = state.editingShape.props.origin;
+        var { position, hf, vf } = editingShape.state;
+        var originalOrigin = editingShape.props.origin;
 
         var flippedOrigin = {
             x: hf ? (shapeRect.width - originalOrigin.x) : originalOrigin.x,
@@ -18,19 +20,29 @@ export default function(e, state) {
             x: centerX + flippedOrigin.x + parseFloat(position.x),
             y: centerY + flippedOrigin.y + parseFloat(position.y)
         };
+
+        // var dragger = {
+        //     x: centerX + shapeRect.width + parseFloat(position.x),
+        //     y: centerY + shapeRect.height + parseFloat(position.y)
+        // };
         var dragger = {
-            x: centerX + shapeRect.width + parseFloat(position.x),
-            y: centerY + shapeRect.height + parseFloat(position.y)
+            x: state.originalPos.x - state.panBy.x,
+            y: state.originalPos.y - state.panBy.y
         };
 
+        // var cursorPos = {
+        //     x: ((e.clientX - centerX - originalOrigin.x) / state.zoom) + centerX + originalOrigin.x - (state.panBy.x / state.zoom),
+        //     y: ((e.clientY - centerY - originalOrigin.y) / state.zoom) + centerY + originalOrigin.y - (state.panBy.y / state.zoom)
+        // };
+
         var cursorPos = {
-            x: ((e.clientX - centerX - originalOrigin.x) / state.zoom) + centerX + originalOrigin.x - (state.panBy.x / state.zoom),
-            y: ((e.clientY - centerY - originalOrigin.y) / state.zoom) + centerY + originalOrigin.y - (state.panBy.y / state.zoom)
+            x: e.clientX - state.panBy.x,
+            y: e.clientY - state.panBy.y
         };
 
         var cursorDiff = {
-            x: cursorPos.x - origin.x,
-            y: cursorPos.y - origin.y
+            x: (cursorPos.x - origin.x) / state.zoom,
+            y: (cursorPos.y - origin.y) / state.zoom
         };
         var draggerDiff = {
             x: dragger.x - origin.x,
@@ -44,15 +56,17 @@ export default function(e, state) {
         var cursorDist = cursorDiff.x**2 + cursorDiff.y**2;
         var draggerDist = draggerDiff.x**2 + draggerDiff.y**2;
 
-        state.editingShape.setState({
-            rotation: e.shiftKey ? state.editingShape.props.rotation : finalAngle * 180/Math.PI + ((cursorPos.y < origin.y) ? 180 : 0),
-            scale: e.ctrlKey ? state.editingShape.props.scale : Math.sqrt(cursorDist/draggerDist)
+        var fixFlipping = (cursorPos.y < origin.y) ? 180 : 0;
+
+        editingShape.setState({
+            rotation: parseFloat(editingShape.props.rotation) + (e.shiftKey ? 0 : (finalAngle * 180/Math.PI + fixFlipping)),
+            scale: editingShape.props.scale * (e.ctrlKey ? 1 : Math.sqrt(cursorDist/draggerDist) * state.zoom)
         });
     } else if (state.moving) {
-        var { originalPos } = state;
-        var { position } = state.editingShape.props;
+        var { originalPos, editingShape } = state;
+        var { position } = editingShape.props;
 
-        state.editingShape.setState({
+        editingShape.setState({
             position: {
                 x: position.x + (e.ctrlKey ? 0 : (e.clientX - originalPos.x) / state.zoom),
                 y: position.y + (e.shiftKey ? 0 : (e.clientY - originalPos.y) / state.zoom),

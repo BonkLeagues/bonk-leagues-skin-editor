@@ -17,11 +17,12 @@ class SkinBase extends React.Component {
         this.state = {
             moving: false,
             scaling: false,
-            editingShape: null,
-            shapeRect: null,
+            editingShape: {},
+            shapeRect: {},
+
             originalPos: {
-                x: null,
-                y: null
+                x: 0,
+                y: 0
             },
 
             keyDown: false,
@@ -44,15 +45,19 @@ class SkinBase extends React.Component {
             shapeRect: moveableShape.state.rect,
             originalPos: {
                 x: e.clientX,
-                y: e.clientY,
+                y: e.clientY
             }
         });
     }
-    onDraggerDown = moveableShape => {
+    onDraggerDown = (e, moveableShape) => {
         this.setState({
             scaling: true,
             editingShape: moveableShape,
-            shapeRect: moveableShape.state.rect
+            shapeRect: moveableShape.state.rect,
+            originalPos: {
+                x: e.clientX,
+                y: e.clientY
+            }
         });
     }
 

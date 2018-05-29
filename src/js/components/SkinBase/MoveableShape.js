@@ -56,7 +56,7 @@ class MoveableShape extends React.Component {
                 <span className={(this.state.hf?'hf':'')+' '+(this.state.vf?'vf':'')} onMouseDown={e=>this.props.onShapeDown(e,this)} dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}></span>
                 {
                     this.props.shape.selected &&
-                    <div className="dragger" onMouseDown={()=>this.props.onDraggerDown(this)}></div>
+                    <div className="dragger" onMouseDown={e=>this.props.onDraggerDown(e,this)}></div>
                 }
             </div>
         );
