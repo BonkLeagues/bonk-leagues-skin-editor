@@ -49,7 +49,7 @@ export default function(e, state) {
 
         editingShape.setState({
             rotation: parseFloat(editingShape.props.rotation) + (e.shiftKey ? 0 : (finalAngle * 180/Math.PI + fixFlipping)),
-            scale: editingShape.props.scale * (e.ctrlKey ? 1 : Math.sqrt(cursorDist/draggerDist) * state.zoom)
+            scale: parseFloat(editingShape.props.scale) * (e.ctrlKey ? 1 : Math.sqrt(cursorDist/draggerDist) * state.zoom)
         });
     } else if (state.moving) {
         var { originalPos, editingShape } = state;
@@ -57,8 +57,8 @@ export default function(e, state) {
 
         editingShape.setState({
             position: {
-                x: position.x + (e.ctrlKey ? 0 : (e.clientX - originalPos.x) / state.zoom),
-                y: position.y + (e.shiftKey ? 0 : (e.clientY - originalPos.y) / state.zoom),
+                x: parseFloat(position.x) + (e.ctrlKey ? 0 : (e.clientX - originalPos.x) / state.zoom),
+                y: parseFloat(position.y) + (e.shiftKey ? 0 : (e.clientY - originalPos.y) / state.zoom),
             }
         });
     }
