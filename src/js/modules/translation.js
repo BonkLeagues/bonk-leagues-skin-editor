@@ -16,8 +16,8 @@ export default function(e, state) {
         };
 
         var origin = {
-            x: centerX + flippedOrigin.x + parseFloat(position.x),
-            y: centerY + flippedOrigin.y + parseFloat(position.y)
+            x: centerX + flippedOrigin.x + parseFloat(position.x) * state.zoom,
+            y: centerY + flippedOrigin.y + parseFloat(position.y) * state.zoom
         };
         var dragger = {
             x: state.originalPos.x - state.panBy.x,
