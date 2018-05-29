@@ -1,9 +1,8 @@
 export default function(e, state) {
     var scaleFactor = 30/700;
+
     if (state.scaling) {
         var { shapeRect, editingShape } = state;
-
-        console.log(editingShape);
 
         var centerX = window.innerWidth/2 + 175 - shapeRect.width/2;
         var centerY = window.innerHeight/2 - shapeRect.height/2;
@@ -20,20 +19,10 @@ export default function(e, state) {
             x: centerX + flippedOrigin.x + parseFloat(position.x),
             y: centerY + flippedOrigin.y + parseFloat(position.y)
         };
-
-        // var dragger = {
-        //     x: centerX + shapeRect.width + parseFloat(position.x),
-        //     y: centerY + shapeRect.height + parseFloat(position.y)
-        // };
         var dragger = {
             x: state.originalPos.x - state.panBy.x,
             y: state.originalPos.y - state.panBy.y
         };
-
-        // var cursorPos = {
-        //     x: ((e.clientX - centerX - originalOrigin.x) / state.zoom) + centerX + originalOrigin.x - (state.panBy.x / state.zoom),
-        //     y: ((e.clientY - centerY - originalOrigin.y) / state.zoom) + centerY + originalOrigin.y - (state.panBy.y / state.zoom)
-        // };
 
         var cursorPos = {
             x: e.clientX - state.panBy.x,
@@ -56,7 +45,7 @@ export default function(e, state) {
         var cursorDist = cursorDiff.x**2 + cursorDiff.y**2;
         var draggerDist = draggerDiff.x**2 + draggerDiff.y**2;
 
-        var fixFlipping = (cursorPos.y < origin.y) ? 180 : 0;
+        var fixFlipping = (Math.sign(dragger.y - origin.y) === Math.sign(cursorPos.y - origin.y)) ? 0 : 180;
 
         editingShape.setState({
             rotation: parseFloat(editingShape.props.rotation) + (e.shiftKey ? 0 : (finalAngle * 180/Math.PI + fixFlipping)),
