@@ -8,6 +8,7 @@ class MoveableShape extends React.Component {
 
         this.state = {
             rect: null,
+            moving: false,
             ...this.props.shape
         };
     }
@@ -56,7 +57,12 @@ class MoveableShape extends React.Component {
                 <span className={(this.state.hf?'hf':'')+' '+(this.state.vf?'vf':'')} onMouseDown={e=>this.props.onShapeDown(e,this)} dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}></span>
                 {
                     this.props.shape.selected &&
-                    <div className="dragger" onMouseDown={e=>this.props.onDraggerDown(e,this)}></div>
+                    <div className="dragger"
+                        style={{
+                            opacity: this.state.moving ? 0 : 1
+                        }}
+                        onMouseDown={e=>this.props.onDraggerDown(e,this)}
+                    ></div>
                 }
             </div>
         );

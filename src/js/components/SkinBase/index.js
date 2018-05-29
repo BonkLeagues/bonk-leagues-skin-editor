@@ -48,6 +48,9 @@ class SkinBase extends React.Component {
                 y: e.clientY
             }
         });
+        moveableShape.setState({
+            moving: true
+        });
     }
     onDraggerDown = (e, moveableShape) => {
         this.setState({
@@ -89,6 +92,10 @@ class SkinBase extends React.Component {
     onMouseUp = () => {
         if (this.state.moving || this.state.scaling) {
             this.props.changeShapeTranslation(this.state);
+
+            this.state.editingShape.setState({
+                moving: false
+            });
             this.setState({
                 moving: false,
                 scaling: false,
