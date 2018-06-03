@@ -37,35 +37,42 @@ class SkinBase extends React.Component {
     }
 
     onShapeDown = (e, moveableShape) => {
-        if (e.ctrlKey) return this.onMouseDown(e);
-
-        this.setState({
-            moving: true,
-            editingShape: moveableShape,
-            shapeRect: moveableShape.state.rect,
-            originalPos: {
-                x: e.clientX,
-                y: e.clientY
-            }
-        });
-        moveableShape.setState({
-            moving: true
-        });
+        if (e.button === 0) {
+            this.setState({
+                moving: true,
+                editingShape: moveableShape,
+                shapeRect: moveableShape.state.rect,
+                originalPos: {
+                    x: e.clientX,
+                    y: e.clientY
+                }
+            });
+            moveableShape.setState({
+                moving: true
+            });
+        } else {
+            this.onMouseDown(e);
+        }
     }
     onDraggerDown = (e, moveableShape) => {
-        this.setState({
-            scaling: true,
-            editingShape: moveableShape,
-            shapeRect: moveableShape.state.rect,
-            originalPos: {
-                x: e.clientX,
-                y: e.clientY
-            }
-        });
+        if (e.button === 0) {
+            this.setState({
+                scaling: true,
+                editingShape: moveableShape,
+                shapeRect: moveableShape.state.rect,
+                originalPos: {
+                    x: e.clientX,
+                    y: e.clientY
+                }
+            });
+        } else {
+            this.onMouseDown(e);
+        }
     }
 
     onMouseDown = e => {
-        if (e.ctrlKey) {
+        e.preventDefault();
+        if (e.button === 1) {
             this.setState({
                 panning: true,
                 originalPos: {
