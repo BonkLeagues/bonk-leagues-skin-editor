@@ -37,6 +37,16 @@ export default function(state=[], action) {
             });
         }
 
+        case 'UPDATE_RECT': {
+            return state.map(shape => {
+                if (shape.uuid === action.id) {
+                    return {...shape, rect: action.rect};
+                } else {
+                    return shape;
+                }
+            });
+        }
+
         case 'SELECTED_SHAPE_UP': {
             var shapeIndex = state.map(shape => shape.selected).indexOf(true);
             return state.map((shape, i) => {

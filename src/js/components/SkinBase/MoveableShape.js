@@ -51,6 +51,8 @@ class MoveableShape extends React.Component {
                             height: rect.height / this.props.zoom,
                         };
                         this.setState({ rect });
+
+                        this.props.updateRect(rect);
                     }
                 }}
             >
@@ -85,6 +87,14 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
+        updateRect: rect => {
+            dispatch({
+                type: 'UPDATE_RECT',
+                id: props.shape.uuid,
+                rect
+            });
+        },
+
         onClick: e => {
             dispatch({
                 type: 'SELECT_SHAPE',
