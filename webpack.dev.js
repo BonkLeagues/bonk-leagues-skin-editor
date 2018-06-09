@@ -15,6 +15,7 @@ module.exports = merge(common, {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].js'
     },
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
