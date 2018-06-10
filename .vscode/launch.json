@@ -9,7 +9,7 @@
           "webRoot": "${workspaceRoot}/src",
           "sourceMaps": true,
           "sourceMapPathOverrides": {
-              "webpack:///*": "${workspaceRoot}/src/*"
+              "webpack:///./*": "${workspaceRoot}/*"
           },
           "trace": true
       }
