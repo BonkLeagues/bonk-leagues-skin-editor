@@ -24,7 +24,7 @@ class Overlay extends React.Component {
 
     render() {
         return (
-            <img
+            <img class="overlay"
                 onError={this.onError}
                 onLoad={this.onLoad}
                 ref={el=>{
@@ -37,13 +37,7 @@ class Overlay extends React.Component {
                 }}
                 style={{
                     opacity: this.props.active ? .5 : 0,
-                    zIndex: '133769420',
-                    pointerEvents: 'none',
-                    height: '400px',
                     display: this.state.display ? 'block' : 'none',
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
                     transform: 'translate(-50%,-50%) scale('+this.props.scale+')'
                 }}
                 src={this.props.src}

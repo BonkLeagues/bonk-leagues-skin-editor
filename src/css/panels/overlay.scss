@@ -1,3 +1,12 @@
+.overlay {
+    pointer-events: none;
+    z-index: $overlay-layer;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 .overlay-panel {
     background: $bl-grey-light;
     width: 100%;
