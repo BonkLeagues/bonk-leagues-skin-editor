@@ -3,7 +3,7 @@
 
     background: $bl-grey;
     box-sizing: border-box;
-    z-index: 2;
+    z-index: $menu-layer;
     padding: 15px;
     width: 350px;
 
@@ -67,7 +67,7 @@
 
         .add-button {
             float: right;
-            z-index: 4;
+            z-index: $super-menu-layer;
             width: 30px;
             height: 30px;
             position: relative;
@@ -75,7 +75,7 @@
         .add-dialog-wrapper {
             background: $bl-grey-light;
             overflow: hidden;
-            z-index: 3;
+            z-index: $super-menu-layer;
             border-top: 7px solid $bl-pink;
             border-bottom: 7px solid $bl-pink;
             position: relative;

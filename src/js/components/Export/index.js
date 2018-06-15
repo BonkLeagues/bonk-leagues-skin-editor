@@ -95,7 +95,11 @@ class Export extends React.Component {
                         />
                     )}
                 </div>
-                <div className="tooltip">{this.state.overrideTooltip || this.state.tooltip}</div>
+                <div className="tooltip" style={{
+                    top: (this.state.tooltip === '' ? -33 : 0) + 'px'
+                }}>
+                    {this.state.overrideTooltip || this.state.tooltip}
+                </div>
             </div>
         );
     }

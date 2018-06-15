@@ -6,3 +6,10 @@ $bl-blue: #013e79;
 $bl-grey: #111;
 $bl-grey-light: lighten($bl-grey, 5%);
 $bl-grey-lighter: lighten($bl-grey, 12%);
+
+$skin-layer: 0;
+$super-skin-layer: 1;
+$overlay-layer: 2;
+$menu-layer: 3;
+$super-menu-layer: 4;
+$dropzone-layer: 5;

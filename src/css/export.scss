@@ -7,7 +7,9 @@
     
     .icons {
         background: $bl-grey-light;
+        z-index: $super-menu-layer;
         padding: 7px 10px;
+        position: relative;
 
         img {
             padding: 8px;
@@ -23,9 +25,13 @@
     .tooltip {
         background: $bl-grey;
         font-size: 23px;
+        z-index: $menu-layer;
         text-transform: uppercase;
         text-align: center;
         padding: 5px 0;
         height: 23px;
+        position: relative;
+        transition: top .3s;
+        transition-delay: .05s;
     }
 }

@@ -6,10 +6,10 @@
     .shape-count {
         pointer-events: none;
         font-size: 30px;
-        z-index: 2;
+        z-index: $menu-layer;
         padding: 10px;
         position: relative;
-        margin-left:5px;
+        margin-left: 5px;
     }
     .base {
         background: #fafafa;
@@ -38,7 +38,7 @@
                 border: 2px solid rgba($bl-pink, .4);
             }
             &.top {
-                z-index: 1;
+                z-index: $super-skin-layer;
             }
 
             .dragger {
