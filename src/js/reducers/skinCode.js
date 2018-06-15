@@ -8,7 +8,12 @@ export default function(state='', action) {
                 shapes: [...action.obj.shapes]
             });
 
-            localStorage.setItem('skinCode', skinCode);
+            if (action.save) localStorage.setItem('skinCode', skinCode);
+            if (action.export) window.open(
+                'https://bonkleagues.github.io/skins.html#Skin|Bonk Leagues Skin Editor|' + 
+                encodeURIComponent(skinCode)
+            );
+
             return skinCode;
         }
 
