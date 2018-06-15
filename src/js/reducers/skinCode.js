@@ -1,5 +1,11 @@
 import { objectToSkinCode } from '../modules/skinCode';
 
+function getCookie(name) {
+    var value = '; ' + document.cookie;
+    var parts = value.split('; ' + name + '=');
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 export default function(state='', action) {
     switch (action.type) {
         case 'GENERATE_SKIN_CODE': {
@@ -9,10 +15,11 @@ export default function(state='', action) {
             });
 
             if (action.save) localStorage.setItem('skinCode', skinCode);
-            if (action.export) window.open(
-                'https://bonkleagues.github.io/skins.html#Skin|Bonk Leagues Skin Editor|' + 
-                encodeURIComponent(skinCode)
-            );
+            if (action.export) {
+                var username = getCookie('rmUn') || 'Bonk Leagues Skin Editor';
+
+                window.open( 'https://bonkleagues.github.io/skins.html#Skin|' + username + '|' + encodeURIComponent(skinCode) );
+            }
 
             return skinCode;
         }
