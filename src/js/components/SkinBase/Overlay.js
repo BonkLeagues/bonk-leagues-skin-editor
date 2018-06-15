@@ -24,7 +24,7 @@ class Overlay extends React.Component {
 
     render() {
         return (
-            <img class="overlay"
+            <img className="overlay"
                 onError={this.onError}
                 onLoad={this.onLoad}
                 ref={el=>{
