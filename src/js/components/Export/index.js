@@ -82,13 +82,13 @@ class Export extends React.Component {
 
     render() {
         return (
-            <div className="export">
+            <div className="export" onMouseLeave={this.resetTooltip}>
                 <div className="icons">
                     {this.state.buttons.map((button, i) =>
                         <img
                             onClick={()=>this.clickButton(button)}
                             onMouseEnter={()=>this.setTooltip(button)}
-                            onMouseLeave={this.resetTooltip} src={require('./'+button+'.svg')}
+                            src={require('./'+button+'.svg')}
                             alt={button}
                             draggable="false"
                             key={i}
