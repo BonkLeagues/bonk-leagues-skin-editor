@@ -116,8 +116,9 @@ class SkinBase extends React.Component {
     }
 
     onMouseScroll = e => {
-        e.preventDefault();
         if (e.ctrlKey) {
+            e.preventDefault();
+            
             var sensitivity = 1/1500;
             var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
 

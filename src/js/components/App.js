@@ -51,12 +51,18 @@ class App extends React.Component {
     }
 
     @keydown('up')
-    moveSelectionUp() {
-        if (!this.props.focusActive) this.props.moveSelectionUp();
+    moveSelectionUp(e) {
+        if (!this.props.focusActive) {
+            e.preventDefault();
+            this.props.moveSelectionUp();
+        }
     }
     @keydown('down')
-    moveSelectionDown() {
-        if (!this.props.focusActive) this.props.moveSelectionDown();
+    moveSelectionDown(e) {
+        if (!this.props.focusActive) {
+            e.preventDefault();
+            this.props.moveSelectionDown();
+        }
     }
 
     onFileDrop = files => {
