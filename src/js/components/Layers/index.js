@@ -61,13 +61,5 @@ var mapStateToProps = (state, props) => {
         shapes: state.shapes.present
     };
 }
-var mapDispatchToProps = (dispatch, props) => {
-    return {
-        
-    };
-}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Layers);
+export default connect(mapStateToProps)(Layers);

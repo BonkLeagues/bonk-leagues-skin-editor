@@ -1,10 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class Layer extends React.Component {
+class Layer extends React.Component {
+    selectShape = () => {
+        this.props.selectShape(this.props.shape.uuid);
+    }
+
     render() {
         var { shape } = this.props;
         return (
-            <div className={'layer' + (shape.selected ? ' selected' : '')}>
+            <div className={'layer' + (shape.selected ? ' selected' : '')}
+                onClick={this.selectShape}
+            >
                 <div className="layer-shape" style={{background: '#' + shape.color}}></div>
 
                 <h2>{shape.name}</h2>
@@ -22,3 +29,22 @@ export default class Layer extends React.Component {
         );
     }
 }
+
+var mapStateToProps = (state, props) => {
+    return {};
+}
+var mapDispatchToProps = (dispatch, props) => {
+    return {
+        selectShape: id => {
+            dispatch({
+                type: 'SELECT_SHAPE',
+                id
+            });
+        }
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Layer);
