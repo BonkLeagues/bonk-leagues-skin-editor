@@ -2,11 +2,12 @@ import React from 'react';
 
 export default class Layer extends React.Component {
     render() {
+        var { shape } = this.props;
         return (
             <div className="layer">
-                <div className="layer-shape"></div>
+                <div className="layer-shape" style={{background: '#' + shape.color}}></div>
 
-                <h2>Shape 1</h2>
+                <h2>{shape.name}</h2>
 
                 <div className="buttons">
                     <div className="button">

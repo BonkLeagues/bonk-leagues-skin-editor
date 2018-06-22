@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import Layer from './layer';
 
-export default class Layers extends React.Component {
+class Layers extends React.Component {
     constructor(props) {
         super(props);
 
@@ -40,8 +41,9 @@ export default class Layers extends React.Component {
                         renderTrackVertical={props => <div {...props} className="track-vertical" />}
                         renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
                     >
-                        <Layer />
-                        <Layer />
+                        {this.props.shapes.reverse().map(shape => (
+                            <Layer shape={shape} key={shape.uuid} />
+                        ))}
                     </Scrollbars>
                 </div>
                 <img className="arrow"
@@ -53,3 +55,19 @@ export default class Layers extends React.Component {
         );
     }
 }
+
+var mapStateToProps = (state, props) => {
+    return {
+        shapes: state.shapes.present
+    };
+}
+var mapDispatchToProps = (dispatch, props) => {
+    return {
+        
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Layers);
