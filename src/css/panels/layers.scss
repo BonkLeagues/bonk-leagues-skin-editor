@@ -13,7 +13,7 @@
         font-size: 0;
         box-sizing: border-box;
         padding: 13px 15px;
-        border-bottom: 5px solid $bl-grey-lighter;
+        border-bottom: 5px solid $bl-grey-light;
         width: 100%;
 
         h2 {
@@ -33,6 +33,7 @@
         }
         .buttons {
             float: right;
+            margin-right: 10px;
             height: 100%;
 
             .button {
