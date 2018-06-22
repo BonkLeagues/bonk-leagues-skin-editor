@@ -42,12 +42,13 @@ class AddShape extends React.Component {
                     >
                         <div className="add-dialog">
                             {this.props.shapes.map((shape, i) =>
-                                <DialogShape shape={
-                                    shape
-                                    .replace(/fill\=\".+?\"/g, 'fill="#ccc"')
-                                    .replace(/height\=\".+?px\" width\=\".+?px\"/, 'height="'+size+'px" width="'+size+'px"')
-                                    .replace(/width\=\".+?\" height\=\".+?\"/, 'width="'+size+'" height="'+size+'"')
-                                } toggleDialog={this.toggleDialog} id={i} key={i} />
+                                <DialogShape
+                                    shape={shape}
+                                    color="ccc"
+                                    size={size}
+                                    toggleDialog={this.toggleDialog}
+                                    id={i} key={i}
+                                />
                             )}
                         </div>
                     </Scrollbars>

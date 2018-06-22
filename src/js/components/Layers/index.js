@@ -41,9 +41,9 @@ class Layers extends React.Component {
                         renderTrackVertical={props => <div {...props} className="track-vertical" />}
                         renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
                     >
-                        {this.props.shapes.slice().reverse().map(shape => (
+                        {this.props.shapes.slice().reverse().map(shape =>
                             <Layer shape={shape} key={shape.uuid} />
-                        ))}
+                        )}
                     </Scrollbars>
                 </div>
                 <img className="arrow"

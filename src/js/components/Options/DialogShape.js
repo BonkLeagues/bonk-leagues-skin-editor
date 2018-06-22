@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var DialogShape = ({ shape, onClick, toggleDialog }) => (
+import ShapeIcon from '../ShapeIcon';
+
+var DialogShape = ({ shape, color, size, onClick, toggleDialog }) => (
     <div className="dialog-shape" onClick={e => {
         onClick();
         if (!e.shiftKey) toggleDialog();
-    }} dangerouslySetInnerHTML={{__html: shape}}></div>
+    }}>
+        <ShapeIcon shape={shape} color={color} size={size} />
+    </div>
 );
 
 var mapStateToProps = (state, props) => {
