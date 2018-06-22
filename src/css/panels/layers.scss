@@ -1,62 +1,64 @@
-.layers {
-    background: $bl-grey;
-    width: 250px;
-    height: 70%;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    transition: right .3s;
-
-    .layer {
+.layers-wrapper {
+    .layers {
         background: $bl-grey;
-        font-size: 0;
-        box-sizing: border-box;
-        padding: 13px 15px;
-        border-bottom: 5px solid $bl-grey-light;
-        width: 100%;
-
-        h2 {
-            font-size: 25px;
-            font-weight: normal;
-            line-height: 50px;
-            vertical-align: top;
-            margin-left: 20px;
-            display: inline-block;
-        }
-
-        .layer-shape {
-            background: $bl-pink;
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-        }
-        .buttons {
-            float: right;
-            margin-right: 10px;
-            height: 100%;
-
-            .button {
-                cursor: pointer;
-                width: 20px;
-                height: 20px;
-
-                img {
-                    height: 100%;
-                }
+        z-index: $super-menu-layer;
+        width: 250px;
+        height: 70%;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        transition: right .3s;
+    
+        .layer {
+            background: $bl-grey;
+            font-size: 0;
+            box-sizing: border-box;
+            padding: 13px 15px;
+            border-bottom: 5px solid $bl-grey-light;
+            width: 100%;
+    
+            h2 {
+                font-size: 25px;
+                font-weight: normal;
+                line-height: 50px;
+                vertical-align: top;
+                margin-left: 20px;
+                display: inline-block;
             }
-            .spacer {
-                margin: 10px;
+    
+            .layer-shape {
+                background: $bl-pink;
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+            }
+            .buttons {
+                float: right;
+                margin-right: 10px;
+                height: 100%;
+    
+                .button {
+                    cursor: pointer;
+                    width: 20px;
+                    height: 20px;
+    
+                    img {
+                        height: 100%;
+                    }
+                }
+                .spacer {
+                    margin: 10px;
+                }
             }
         }
     }
-
+    
     .arrow {
-        cursor: pointer;
-        height: 64px;
+        height: 50px;
         position: absolute;
         top: 50%;
-        left: -74px;
+        right: 0;
         transform: translateY(-50%);
     }
 }

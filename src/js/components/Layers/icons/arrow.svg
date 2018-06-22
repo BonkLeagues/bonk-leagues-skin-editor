@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Serif DrawPlus 11, 0, 0, 18 (Mar 20, 15:09:53) (http://www.serif.com) -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="138.481" height="140.371">
-	<g id="selection" transform="matrix(1,0,0,1,-187.248,-681.824)">
-		<path id="dp_path001" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1.33333" d="M 187.915,683.435 L 325.061,683.435 L 325.061,820.583 L 187.915,820.583 Z "/>
-		<path id="dp_path002" fill="#fb016e" fill-rule="evenodd" stroke="none" stroke-width="1.33333" d="M 300.708,796.352 L 256.453,752.009 L 300.708,707.667 L 300.708,683.435 L 232.269,752.009 L 300.708,820.583 Z "/>
+	<g id="dp_group001" transform="matrix(1,0,0,1,-187.248,-681.824)">
+		<path id="dp_path002" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1.33333" d="M 187.915,683.435 L 325.061,683.435 L 325.061,820.583 L 187.915,820.583 Z "/>
+		<path id="dp_path003" fill="#fb016e" fill-rule="evenodd" stroke="none" stroke-width="1.33333" d="M 282.512,796.352 L 238.257,752.009 L 282.512,707.667 L 282.512,683.435 L 214.073,752.009 L 282.512,820.583 Z "/>
 	</g>
 </svg>

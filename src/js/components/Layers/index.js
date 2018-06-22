@@ -8,49 +8,45 @@ export default class Layers extends React.Component {
         super(props);
 
         this.state = {
-            visible: true
+            visible: false
         };
     }
 
-    toggleVisible = () => {
+    setVisible = () => {
         this.setState({
-            visible: !this.state.visible
+            visible: true
+        });
+    }
+    setInvisible = () => {
+        this.setState({
+            visible: false
         });
     }
 
     render() {
         return (
-            <div className="layers"
-                style={{
-                    right: this.state.visible ? '0' : '-260px'
-                }}
-            >
-                <Scrollbars
+            <div className="layers-wrapper">
+                <div className="layers"
                     style={{
-                        width: '100%',
-                        height: '100%'
+                        right: this.state.visible ? '0' : '-260px'
                     }}
-                    renderTrackVertical={props => <div {...props} className="track-vertical" />}
-                    renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
+                    onMouseLeave={this.setInvisible}
                 >
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                    <Layer />
-                </Scrollbars>
+                    <Scrollbars
+                        style={{
+                            width: '100%',
+                            height: '100%'
+                        }}
+                        renderTrackVertical={props => <div {...props} className="track-vertical" />}
+                        renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
+                    >
+                        <Layer />
+                        <Layer />
+                    </Scrollbars>
+                </div>
                 <img className="arrow"
-                    onClick={this.toggleVisible}
-                    src={require(this.state.visible ? './icons/arrow_flipped.svg' : './icons/arrow.svg')}
+                    onMouseEnter={this.setVisible}
+                    src={require('./icons/arrow.svg')}
                     draggable="false"
                 />
             </div>
