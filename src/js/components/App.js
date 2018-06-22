@@ -7,6 +7,7 @@ import keydown from 'react-keydown';
 // Components
 import Options from './Options';
 import SkinBase from './SkinBase';
+import Layers from './Layers';
 import Export from './Export';
 import Credit from './Credit';
 
@@ -116,6 +117,7 @@ class App extends React.Component {
                 <div tabIndex="0" onKeyDown={this.onKeyDown} onKeyUp={this.onKeyUp} style={{height: '100%'}}>
                     <Options />
                     <SkinBase />
+                    <Layers />
                     <Export />
                     <Credit />
                 </div>

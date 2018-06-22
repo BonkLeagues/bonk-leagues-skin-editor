@@ -1,0 +1,19 @@
+.layers {
+    background: $bl-grey;
+    width: 218px;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    transition: right .3s;
+
+    .arrow {
+        cursor: pointer;
+        height: 64px;
+        position: relative;
+        top: 50%;
+        left: -74px;
+        transform: translateY(-50%);
+    }
+}

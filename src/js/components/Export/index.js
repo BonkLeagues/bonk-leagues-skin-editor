@@ -13,6 +13,7 @@ class Export extends React.Component {
             deleting: false,
 
             tooltip: '',
+            showTooltip: false,
             overrideTooltip: null
         };
     }
@@ -59,13 +60,14 @@ class Export extends React.Component {
 
     setTooltip = button => {
         this.setState({
-            tooltip: button
+            tooltip: button,
+            showTooltip: true
         });
     }
     resetTooltip = () => {
         this.setState({
             deleting: false,
-            tooltip: ''
+            showTooltip: false
         });
     }
     
@@ -96,7 +98,7 @@ class Export extends React.Component {
                     )}
                 </div>
                 <div className="tooltip" style={{
-                    top: (this.state.tooltip === '' ? -33 : 0) + 'px'
+                    top: (this.state.showTooltip ? 0 : -33) + 'px'
                 }}>
                     {this.state.overrideTooltip || this.state.tooltip}
                 </div>
