@@ -17,7 +17,10 @@ export default function(state=[], action) {
                 scale: 1,
                 hf: false,
                 vf: false,
-                color: '000000'
+                color: '000000',
+
+                visible: true,
+                locked: false
             }];
         }
         case 'DELETE_SELECTED_SHAPE': {
@@ -130,6 +133,29 @@ export default function(state=[], action) {
                 if (shape.selected) {
                     return {...shape,
                         color: action.color
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+
+        case 'TOGGLE_VISIBLE': {
+            return state.map(shape => {
+                if (shape.uuid === action.id) {
+                    return {...shape,
+                        visible: !shape.visible
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+        case 'TOGGLE_LOCK': {
+            return state.map(shape => {
+                if (shape.uuid === action.id) {
+                    return {...shape,
+                        locked: !shape.locked
                     };
                 } else {
                     return shape;

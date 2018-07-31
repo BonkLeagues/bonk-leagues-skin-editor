@@ -20,18 +20,13 @@ class MoveableShape extends React.Component {
     }
 
     render() {
-        var scaleFactor = 700/30;
-
-        var selected = this.props.shape.selected;
+        var { selected, visible, locked } = this.props.shape;
         var topLayer = selected && this.props.topLayer;
 
         return (
-            <div className={"shape" + (selected?" selected":"") + (topLayer?" top":"")}
-                onMouseDown={e => {
-                    e.stopPropagation();
-                    if (!this.props.shape.selected && !e.ctrlKey && e.button === 0) this.props.onClick();
-                }}
+            <div className={"shape" + (selected ? " selected" : "") + (topLayer ? " top" : "")}
                 style={{
+                    display: visible ? 'block' : 'none',
                     transform: `
                         translate(`+this.state.position.x+`px,`+this.state.position.y+`px)
                         translate(-50%,-50%)
@@ -40,6 +35,10 @@ class MoveableShape extends React.Component {
                         translateX(`+(this.state.hf?-1:1)*(this.state.rect?(this.state.rect.width/2 - this.props.origin.x):'0')+`px)
                         translateY(`+(this.state.vf?-1:1)*(this.state.rect?(this.state.rect.height/2 - this.props.origin.y):'0')+`px)
                     `
+                }}
+                onMouseDown={e => {
+                    e.stopPropagation();
+                    if (!this.props.shape.selected && !e.ctrlKey && e.button === 0 && !locked) this.props.onClick();
                 }}
                 ref={shape=>{
                     if (shape && !this.state.rect) {

@@ -37,7 +37,7 @@ class SkinBase extends React.Component {
     }
 
     onShapeDown = (e, moveableShape) => {
-        if (e.button === 0) {
+        if (e.button === 0 && !moveableShape.props.shape.locked) {
             this.setState({
                 moving: true,
                 editingShape: moveableShape,

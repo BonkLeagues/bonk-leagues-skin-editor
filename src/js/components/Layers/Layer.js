@@ -18,12 +18,41 @@ function darkLightHex(c) {
 }
 
 class Layer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            visible: true,
+            locked: false
+        };
+    }
+
     selectShape = () => {
         this.props.selectShape(this.props.shape.uuid);
     }
 
+    toggleVisible = () => {
+        this.setState({
+            visible: !this.state.visible
+        });
+
+        this.props.toggleVisible(this.props.shape.uuid);
+    }
+    toggleLock = () => {
+        this.setState({
+            locked: !this.state.locked
+        });
+
+        this.props.toggleLock(this.props.shape.uuid);
+    }
+
     render() {
         var { shape } = this.props;
+        var { visible, locked } = this.state;
+
+        var visibleIcon = visible ? 'visible' : 'invisible';
+        var lockIcon = locked ? 'locked' : 'unlocked';
+
         return (
             <div className={'layer' + (shape.selected ? ' selected' : '')}
                 onClick={this.selectShape}
@@ -38,15 +67,18 @@ class Layer extends React.Component {
 
                 <h2>{shape.name}</h2>
 
-                <div className="buttons">
-                    <div className="button">
-                        <img src={require('./icons/visible.svg')} draggable="false" />
+                {
+                    shape.selected &&
+                    <div className="buttons">
+                        <div className="button" onClick={this.toggleVisible}>
+                            <img src={require('./icons/'+visibleIcon+'.svg')} draggable="false" />
+                        </div>
+                        <div className="spacer"></div>
+                        <div className="button" onClick={this.toggleLock}>
+                            <img src={require('./icons/'+lockIcon+'.svg')} draggable="false" />
+                        </div>
                     </div>
-                    <div className="spacer"></div>
-                    <div className="button">
-                        <img src={require('./icons/unlocked.svg')} draggable="false" />
-                    </div>
-                </div>
+                }
             </div>
         );
     }
@@ -64,7 +96,20 @@ var mapDispatchToProps = (dispatch, props) => {
                 type: 'SELECT_SHAPE',
                 id
             });
-        }
+        },
+
+        toggleVisible: id => {
+            dispatch({
+                type: 'TOGGLE_VISIBLE',
+                id
+            });
+        },
+        toggleLock: id => {
+            dispatch({
+                type: 'TOGGLE_LOCK',
+                id
+            });
+        },
     };
 }
 
