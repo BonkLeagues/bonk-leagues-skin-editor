@@ -7,7 +7,7 @@ class Export extends React.Component {
 
         this.state = {
             buttons: [
-                'save', 'export', 'delete'
+                'save', 'preview', 'export', 'delete'
             ],
 
             deleting: false,
@@ -28,6 +28,12 @@ class Export extends React.Component {
                 setTimeout(() => {
                     this.resetOverrideTooltip('save');
                 }, 1000);
+
+                break;
+            }
+
+            case 'preview': {
+                console.log('PREVIEW!!!');
 
                 break;
             }
