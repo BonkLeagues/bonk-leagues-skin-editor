@@ -10,6 +10,7 @@ import SkinBase from './SkinBase';
 import Layers from './Layers';
 import Export from './Export';
 import Credit from './Credit';
+import Preview from './Preview';
 
 import copyToClipboard from '../actions/copyToClipboard';
 import pasteFromClipboard from '../actions/pasteFromClipboard';
@@ -20,7 +21,9 @@ class App extends React.Component {
 
         this.state = {
             keyDown: false,
-            dropzone: false
+
+            dropzone: false,
+            preview: false
         };
     }
 
@@ -93,6 +96,17 @@ class App extends React.Component {
         });
     }
 
+    showPreview = () => {
+        this.setState({
+            preview: true
+        });
+    }
+    hidePreview = () => {
+        this.setState({
+            preview: false
+        });
+    }
+
     render() {
         return (
             <Dropzone
@@ -118,8 +132,9 @@ class App extends React.Component {
                     <Options />
                     <SkinBase />
                     <Layers />
-                    <Export />
+                    <Export showPreview={this.showPreview} />
                     <Credit />
+                    <Preview isVisible={this.state.preview} hidePreview={this.hidePreview} />
                 </div>
             </Dropzone>
         );

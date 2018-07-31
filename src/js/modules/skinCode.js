@@ -32,7 +32,6 @@ export function objectToSkinCode(skinData) {
     }
 
     skinBuffer = addColorToBuffer(skinBuffer, skinData.baseColor);
-    console.log(skinBuffer);
 
     return skinBuffer.toString('base64');
 }

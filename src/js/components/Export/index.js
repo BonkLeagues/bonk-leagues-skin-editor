@@ -33,7 +33,7 @@ class Export extends React.Component {
             }
 
             case 'preview': {
-                console.log('PREVIEW!!!');
+                this.props.showPreview();
 
                 break;
             }
