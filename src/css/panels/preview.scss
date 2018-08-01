@@ -1,0 +1,54 @@
+.preview-wrapper {
+    background: rgba(0,0,0,.5);
+    z-index: $dropzone-layer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity .2s;
+
+    .preview {
+        background: $bl-grey;
+        padding: 20px 30px;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateX(175px);
+
+        .size {
+            text-align: center;
+            padding: 10px;
+
+            h1 {
+                margin-bottom: 10px;
+            }
+        }
+
+        .editor.size {
+            h1 {
+                font-size: 60px;
+            }
+            img {
+                height: 190px;
+            }
+        }
+        .win-screen.size {
+            h1 {
+                font-size: 48px;
+            }
+            img {
+                height: 160px;
+            }
+        }
+        .ingame.size {
+            h1 {
+                font-size: 32px;
+            }
+            img {
+                height: 50px;
+            }
+        }
+    }
+}

@@ -10,7 +10,12 @@ export function objectToSkinCode(skinData) {
 
     var skinBuffer = new Buffer('0a070361000209', 'hex');
     skinBuffer = addNumberToBuffer(skinBuffer, skinData.shapes.length*2+1);
-    skinBuffer = addToBuffer(skinBuffer, new Buffer('010a0705616c000100', 'hex'));
+
+    if (skinData.shapes.length > 0) {
+        skinBuffer = addToBuffer(skinBuffer, new Buffer('010a0705616c000100', 'hex'));
+    } else {
+        skinBuffer = addToBuffer(skinBuffer, new Buffer('010101', 'hex'));
+    }
 
     for (var i=0;i< skinData.shapes.length;i++) {
         var layer = skinData.shapes[i];
