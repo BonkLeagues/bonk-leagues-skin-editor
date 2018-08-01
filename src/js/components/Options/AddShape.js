@@ -4,12 +4,15 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import DialogShape from './DialogShape';
 
+import shapeNames from '../../modules/shapeNames';
+
 class AddShape extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            dialog: false
+            dialog: false,
+            searchText: ''
         };
     }
 
@@ -19,8 +22,17 @@ class AddShape extends React.Component {
         });
     }
 
+    onSearchChange = e => {
+        this.setState({
+            searchText: e.target.value
+        });
+    }
+
     render() {
         var size = 41;
+
+        var searchText = this.state.searchText.toLowerCase();
+
         return (
             <div className="add-shape">
                 <div className="add-dialog-wrapper" style={this.state.dialog ? {
@@ -32,16 +44,26 @@ class AddShape extends React.Component {
                     height: '16px',
                     top: '30px'
                 }}>
+                    <div className="search">
+                        <input 
+                            onChange={this.onSearchChange}
+                            ref={input => input && input.focus()}
+                            placeholder="Search..."
+                            type="text"
+                        />
+                    </div>
+
                     <Scrollbars
                         style={{
                             width: '320px',
-                            height: '300px'
+                            height: '256px'
                         }}
                         renderTrackVertical={props => <div {...props} className="track-vertical" />}
                         renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
                     >
                         <div className="add-dialog">
                             {this.props.shapes.map((shape, i) =>
+                                shapeNames[i].toLowerCase().indexOf(searchText) > -1 &&
                                 <DialogShape
                                     shape={shape}
                                     color="ccc"

@@ -65,6 +65,17 @@
         bottom: 15px;
         right: 15px;
 
+        .search {
+            box-sizing: border-box;
+            padding: 7px;
+            width: 100%;
+
+            input {
+                font-size: 20px;
+                margin: 0;
+            }
+        }
+
         .add-button {
             float: right;
             z-index: $super-menu-layer;
