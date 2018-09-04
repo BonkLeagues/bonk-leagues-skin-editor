@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ShapeIcon from '../ShapeIcon';
 
 var DialogShape = ({ shape, color, size, onClick, toggleDialog }) => (
-    <div className="dialog-shape" onClick={e => {
+    <div className="dialog-shape" style={{height: size}} onClick={e => {
         onClick();
         if (!e.shiftKey) toggleDialog();
     }}>

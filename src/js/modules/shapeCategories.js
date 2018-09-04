@@ -22,7 +22,7 @@ export default [
         shapes: [
             'Face 1', 'Face 2', 'Face 3', 'Face 4', 'Face 5', 'Face 6', 'Face 7', 'Face 8', 'Face 9', 'Face 10',
             'Face 11', 'Face 12', 'Face 13', 'Face 14', 'Face 15', 'Face 16', 'Face 17', 'Face 18', 'Face 19', 'Face 20',
-            'Face 21', 'Face 22'
+            'Face 21'
         ]
     },
     {

@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import DialogShape from './DialogShape';
 
 import shapeNames from '../../modules/shapeNames';
+import shapeCategories from '../../modules/shapeCategories';
 
 class AddShape extends React.Component {
     constructor(props) {
@@ -29,9 +30,18 @@ class AddShape extends React.Component {
     }
 
     render() {
-        var size = 41;
+        var size = 31;
 
         var searchText = this.state.searchText.toLowerCase();
+        var filteredCategories = 
+            shapeCategories
+            .map(category => {
+                return {
+                    name: category.name,
+                    shapes: category.shapes.filter(shape => shape.toLowerCase().indexOf(searchText) > -1)
+                };
+            })
+            .filter(category => category.shapes.length > 0);
 
         return (
             <div className="add-shape">
@@ -62,16 +72,29 @@ class AddShape extends React.Component {
                         renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
                     >
                         <div className="add-dialog">
-                            {this.props.shapes.map((shape, i) =>
-                                shapeNames[i].toLowerCase().indexOf(searchText) > -1 &&
-                                <DialogShape
-                                    shape={shape}
-                                    color="ccc"
-                                    size={size}
-                                    toggleDialog={this.toggleDialog}
-                                    id={i} key={i}
-                                />
-                            )}
+                            {
+                                this.props.shapes.length > 0 &&
+                                filteredCategories.map((category, i) =>
+                                    <div className="category" key={i}>
+                                        <h2>{category.name}</h2>
+                                        {
+                                            category.shapes.map(shape => {
+                                                var shapeID = shapeNames.indexOf(shape);
+                                                var shapeSVG = this.props.shapes[shapeID];
+
+                                                return shapeSVG &&
+                                                    <DialogShape
+                                                        shape={shapeSVG}
+                                                        color="ccc"
+                                                        size={size}
+                                                        toggleDialog={this.toggleDialog}
+                                                        id={shapeID} key={shapeID}
+                                                    />;
+                                            })
+                                        }
+                                    </div>
+                                )
+                            }
                         </div>
                     </Scrollbars>
                 </div>
