@@ -65,6 +65,17 @@
         bottom: 15px;
         right: 15px;
 
+        .search {
+            box-sizing: border-box;
+            padding: 7px;
+            width: 100%;
+
+            input {
+                font-size: 20px;
+                margin: 0;
+            }
+        }
+
         .add-button {
             float: right;
             z-index: $super-menu-layer;
@@ -81,21 +92,27 @@
             position: relative;
             transition: width .3s .1s, height .3s, top .3s;
 
-            .add-dialog {
+            .add-dialog .category {
+                h2 {
+                    font-size: 27px;
+                    font-weight: normal;
+                    margin-left: 10px;
+                }
+
                 .dialog-shape {
-                    padding: 5px;
-                    width: 41px;
-                    height: 41px;
+                    padding: 10px;
                     display: inline-block;
                     cursor: pointer;
-                }
-                .dialog-shape path {
-                    fill: #ccc;
-                    transition: 0.15s fill;
-                }
-                .dialog-shape:hover {
+
                     path {
-                        fill: $bl-pink;
+                        fill: #ccc;
+                        transition: 0.15s fill;
+                    }
+
+                    &:hover {
+                        path {
+                            fill: $bl-pink;
+                        }
                     }
                 }
             }
