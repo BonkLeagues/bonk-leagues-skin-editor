@@ -71,7 +71,14 @@ class MoveableShape extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-    var shapeHTML = state.allShapes[props.shape.shapeID].replace(/fill\=\".+?\"/g, 'fill="#'+(props.shape.color || '000')+'"');
+    var shapeColor = props.shape.color;
+    if (props.shape.previewColorEnabled) {
+        shapeColor = props.shape.previewColor || props.shape.color;
+    }
+
+    var shapeHTML = state.allShapes[props.shape.shapeID]
+    .replace(/fill\=\".+?\"/g, 'fill="#' + shapeColor + '"');
+
     var confusingOffsetRegex = shapeHTML.match(/matrix\((1\.0|1),\s*(0\.0|0),\s*(0\.0|0),\s*(1\.0|1),\s*(.+),\s*(.+)\)/);
 
     return {

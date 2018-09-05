@@ -128,11 +128,45 @@ export default function(state=[], action) {
             });
         }
 
+        case 'DISABLE_SELECTED_PREVIEW_COLOR': {
+            return state.map(shape => {
+                if (shape.selected) {
+                    return {...shape,
+                        previewColorEnabled: false
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
         case 'CHANGE_SELECTED_COLOR': {
             return state.map(shape => {
                 if (shape.selected) {
                     return {...shape,
                         color: action.color
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+        case 'CHANGE_SELECTED_PREVIEW_COLOR': {
+            return state.map(shape => {
+                if (shape.selected) {
+                    return {...shape,
+                        previewColor: action.color,
+                        previewColorEnabled: true
+                    };
+                } else {
+                    return shape;
+                }
+            });
+        }
+        case 'REMOVE_SELECTED_PREVIEW_COLOR': {
+            return state.map(shape => {
+                if (shape.selected) {
+                    return {...shape,
+                        previewColor: null
                     };
                 } else {
                     return shape;

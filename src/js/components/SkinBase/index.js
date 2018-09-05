@@ -144,6 +144,11 @@ class SkinBase extends React.Component {
     }
 
     render() {
+        var baseColor = this.props.baseColor.color;
+        if (this.props.baseColor.previewColorEnabled) {
+            baseColor = this.props.baseColor.previewColor || this.props.baseColor.color;
+        }
+
         return (
             <div className="base-panel"
                 onMouseDown={this.onMouseDown}
@@ -153,7 +158,7 @@ class SkinBase extends React.Component {
             >
                 <ShapeCount />
                 <div className="base" style={{
-                    background: '#'+this.props.baseColor,
+                    background: '#' + baseColor,
                     overflow: this.props.anySelected ? 'visible' : 'hidden',
                     transform: `
                         translate(-50%, -50%)
