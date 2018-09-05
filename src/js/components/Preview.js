@@ -7,9 +7,10 @@ class Preview extends React.Component {
     render() {
         var { skinData } = this.props;
         var skinCode = objectToSkinCode({
-            baseColor: skinData.baseColor,
+            baseColor: skinData.baseColor.color,
             shapes: [...skinData.shapes]
         });
+        
         var imgUrl = 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(skinCode);
 
         return (

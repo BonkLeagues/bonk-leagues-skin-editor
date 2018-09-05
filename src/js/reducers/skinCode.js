@@ -10,7 +10,7 @@ export default function(state='', action) {
     switch (action.type) {
         case 'GENERATE_SKIN_CODE': {
             var skinCode = objectToSkinCode({
-                baseColor: action.obj.baseColor,
+                baseColor: action.obj.baseColor.color,
                 shapes: [...action.obj.shapes]
             });
 

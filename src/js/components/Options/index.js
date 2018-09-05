@@ -23,6 +23,7 @@ class Options extends React.Component {
 
     render() {
         var selected = this.props.shape;
+        
         return (
             <div className="options-panel"
                 onMouseEnter={this.props.disableTopLayer}
@@ -38,7 +39,7 @@ class Options extends React.Component {
                         downDisabled={this.props.downDisabled}
                     />
                 }
-                <ColorPicker highlightColor={selected ? selected.color : this.props.baseColor} />
+                <ColorPicker highlightColor={selected ? selected.color : this.props.baseColor.color} />
                 {
                     this.props.shape &&
                     <AllInputs />
