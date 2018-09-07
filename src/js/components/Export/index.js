@@ -14,14 +14,14 @@ class Export extends React.Component {
 
             tooltip: '',
             showTooltip: false,
-            overrideTooltip: null
+            overrideTooltip: null   // Used for displaying tooltips when a button is clicked
         };
     }
 
     clickButton = button => {
         switch (button) {
             case 'save': {
-                this.props.saveSkin(this.props.shapeObj);
+                this.props.saveSkin(this.props.skinData);
 
                 this.setOverrideTooltip('Saved!');
 
@@ -39,7 +39,7 @@ class Export extends React.Component {
             }
 
             case 'export': {
-                this.props.exportSkin(this.props.shapeObj);
+                this.props.exportSkin(this.props.skinData);
 
                 break;
             }
@@ -48,14 +48,11 @@ class Export extends React.Component {
                 if (this.state.deleting) {
                     this.props.deleteSkin();
 
-                    this.setState({
-                        deleting: false
-                    });
+                    this.setState({deleting: false});
                     this.setTooltip('delete');
                 } else {
-                    this.setState({
-                        deleting: true
-                    });
+                    // Confirmation message
+                    this.setState({deleting: true});
                     this.setTooltip('Sure?');
                 }
 
@@ -63,6 +60,8 @@ class Export extends React.Component {
             }
         }
     }
+
+    // Some helper functions for the tooltips
 
     setTooltip = button => {
         this.setState({
@@ -89,24 +88,27 @@ class Export extends React.Component {
     }
 
     render() {
+        // Maps the array of button strings to an array of elements
+        var buttons = this.state.buttons.map((button, i) =>
+            <img
+                onClick={() => this.clickButton(button)}
+                onMouseEnter={() => this.setTooltip(button)}
+                src={require('./' + button + '.svg')}
+                alt={button}
+                draggable="false"
+                key={i}
+            />
+        );
+        var tooltipTop = (this.state.showTooltip ? 0 : -33) + 'px';     // Sets the position of the tooltip to show/hide it
+        var tooltipText = this.state.overrideTooltip || this.state.tooltip;
+
         return (
             <div className="export">
                 <div className="icons" onMouseLeave={this.resetTooltip}>
-                    {this.state.buttons.map((button, i) =>
-                        <img
-                            onClick={()=>this.clickButton(button)}
-                            onMouseEnter={()=>this.setTooltip(button)}
-                            src={require('./'+button+'.svg')}
-                            alt={button}
-                            draggable="false"
-                            key={i}
-                        />
-                    )}
+                    {buttons}
                 </div>
-                <div className="tooltip" style={{
-                    top: (this.state.showTooltip ? 0 : -33) + 'px'
-                }}>
-                    {this.state.overrideTooltip || this.state.tooltip}
+                <div className="tooltip" style={{top: tooltipTop}}>
+                    {tooltipText}
                 </div>
             </div>
         );
@@ -115,7 +117,7 @@ class Export extends React.Component {
 
 var mapStateToProps = (state, props) => {
     return {
-        shapeObj: {
+        skinData: {
             baseColor: state.baseColor.present,
             shapes: state.shapes.present
         }
@@ -123,17 +125,17 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        saveSkin: shapeObj => {
+        saveSkin: skinData => {
             dispatch({
                 type: 'GENERATE_SKIN_CODE',
-                obj: shapeObj,
+                skinData,
                 save: true
             });
         },
-        exportSkin: shapeObj => {
+        exportSkin: skinData => {
             dispatch({
                 type: 'GENERATE_SKIN_CODE',
-                obj: shapeObj,
+                skinData,
                 save: true,
                 export: true
             });

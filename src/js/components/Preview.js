@@ -6,11 +6,14 @@ import { objectToSkinCode } from '../modules/skinCode';
 class Preview extends React.Component {
     render() {
         var { skinData } = this.props;
+
+        // Converts the skin object to a skin code
         var skinCode = objectToSkinCode({
             baseColor: skinData.baseColor.color,
-            shapes: [...skinData.shapes]
+            shapes: skinData.shapes
         });
         
+        // URL for the rendered skin
         var imgUrl = 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(skinCode);
 
         return (

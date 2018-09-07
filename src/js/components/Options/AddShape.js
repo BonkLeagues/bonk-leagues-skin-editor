@@ -12,48 +12,87 @@ class AddShape extends React.Component {
         super(props);
 
         this.state = {
-            dialog: false,
-            searchText: ''
+            visible: false,
+            searchText: ''  // Used for the search box
         };
     }
 
     toggleDialog = () => {
         this.setState({
-            dialog: !this.state.dialog
+            visible: !this.state.visible
         });
     }
 
+    // Triggers when the value of the search box changes
     onSearchChange = e => {
         this.setState({
             searchText: e.target.value
         });
     }
 
-    render() {
-        var size = 31;
+    processShapes = shapes => {
+        var shapeSize = 31;
 
+        // Maps each shape object to a component
+        return shapes
+            .map(shape => {
+                var shapeID = shapeNames.indexOf(shape);
+                var shapeSVG = this.props.shapes[shapeID];
+
+                if (!shapeSVG) return null;
+
+                return (
+                    <DialogShape
+                        shape={shapeSVG}
+                        color="ccc"
+                        size={shapeSize}
+                        toggleDialog={this.toggleDialog}
+                        id={shapeID} key={shapeID}
+                    />
+                );
+            })
+    }
+
+    render() {
         var searchText = this.state.searchText.toLowerCase();
         var filteredCategories = 
             shapeCategories
             .map(category => {
                 return {
                     name: category.name,
-                    shapes: category.shapes.filter(shape => shape.toLowerCase().indexOf(searchText) > -1)
+                    shapes: this.processShapes(
+                        category.shapes
+                        .filter(shape => shape.toLowerCase().indexOf(searchText) > -1)  // Filters based on search
+                    )
                 };
             })
-            .filter(category => category.shapes.length > 0);
+            .filter(category => category.shapes.length > 0);    // Removes empty categories
+
+        // Maps each category object to an element
+        var categories =
+            filteredCategories
+            .map((category, i) =>
+                <div className="category" key={i}>
+                    <h2>{category.name}</h2>
+                    {category.shapes}
+                </div>
+            );
+
+        // CSS for open and closed dialog
+        var dialogOpen = {
+            width: '320px',
+            height: '300px',
+            top: '4px'
+        };
+        var dialogClose = {
+            width: '30px',
+            height: '16px',
+            top: '30px'
+        };
 
         return (
             <div className="add-shape">
-                <div className="add-dialog-wrapper" style={this.state.dialog ? {
-                    width: '320px',
-                    height: '300px',
-                    top: '4px'
-                } : {
-                    width: '30px',
-                    height: '16px',
-                    top: '30px'
-                }}>
+                <div className="add-dialog-wrapper" style={this.state.visible ? dialogOpen : dialogClose}>
                     <div className="search">
                         <input 
                             onChange={this.onSearchChange}
@@ -74,26 +113,7 @@ class AddShape extends React.Component {
                         <div className="add-dialog">
                             {
                                 this.props.shapes.length > 0 &&
-                                filteredCategories.map((category, i) =>
-                                    <div className="category" key={i}>
-                                        <h2>{category.name}</h2>
-                                        {
-                                            category.shapes.map(shape => {
-                                                var shapeID = shapeNames.indexOf(shape);
-                                                var shapeSVG = this.props.shapes[shapeID];
-
-                                                return shapeSVG &&
-                                                    <DialogShape
-                                                        shape={shapeSVG}
-                                                        color="ccc"
-                                                        size={size}
-                                                        toggleDialog={this.toggleDialog}
-                                                        id={shapeID} key={shapeID}
-                                                    />;
-                                            })
-                                        }
-                                    </div>
-                                )
+                                categories
                             }
                         </div>
                     </Scrollbars>

@@ -18,7 +18,7 @@ var mapStateToProps = (state, props) => {
 var mapDispatchToProps = (dispatch, props) => {
     return {
         onClick: () => {
-            dispatch({type: 'DESELECT_ALL'});
+            dispatch({type: 'DESELECT_ALL'});   // Deselects all shapes so that two shapes aren't selected at the same time
             dispatch({
                 type: 'ADD_SHAPE',
                 id: props.id

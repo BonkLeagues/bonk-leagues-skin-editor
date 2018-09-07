@@ -27,6 +27,8 @@ class App extends React.Component {
         };
     }
 
+    // All the keyboard shortcuts
+
     @keydown('ctrl+z')
     undo() {
         if (!this.props.focusActive) this.props.undo();
@@ -69,21 +71,22 @@ class App extends React.Component {
         }
     }
 
+    // Overlay image drop
     onFileDrop = files => {
-        if (files.length > 1) return;
+        // Doesn't accept more than one file
+        if (files.length > 1) return this.disableDropzone();
 
         var file = files[0];
         window.URL.revokeObjectURL(file.preview);
 
+        // Set the overlay src to the data URL of the image
         var reader = new FileReader();
         reader.onload = () => {
             this.props.changeOverlaySrc(reader.result);
         };
         reader.readAsDataURL(file);
 
-        this.setState({
-            dropzone: false
-        });
+        this.disableDropzone();
     }
     enableDropzone = () => {
         this.setState({
@@ -96,6 +99,7 @@ class App extends React.Component {
         });
     }
 
+    // Show and hide bonk size preview
     showPreview = () => {
         this.setState({
             preview: true
@@ -148,6 +152,8 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
+        // Keyboard shortcut stuff
+
         undo: () => {
             dispatch(ActionCreators.undo());
         },
@@ -176,6 +182,7 @@ var mapDispatchToProps = (dispatch, props) => {
             dispatch({type: 'MOVE_SELECTION_DOWN'});
         },
 
+        // Overlay stuff
         changeOverlaySrc: src => {
             dispatch({
                 type: 'CHANGE_OVERLAY_SRC',

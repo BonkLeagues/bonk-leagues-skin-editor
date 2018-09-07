@@ -12,6 +12,7 @@ import focus from './focus';
 
 import undoableActions from './undoableActions';
 
+// Combines all the reducers together into one big super cool reducer
 export default combineReducers({
     shapes: undoable(shapes, { filter: includeAction(undoableActions) }),
     baseColor: undoable(baseColor, { filter: includeAction(undoableActions) }),

@@ -8,7 +8,7 @@ class Overlay extends React.Component {
         super(props);
 
         this.state = {
-            display: false
+            display: false  // Whether to display the overlay or not
         };
     }
 
@@ -27,9 +27,12 @@ class Overlay extends React.Component {
             <img className="overlay"
                 onError={this.onError}
                 onLoad={this.onLoad}
-                ref={el=>{
+                ref={el => {
+                    // If the palette needs to be redone, take the image element and use
+                    // it to generate the colours needed
                     if (this.state.redoPalette) {
-                        this.props.changeOverlayElement(el);
+                        this.props.changeOverlayPalette(el);
+
                         this.setState({
                             redoPalette: false
                         });
@@ -38,7 +41,7 @@ class Overlay extends React.Component {
                 style={{
                     opacity: this.props.active ? .5 : 0,
                     display: this.state.display ? 'block' : 'none',
-                    transform: 'translate(-50%,-50%) scale('+this.props.scale+')'
+                    transform: 'translate(-50%, -50%) scale(' + this.props.scale + ')'
                 }}
                 src={this.props.src}
             />
@@ -47,11 +50,11 @@ class Overlay extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-    return {...state.overlay};
+    return state.overlay;
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        changeOverlayElement: el => {
+        changeOverlayPalette: el => {
             dispatch(changeOverlayPalette(el));
         }
     };

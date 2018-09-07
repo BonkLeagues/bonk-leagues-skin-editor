@@ -13,6 +13,7 @@ class Layers extends React.Component {
         };
     }
 
+    // Slides the layer panel in and out
     setVisible = () => {
         this.setState({
             visible: true
@@ -25,12 +26,22 @@ class Layers extends React.Component {
     }
 
     render() {
+        // Sets the position of the layers panel to show/hide it
+        var panelRight = this.state.visible ? '0' : '-260px';
+
+        // Reverses a copy of the shapes array and maps it to an array of Layer components
+        var layers =
+            this.props.shapes
+            .slice()
+            .reverse()
+            .map(shape =>
+                <Layer shape={shape} key={shape.uuid} />
+            );
+
         return (
             <div className="layers-wrapper">
                 <div className="layers"
-                    style={{
-                        right: this.state.visible ? '0' : '-260px'
-                    }}
+                    style={{right: panelRight}}
                     onMouseLeave={this.setInvisible}
                 >
                     <Scrollbars
@@ -41,9 +52,7 @@ class Layers extends React.Component {
                         renderTrackVertical={props => <div {...props} className="track-vertical" />}
                         renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
                     >
-                        {this.props.shapes.slice().reverse().map(shape =>
-                            <Layer shape={shape} key={shape.uuid} />
-                        )}
+                        {layers}
                     </Scrollbars>
                 </div>
                 <img className="arrow"
