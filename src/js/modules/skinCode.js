@@ -7,7 +7,7 @@ import uuidv1 from 'uuid/v1';
 export function objectToSkinCode(skinData) {
     var sF = 30 / 700;
 
-    skinData.shapes = skinData.shapes.reverse();
+    skinData.shapes = skinData.shapes.slice().reverse();
 
     var skinBuffer = new Buffer('0a070361000209', 'hex');
     skinBuffer = addNumberToBuffer(skinBuffer, skinData.shapes.length * 2 + 1);
@@ -70,7 +70,7 @@ export function skinCodeToObject(skinCode) {
             skinData = parseLayer(skinData, layerData[i], i + 1);
         }
 
-        skinData.shapes = skinData.shapes.reverse();
+        skinData.shapes = skinData.shapes.slice().reverse();
     } else {
         skinData = {
             baseColor: subBuf(skinBuffer, skinBuffer.length - 3, 3).toString('hex'),
