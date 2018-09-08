@@ -10,7 +10,7 @@ import Color from '../Color';
 var OverlayPanel = ({
     src, active,
     palette,
-    onActiveChange, onScaleChange
+    onTransparencyChange, onScaleChange
 }) => (
     <div className="overlay-panel" onMouseDown={e => e.stopPropagation()}>
         {
@@ -19,15 +19,15 @@ var OverlayPanel = ({
                 <div>
                     <span>Overlay Controls</span>
     
-                    <div className={'checkbox ' + (active ? 'ticked' : '')}
-                        onClick={() => onActiveChange(active)}
-                    />
+                    {/* <div className={'checkbox ' + (active ? 'ticked' : '')}
+                        onClick={() => onTransparencyChange(active)}
+                    /> */}
     
                     <Slider
-                        defaultValue={100}
-                        min={25}
-                        max={300}
-                        onChange={onScaleChange}
+                        defaultValue={50}
+                        min={0}
+                        max={100}
+                        onChange={onTransparencyChange}
                     />
     
                     <div className="palette">
@@ -59,10 +59,10 @@ var mapDispatchToProps = (dispatch, props) => {
                 active: !active
             });
         },
-        onScaleChange: scale => {
+        onTransparencyChange: transparency => {
             dispatch({
-                type: 'CHANGE_OVERLAY_SCALE',
-                scale
+                type: 'CHANGE_OVERLAY_TRANSPARENCY',
+                transparency
             });
         }
     };

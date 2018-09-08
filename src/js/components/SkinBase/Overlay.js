@@ -47,13 +47,37 @@ class Overlay extends React.Component {
             //     src={this.props.src}
             // />
 
-            <MoveableShape
-                onShapeDown={this.props.onShapeDown}
-                onDraggerDown={this.props.onDraggerDown}
-                zoom={this.props.zoom}
-            >
-                <img src="https://www.collinsdictionary.com/images/thumb/chicken_249474721_250.jpg?version=3.1.180" draggable="false" />
-            </MoveableShape>
+            <div className="overlay" style={{
+                pointerEvents: this.props.selected ? 'all' : 'none',
+                display: this.props.active ? 'block' : 'none'
+            }}>
+                <MoveableShape
+                    onShapeDown={this.props.onShapeDown}
+                    onDraggerDown={this.props.onDraggerDown}
+                    zoom={this.props.zoom}
+                >
+                    <img
+                        style={{
+                            opacity: this.props.transparency
+                        }}
+                        onError={this.onError}
+                        onLoad={this.onLoad}
+                        ref={el => {
+                            // If the palette needs to be redone, take the image element and use
+                            // it to generate the colours needed
+                            if (this.state.redoPalette) {
+                                this.props.changeOverlayPalette(el);
+        
+                                this.setState({
+                                    redoPalette: false
+                                });
+                            }
+                        }}
+                        src={this.props.src}
+                        draggable="false"
+                    />
+                </MoveableShape>
+            </div>
         );
     }
 }

@@ -1,10 +1,5 @@
-.overlay {
-    pointer-events: none;
+.overlay div {
     z-index: $overlay-layer;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
 
 .overlay-panel {
