@@ -83,7 +83,7 @@ class Overlay extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-    return state.overlay;
+    return state.overlay.present;
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {

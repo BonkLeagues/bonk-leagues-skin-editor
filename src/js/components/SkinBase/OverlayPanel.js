@@ -54,20 +54,15 @@ var OverlayPanel = ({
 );
 
 var mapStateToProps = (state, props) => {
-    return state.overlay;
+    return state.overlay.present;
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
         selectOverlay: () => {
+            dispatch({type: 'DESELECT_ALL'});
             dispatch({type: 'SELECT_OVERLAY'});
         },
 
-        onActiveChange: active => {
-            dispatch({
-                type: 'CHANGE_OVERLAY_ACTIVE',
-                active: !active
-            });
-        },
         onTransparencyChange: transparency => {
             dispatch({
                 type: 'CHANGE_OVERLAY_TRANSPARENCY',

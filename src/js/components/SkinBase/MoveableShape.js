@@ -109,13 +109,13 @@ var mapStateToProps = (state, props) => {
             overlay: true,
 
             shape: {
-                selected: state.overlay.selected,
+                selected: state.overlay.present.selected,
                 visible: true,
                 locked: false,
 
                 position: {
-                    x: state.overlay.position.x,
-                    y: state.overlay.position.y
+                    x: state.overlay.present.position.x,
+                    y: state.overlay.present.position.y
                 }
             },
 
@@ -124,11 +124,11 @@ var mapStateToProps = (state, props) => {
             },
 
             position: {
-                x: state.overlay.position.x,
-                y: state.overlay.position.y
+                x: state.overlay.present.position.x,
+                y: state.overlay.present.position.y
             },
-            rotation: state.overlay.rotation,
-            scale: state.overlay.scale
+            rotation: state.overlay.present.rotation,
+            scale: state.overlay.present.scale
         };
     }
 
@@ -176,6 +176,7 @@ var mapDispatchToProps = (dispatch, props) => {
             // If it's an overlay, don't select it
             if (!props.shape) return;
 
+            dispatch({type: 'DESELECT_ALL'});
             dispatch({
                 type: 'SELECT_SHAPE',
                 id: props.shape.uuid

@@ -14,9 +14,11 @@ var initialState = {
 
 export default function(state=initialState, action) {
     switch (action.type) {
-        case 'CHANGE_OVERLAY_ACTIVE':
         case 'CHANGE_OVERLAY_PALETTE': {
-            return {...state, ...action};
+            return {
+                ...state,
+                palette: action.palette
+            };
         }
 
         case 'CHANGE_OVERLAY_SRC': {

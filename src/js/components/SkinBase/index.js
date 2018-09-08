@@ -211,7 +211,7 @@ var mapStateToProps = (state, props) => {
         shapes: state.shapes.present,
         anySelected:
             state.shapes.present.filter(shape => shape.selected).length > 0 ||
-            state.overlay.selected  // Account for overlay
+            state.overlay.present.selected  // Account for overlay
     };
 }
 var mapDispatchToProps = (dispatch, props) => {
