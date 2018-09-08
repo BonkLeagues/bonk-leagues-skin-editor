@@ -8,9 +8,8 @@ import 'rc-slider/assets/index.css';
 import Color from '../Color';
 
 var OverlayPanel = ({
-    src, active,
-    palette,
-    onTransparencyChange, onScaleChange
+    src, palette,
+    selectOverlay, onTransparencyChange
 }) => (
     <div className="overlay-panel" onMouseDown={e => e.stopPropagation()}>
         {
@@ -22,6 +21,12 @@ var OverlayPanel = ({
                     {/* <div className={'checkbox ' + (active ? 'ticked' : '')}
                         onClick={() => onTransparencyChange(active)}
                     /> */}
+
+                    <img className="select"
+                        onClick={selectOverlay}
+                        src={require('./select.svg')}
+                        draggable="false"
+                    />
     
                     <Slider
                         defaultValue={50}
@@ -53,6 +58,10 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
+        selectOverlay: () => {
+            dispatch({type: 'SELECT_OVERLAY'});
+        },
+
         onActiveChange: active => {
             dispatch({
                 type: 'CHANGE_OVERLAY_ACTIVE',

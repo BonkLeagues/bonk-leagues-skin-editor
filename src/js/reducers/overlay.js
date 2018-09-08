@@ -27,6 +27,13 @@ export default function(state=initialState, action) {
                 selected: true
             };
         }
+
+        case 'SELECT_OVERLAY': {
+            return {
+                ...state,
+                selected: true
+            };
+        }
         
         case 'CHANGE_OVERLAY_TRANSPARENCY': {
             return {

@@ -16,11 +16,14 @@
         margin-left: 15px;
         text-transform: uppercase;
     }
-    .checkbox {
-        margin: 7.5px;
+    .select {
+        cursor: pointer;
+        margin: 0 5px;
+        height: 25px;
+        transform: translateY(7.5px);
     }
     .rc-slider {
-        margin: 0 10px;
+        margin: 0 15px;
     }
     .palette {
         vertical-align: top;
