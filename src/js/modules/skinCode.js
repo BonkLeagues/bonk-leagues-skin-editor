@@ -1,15 +1,16 @@
+// How did I write any of this
+
 import { Buffer } from 'buffer/';
 import bsplit from 'buffer-split';
-import bindexOf from 'buffer-indexof';
 import uuidv1 from 'uuid/v1';
 
 export function objectToSkinCode(skinData) {
-    var sF = 30/700;
+    var sF = 30 / 700;
 
-    skinData.shapes = skinData.shapes.reverse();
+    skinData.shapes = skinData.shapes.slice().reverse();
 
     var skinBuffer = new Buffer('0a070361000209', 'hex');
-    skinBuffer = addNumberToBuffer(skinBuffer, skinData.shapes.length*2+1);
+    skinBuffer = addNumberToBuffer(skinBuffer, skinData.shapes.length * 2 + 1);
 
     if (skinData.shapes.length > 0) {
         skinBuffer = addToBuffer(skinBuffer, new Buffer('010a0705616c000100', 'hex'));
@@ -17,18 +18,18 @@ export function objectToSkinCode(skinData) {
         skinBuffer = addToBuffer(skinBuffer, new Buffer('010101', 'hex'));
     }
 
-    for (var i=0;i< skinData.shapes.length;i++) {
+    for (var i = 0; i < skinData.shapes.length; i++) {
         var layer = skinData.shapes[i];
-        skinBuffer = addNumberToBuffer(skinBuffer, layer.shapeID+1);
-        skinBuffer = addFloatToBuffer(skinBuffer, layer.scale*sF);
+        skinBuffer = addNumberToBuffer(skinBuffer, layer.shapeID + 1);
+        skinBuffer = addFloatToBuffer(skinBuffer, layer.scale * sF);
         skinBuffer = addFloatToBuffer(skinBuffer, layer.rotation);
-        skinBuffer = addFloatToBuffer(skinBuffer, layer.position.x*sF);
-        skinBuffer = addFloatToBuffer(skinBuffer, layer.position.y*sF);
+        skinBuffer = addFloatToBuffer(skinBuffer, layer.position.x * sF);
+        skinBuffer = addFloatToBuffer(skinBuffer, layer.position.y * sF);
         skinBuffer = addNumberToBuffer(skinBuffer, +layer.hf);
         skinBuffer = addNumberToBuffer(skinBuffer, +layer.vf);
         skinBuffer = addColorToBuffer(skinBuffer, layer.color);
 
-        if (i != skinData.shapes.length-1) skinBuffer = addToBuffer(skinBuffer, new Buffer('0a05000100', 'hex'));
+        if (i !== skinData.shapes.length - 1) skinBuffer = addToBuffer(skinBuffer, new Buffer('0a05000100', 'hex'));
     }
 
     skinBuffer = addColorToBuffer(skinBuffer, skinData.baseColor);
@@ -38,7 +39,7 @@ export function objectToSkinCode(skinData) {
 
 function numberToHex(n) {
     var hexCode = n.toString(16);
-    return new Buffer(hexCode.length< 2?('0'+hexCode):hexCode, 'hex');
+    return new Buffer(hexCode.length < 2 ? ('0' + hexCode) : hexCode, 'hex');
 }
 function addToBuffer(skinBuffer, buffer) {
     return Buffer.concat([skinBuffer, buffer]);
@@ -52,7 +53,7 @@ function addFloatToBuffer(skinBuffer, n) {
     return addToBuffer(skinBuffer, floatBuffer);
 }
 function addColorToBuffer(skinBuffer, col) {
-    return addToBuffer(skinBuffer, new Buffer('00' + col.replace('#',''), 'hex'));
+    return addToBuffer(skinBuffer, new Buffer('00' + col.replace('#', ''), 'hex'));
 }
 
 export function skinCodeToObject(skinCode) {
@@ -65,14 +66,14 @@ export function skinCodeToObject(skinCode) {
 
         skinData = {shapes: []};
 
-        for (var i=0;i< layerData.length;i++) {
-            skinData = parseLayer(skinData, layerData[i], i+1);
+        for (var i = 0; i < layerData.length; i++) {
+            skinData = parseLayer(skinData, layerData[i], i + 1);
         }
 
-        skinData.shapes = skinData.shapes.reverse();
+        skinData.shapes = skinData.shapes.slice().reverse();
     } else {
         skinData = {
-            baseColor: subBuf(skinBuffer, skinBuffer.length-3, 3).toString('hex'),
+            baseColor: subBuf(skinBuffer, skinBuffer.length - 3, 3).toString('hex'),
             shapes: []
         };
     }
@@ -81,7 +82,7 @@ export function skinCodeToObject(skinCode) {
 }
 
 function parseLayer(skinData, layer, index) {
-    var sF = 700/30;
+    var sF = 700 / 30;
 
     var shapeID = layer[0];
 
@@ -99,7 +100,7 @@ function parseLayer(skinData, layer, index) {
     skinData.shapes.push({
         uuid: uuidv1(),
         name: 'Shape ' + index,
-        shapeID: shapeID-1,
+        shapeID: shapeID - 1,
         selected: false,
 
         position: {
@@ -113,19 +114,18 @@ function parseLayer(skinData, layer, index) {
         color: color
     });
 
-    if (layer.length > 23) skinData.baseColor = subBuf(layer, layer.length-3, 3).toString('hex');
+    if (layer.length > 23) skinData.baseColor = subBuf(layer, layer.length - 3, 3).toString('hex');
 
     return skinData;
 }
 
 function bufferToFloat(buffer) {
-    // return Math.round(buffer.readFloatBE(0)*100)/100;
     return buffer.readFloatBE(0);
 }
 
 function subBuf(buffer, start, end) {
     var result = [];
-    for (var i=start;i< start+end;i++) {
+    for (var i = start; i < start + end; i++) {
         result.push(buffer[i]);
     }
     return Buffer.from(result);

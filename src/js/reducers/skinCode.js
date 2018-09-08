@@ -1,5 +1,6 @@
 import { objectToSkinCode } from '../modules/skinCode';
 
+// Gets a cookie's value from the name
 function getCookie(name) {
     var value = '; ' + document.cookie;
     var parts = value.split('; ' + name + '=');
@@ -9,12 +10,16 @@ function getCookie(name) {
 export default function(state='', action) {
     switch (action.type) {
         case 'GENERATE_SKIN_CODE': {
+            // Convert the skin object to a skin code
             var skinCode = objectToSkinCode({
-                baseColor: action.obj.baseColor.color,
-                shapes: [...action.obj.shapes]
+                baseColor: action.skinData.baseColor.color,
+                shapes: action.skinData.shapes
             });
 
+            // Saves the skin to localStorage
             if (action.save) localStorage.setItem('skinCode', skinCode);
+
+            // Opens an export tab
             if (action.export) {
                 var username = getCookie('rmUn') || 'Bonk Leagues Skin Editor';
 

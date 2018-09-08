@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ShapeIcon from '../ShapeIcon';
 
 // Ripped out from the Skin Manager and slightly changed
+// Either outputs a dark or light colour depending on the colour of the shape
 function darkLightHex(c) {
     var rgb = parseInt(c, 16);
     var r = (rgb >> 16) & 0xff;
@@ -27,6 +28,7 @@ class Layer extends React.Component {
         };
     }
 
+    // Selects the shape when you click the layer
     selectShape = () => {
         this.props.selectShape(this.props.shape.uuid);
     }
@@ -50,6 +52,7 @@ class Layer extends React.Component {
         var { shape } = this.props;
         var { visible, locked } = this.state;
 
+        // Used for picking the right icon to display
         var visibleIcon = visible ? 'visible' : 'invisible';
         var lockIcon = locked ? 'locked' : 'unlocked';
 
@@ -68,6 +71,7 @@ class Layer extends React.Component {
                 <h2>{shape.name}</h2>
 
                 {
+                    // Displays the buttons if the shape is selected
                     shape.selected &&
                     <div className="buttons">
                         <div className="button" onClick={this.toggleVisible}>

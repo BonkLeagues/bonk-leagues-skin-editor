@@ -5,6 +5,7 @@ import OptionsInput from './OptionsInput';
 import OptionsCheckbox from './OptionsCheckbox';
 
 var AllInputs = ({ deleteLayer }) => (
+    // Inputs used in the options panel
     <div>
         <OptionsInput type="scale" />
         <OptionsInput type="rotation" />
@@ -17,7 +18,7 @@ var AllInputs = ({ deleteLayer }) => (
         </div>
 
         <div className="buttons">
-            <button className="delete-layer" onClick={()=>deleteLayer()}>
+            <button className="delete-layer" onClick={deleteLayer}>
                 Delete Shape
             </button>
         </div>

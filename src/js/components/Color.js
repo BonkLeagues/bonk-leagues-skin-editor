@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var Color = ({ color, highlight, anySelected, onMouseEnter, onMouseLeave, onClick }) => (
+var Color = ({
+    color, highlight,
+    anySelected,
+    onMouseEnter, onMouseLeave, onClick
+}) => (
     <div className={'color' + (highlight ? ' highlighted' : '')}
-        onMouseEnter={()=>onMouseEnter(anySelected)}
-        onMouseLeave={()=>onMouseLeave(anySelected)}
-        onClick={()=>onClick(anySelected)}
-        style={{
-            background: '#'+color
-        }}
+        style={{ background: '#' + color}}
+        onMouseEnter={() => onMouseEnter(anySelected)}
+        onMouseLeave={() => onMouseLeave(anySelected)}
+        onClick={() => onClick(anySelected)}
     ></div>
 );
 
@@ -19,8 +21,6 @@ var mapStateToProps = (state, props) => {
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        // TODO: Clean this up!
-
         onMouseEnter: anySelected => {
             if (anySelected) {
                 dispatch({

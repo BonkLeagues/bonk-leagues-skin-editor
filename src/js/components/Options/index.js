@@ -6,50 +6,39 @@ import ColorPicker from './ColorPicker';
 import LayerButtons from './LayerButtons';
 import AllInputs from './AllInputs';
 
-class Options extends React.Component {
-    constructor(props) {
-        super(props);
+var Options = ({
+    // I didn't realise this component has this many props
 
-        this.state = {
-            scale: this.props.shape ? this.props.shape.scale : 1
-        };
-    }
+    baseColor, selectedShape,
 
-    componentWillReceiveProps = newProps => {
-        this.setState({
-            scale: newProps.shape && newProps.shape.scale
-        });
-    }
+    moveShapeUp, moveShapeDown,
+    upDisabled, downDisabled,
 
-    render() {
-        var selected = this.props.shape;
-        
-        return (
-            <div className="options-panel"
-                onMouseEnter={this.props.disableTopLayer}
-                onMouseLeave={this.props.enableTopLayer}
-            >
-                <h1 className="shape-name">{selected ? selected.name : 'Base Colour'}</h1>
-                {
-                    selected &&
-                    <LayerButtons
-                        up={this.props.moveShapeUp}
-                        down={this.props.moveShapeDown}
-                        upDisabled={this.props.upDisabled}
-                        downDisabled={this.props.downDisabled}
-                    />
-                }
-                <ColorPicker highlightColor={selected ? selected.color : this.props.baseColor.color} />
-                {
-                    this.props.shape &&
-                    <AllInputs />
-                }
+    disableTopLayer, enableTopLayer
+}) => (
+    <div className="options-panel"
+        onMouseEnter={disableTopLayer}
+        onMouseLeave={enableTopLayer}
+    >
+        <h1 className="shape-name">{selectedShape ? selectedShape.name : 'Base Colour'}</h1>
+        {
+            selectedShape &&
+            <LayerButtons
+                up={moveShapeUp}
+                down={moveShapeDown}
+                upDisabled={upDisabled}
+                downDisabled={downDisabled}
+            />
+        }
+        <ColorPicker highlightColor={selectedShape ? selectedShape.color : baseColor.color} />
+        {
+            selectedShape &&
+            <AllInputs />
+        }
 
-                <AddShape />
-            </div>
-        );
-    }
-}
+        <AddShape />
+    </div>
+);
 
 var mapStateToProps = (state, props) => {
     var baseColor = state.baseColor.present;
@@ -57,25 +46,18 @@ var mapStateToProps = (state, props) => {
     var shapes = state.shapes.present;
 
     var shapeIndex = shapes.map(shape => shape.selected).indexOf(true);
-    var shape = shapes[shapeIndex];
+    var selectedShape = shapes[shapeIndex];
 
     return {
-        baseColor, shape, shapeIndex,
-        upDisabled: shapeIndex == shapes.length-1,
-        downDisabled: shapeIndex == 0
+        baseColor, selectedShape,
+
+        // Used to disable layer buttons (e.g. disabling the up button if the shape is at the top layer)
+        upDisabled: shapeIndex === shapes.length - 1,
+        downDisabled: shapeIndex === 0
     };
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        onScaleChange: (scale, shape) => {
-            if (scale) {
-                dispatch({
-                    type: 'CHANGE_SHAPE_TRANSLATION',
-                    scale
-                });
-            }
-        },
-
         moveShapeUp: () => {
             dispatch({type: 'SELECTED_SHAPE_UP'});
         },
@@ -83,6 +65,9 @@ var mapDispatchToProps = (dispatch, props) => {
             dispatch({type: 'SELECTED_SHAPE_DOWN'});
         },
 
+        // Used for showing a shape on the top layer or not
+        // If the cursor is hovering over the options panel, the selected shape will not appear on top,
+        // otherwise it will appear above everything else
         enableTopLayer: () => {
             dispatch({
                 type: 'TOP_LAYER',

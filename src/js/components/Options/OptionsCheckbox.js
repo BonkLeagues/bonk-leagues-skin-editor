@@ -24,17 +24,17 @@ class OptionsCheckbox extends React.Component {
     }
 
     render() {
+        var label;
+        if (this.props.type === 'hf') label = 'H Flip: ';
+        if (this.props.type === 'vf') label = 'V Flip: ';
+
         return (
             <label className="options-checkbox">
-                <div className="title">
-                    {(()=> {
-                        switch (this.props.type) {
-                            case 'hf': return 'H Flip: ';
-                            case 'vf': return 'V Flip: ';
-                        }
-                    })()}
-                </div>
-                <div className={'checkbox' + (this.state.ticked ? ' ticked' : '')} onClick={this.onChange} />
+                <div className="title">{label}</div>
+
+                <div className={'checkbox' + (this.state.ticked ? ' ticked' : '')}
+                    onClick={this.onChange}
+                />
             </label>
         );
     }
@@ -42,15 +42,17 @@ class OptionsCheckbox extends React.Component {
 
 var mapStateToProps = (state, props) => {
     var shape = state.shapes.present.filter(shape => shape.selected)[0];
-    return shape ? {
+    return {
         shape
-    } : {};
+    };
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
         onChange: ticked => {
             dispatch({
                 type: 'CHANGE_SHAPE_TRANSLATION',
+
+                // Sets the correct property to the value of the checkbox using ES6 magic
                 [props.type]: ticked
             });
         }

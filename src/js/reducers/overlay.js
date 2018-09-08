@@ -8,7 +8,7 @@ export default function(state={active: true, scale: 1}, action) {
         case 'CHANGE_OVERLAY_SCALE': {
             return {
                 ...state,
-                scale: action.scale/100
+                scale: action.scale / 100
             };
         }
 

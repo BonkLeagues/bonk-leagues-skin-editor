@@ -15,20 +15,12 @@ class SkinBase extends React.Component {
         super(props);
 
         this.state = {
-            moving: false,
-            scaling: false,
-            editingShape: {},
-            shapeRect: {},
-
             originalPos: {
                 x: 0,
                 y: 0
             },
 
-            keyDown: false,
-
             zoom: 1,
-            panning: false,
             panBy: {
                 x: 0,
                 y: 0
@@ -37,7 +29,7 @@ class SkinBase extends React.Component {
     }
 
     onShapeDown = (e, moveableShape) => {
-        if (e.button === 0 && !moveableShape.props.shape.locked) {
+        if (e.button === 0 && !moveableShape.props.shape.locked) {  // Left mouse button
             this.setState({
                 moving: true,
                 editingShape: moveableShape,
@@ -55,7 +47,8 @@ class SkinBase extends React.Component {
         }
     }
     onDraggerDown = (e, moveableShape) => {
-        if (e.button === 0 && !moveableShape.props.shape.locked) {
+        if (e.button === 0 && !moveableShape.props.shape.locked) {  // Left mouse button
+            // Sets scaling to true (includes scaling AND rotating)
             this.setState({
                 scaling: true,
                 editingShape: moveableShape,
@@ -72,7 +65,7 @@ class SkinBase extends React.Component {
 
     onMouseDown = e => {
         e.preventDefault();
-        if (e.button === 1) {
+        if (e.button === 1) {   // Middle mouse
             this.setState({
                 panning: true,
                 originalPos: {
@@ -85,6 +78,7 @@ class SkinBase extends React.Component {
         }
     }
     onMouseMove = e => {
+        // Handle panning or moving/scaling shapes
         if (this.state.panning) {
             this.setState({
                 panBy: {
@@ -119,6 +113,8 @@ class SkinBase extends React.Component {
         if (e.ctrlKey) {
             e.preventDefault();
             
+            // Calculates the new zoom level and how much to pan by
+
             var sensitivity = 1/1500;
             var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
 
@@ -144,10 +140,33 @@ class SkinBase extends React.Component {
     }
 
     render() {
+        // Set base colour to the correct display colour
+
         var baseColor = this.props.baseColor.color;
+
         if (this.props.baseColor.previewColorEnabled) {
             baseColor = this.props.baseColor.previewColor || this.props.baseColor.color;
         }
+
+        // Maps all the shape objects to components
+        var shapes =
+            this.props.shapes.map((shape, i) =>
+                <MoveableShape
+                    shape={shape}
+                    onShapeDown={this.onShapeDown}
+                    onDraggerDown={this.onDraggerDown}
+                    name={shape.name}
+                    zoom={this.state.zoom}
+                    key={shape.uuid}
+                />
+            );
+
+        // CSS transforms for zoom and pan
+        var transformString = `
+            translate(-50%, -50%)
+            translate(` + this.state.panBy.x + `px, ` + this.state.panBy.y + `px)
+            scale(` + this.state.zoom + `)
+        `;
 
         return (
             <div className="base-panel"
@@ -157,27 +176,16 @@ class SkinBase extends React.Component {
                 onWheel={this.onMouseScroll}
             >
                 <ShapeCount />
+
                 <div className="base" style={{
                     background: '#' + baseColor,
                     overflow: this.props.anySelected ? 'visible' : 'hidden',
-                    transform: `
-                        translate(-50%, -50%)
-                        translate(`+this.state.panBy.x+`px, `+this.state.panBy.y+`px)
-                        scale(`+this.state.zoom+`)
-                    `
+                    transform: transformString
                 }}>
-                    {this.props.shapes.map((shape, i) =>
-                        <MoveableShape
-                            shape={shape}
-                            onShapeDown={this.onShapeDown}
-                            onDraggerDown={this.onDraggerDown}
-                            name={shape.name}
-                            zoom={this.state.zoom}
-                            key={shape.uuid}
-                        />
-                    )}
+                    {shapes}
                     <Overlay />
                 </div>
+
                 <OverlayPanel />
             </div>
         );
@@ -199,6 +207,7 @@ var mapDispatchToProps = (dispatch, props) => {
 
         changeShapeTranslation: state => {
             var shapeTranslation = state.editingShape.state;
+
             dispatch({
                 type: 'CHANGE_SHAPE_TRANSLATION',
                 ...shapeTranslation
