@@ -87,6 +87,15 @@ class SkinBase extends React.Component {
                 }
             });
         } else {
+            var { editingShape } = this.state;
+            
+            if (editingShape) {
+                var shapeSelected = editingShape.props.shape.selected;
+
+                // If it's an overlay, don't move it
+                if (editingShape.props.overlay && !shapeSelected) return;
+            }
+
             doTranslation(e, this.state);
         }
     }
@@ -183,7 +192,11 @@ class SkinBase extends React.Component {
                     transform: transformString
                 }}>
                     {shapes}
-                    <Overlay />
+                    <Overlay
+                        onShapeDown={this.onShapeDown}
+                        onDraggerDown={this.onDraggerDown}
+                        zoom={this.state.zoom}
+                    />
                 </div>
 
                 <OverlayPanel />
@@ -196,7 +209,9 @@ var mapStateToProps = (state, props) => {
     return {
         baseColor: state.baseColor.present,
         shapes: state.shapes.present,
-        anySelected: state.shapes.present.filter(shape => shape.selected).length > 0
+        anySelected:
+            state.shapes.present.filter(shape => shape.selected).length > 0 ||
+            state.overlay.selected  // Account for overlay
     };
 }
 var mapDispatchToProps = (dispatch, props) => {
@@ -206,12 +221,19 @@ var mapDispatchToProps = (dispatch, props) => {
         },
 
         changeShapeTranslation: state => {
-            var shapeTranslation = state.editingShape.state;
+            var shapeState = state.editingShape.state;
 
-            dispatch({
-                type: 'CHANGE_SHAPE_TRANSLATION',
-                ...shapeTranslation
-            });
+            if (shapeState.overlay) {
+                dispatch({
+                    type: 'CHANGE_OVERLAY_TRANSLATION',
+                    ...shapeState
+                });
+            } else {
+                dispatch({
+                    type: 'CHANGE_SHAPE_TRANSLATION',
+                    ...shapeState
+                });
+            }
         }
     };
 }
