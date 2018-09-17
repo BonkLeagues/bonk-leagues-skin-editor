@@ -58,7 +58,8 @@ class Overlay extends React.Component {
                 >
                     <img
                         style={{
-                            opacity: this.props.transparency
+                            opacity: this.props.transparency,
+                            height: 300
                         }}
                         onError={this.onError}
                         onLoad={this.onLoad}
