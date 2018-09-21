@@ -8,9 +8,8 @@ import 'rc-slider/assets/index.css';
 import Color from '../Color';
 
 var OverlayPanel = ({
-    src, active,
-    palette,
-    onActiveChange, onScaleChange
+    src, palette,
+    selectOverlay, onTransparencyChange
 }) => (
     <div className="overlay-panel" onMouseDown={e => e.stopPropagation()}>
         {
@@ -19,15 +18,21 @@ var OverlayPanel = ({
                 <div>
                     <span>Overlay Controls</span>
     
-                    <div className={'checkbox ' + (active ? 'ticked' : '')}
-                        onClick={() => onActiveChange(active)}
+                    {/* <div className={'checkbox ' + (active ? 'ticked' : '')}
+                        onClick={() => onTransparencyChange(active)}
+                    /> */}
+
+                    <img className="select"
+                        onClick={selectOverlay}
+                        src={require('./select.svg')}
+                        draggable="false"
                     />
     
                     <Slider
-                        defaultValue={100}
-                        min={25}
-                        max={300}
-                        onChange={onScaleChange}
+                        defaultValue={50}
+                        min={0}
+                        max={100}
+                        onChange={onTransparencyChange}
                     />
     
                     <div className="palette">
@@ -49,20 +54,19 @@ var OverlayPanel = ({
 );
 
 var mapStateToProps = (state, props) => {
-    return state.overlay;
+    return state.overlay.present;
 }
 var mapDispatchToProps = (dispatch, props) => {
     return {
-        onActiveChange: active => {
-            dispatch({
-                type: 'CHANGE_OVERLAY_ACTIVE',
-                active: !active
-            });
+        selectOverlay: () => {
+            dispatch({type: 'DESELECT_ALL'});
+            dispatch({type: 'SELECT_OVERLAY'});
         },
-        onScaleChange: scale => {
+
+        onTransparencyChange: transparency => {
             dispatch({
-                type: 'CHANGE_OVERLAY_SCALE',
-                scale
+                type: 'CHANGE_OVERLAY_TRANSPARENCY',
+                transparency
             });
         }
     };

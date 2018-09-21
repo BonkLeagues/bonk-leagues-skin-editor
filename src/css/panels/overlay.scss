@@ -1,10 +1,5 @@
-.overlay {
-    pointer-events: none;
+.overlay div {
     z-index: $overlay-layer;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
 
 .overlay-panel {
@@ -21,11 +16,14 @@
         margin-left: 15px;
         text-transform: uppercase;
     }
-    .checkbox {
-        margin: 7.5px;
+    .select {
+        cursor: pointer;
+        margin: 0 5px;
+        height: 25px;
+        transform: translateY(7.5px);
     }
     .rc-slider {
-        margin-left: 10px;
+        margin: 0 13px;
     }
     .palette {
         vertical-align: top;

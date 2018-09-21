@@ -74,10 +74,21 @@ class MoveableShape extends React.Component {
                     }
                 }}
             >
-                <span className={flipClassName}
-                    onMouseDown={e => this.props.onShapeDown(e, this)}
-                    dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}
-                ></span>
+                {
+                    // If the component has children, put them into the span
+                    this.props.children ? (
+                        <span className={flipClassName}
+                            onMouseDown={e => this.props.onShapeDown(e, this)}
+                        >
+                            {this.props.children}
+                        </span>
+                    ) : (
+                        <span className={flipClassName}
+                            onMouseDown={e => this.props.onShapeDown(e, this)}
+                            dangerouslySetInnerHTML={{__html: this.props.shapeHTML}}
+                        ></span>
+                    )
+                }
                 {
                     this.props.shape.selected &&
                     <div className="dragger"
@@ -93,6 +104,34 @@ class MoveableShape extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
+    if (props.children) {
+        return {
+            overlay: true,
+
+            shape: {
+                selected: state.overlay.present.selected,
+                visible: true,
+                locked: false,
+
+                position: {
+                    x: state.overlay.present.position.x,
+                    y: state.overlay.present.position.y
+                }
+            },
+
+            origin: {
+                x: 0, y: 0
+            },
+
+            position: {
+                x: state.overlay.present.position.x,
+                y: state.overlay.present.position.y
+            },
+            rotation: state.overlay.present.rotation,
+            scale: state.overlay.present.scale
+        };
+    }
+
     var shapeColor = props.shape.color;
 
     if (props.shape.previewColorEnabled) {
@@ -123,14 +162,21 @@ var mapStateToProps = (state, props) => {
 var mapDispatchToProps = (dispatch, props) => {
     return {
         updateRect: rect => {
+            // Sets the UUID if the object is a shape
+            var uuid = props.shape ? props.shape.uuid : null;
+
             dispatch({
                 type: 'UPDATE_RECT',
-                id: props.shape.uuid,
+                id: uuid,
                 rect
             });
         },
 
         onClick: () => {
+            // If it's an overlay, don't select it
+            if (!props.shape) return;
+
+            dispatch({type: 'DESELECT_ALL'});
             dispatch({
                 type: 'SELECT_SHAPE',
                 id: props.shape.uuid

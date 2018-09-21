@@ -16,5 +16,7 @@ import undoableActions from './undoableActions';
 export default combineReducers({
     shapes: undoable(shapes, { filter: includeAction(undoableActions) }),
     baseColor: undoable(baseColor, { filter: includeAction(undoableActions) }),
-    allShapes, skinCode, topLayer, overlay, clipboard, focus
+    overlay: undoable(overlay, { filter: includeAction(undoableActions) }),
+    
+    allShapes, skinCode, topLayer, clipboard, focus
 });
