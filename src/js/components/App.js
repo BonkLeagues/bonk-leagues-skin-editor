@@ -184,6 +184,7 @@ var mapDispatchToProps = (dispatch, props) => {
 
         // Overlay stuff
         changeOverlaySrc: src => {
+            dispatch({type: 'DESELECT_ALL'});
             dispatch({
                 type: 'CHANGE_OVERLAY_SRC',
                 src
