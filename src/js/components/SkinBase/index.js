@@ -28,6 +28,49 @@ class SkinBase extends React.Component {
         };
     }
 
+    componentDidMount() {
+        var supportsPassive = false;
+        try {
+            var opts = Object.defineProperty({}, 'passive', {
+                get: function() {
+                    supportsPassive = true;
+                }
+            });
+            window.addEventListener('testPassive', null, opts);
+            window.removeEventListener('testPassive', null, opts);
+        } catch (e) {}
+
+        document.querySelector('.base-panel').addEventListener('wheel', e => {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                
+                // Calculates the new zoom level and how much to pan by
+    
+                var sensitivity = 1/1500;
+                var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
+    
+                var zoomRatio = newZoom / this.state.zoom;
+    
+                var center = {
+                    x: window.innerWidth/2 + 175 + this.state.panBy.x,
+                    y: window.innerHeight/2 + this.state.panBy.y
+                };
+                var cursorDiff = {
+                    x: e.clientX - center.x,
+                    y: e.clientY - center.y
+                };
+    
+                this.setState({
+                    zoom: newZoom,
+                    panBy: {
+                        x: this.state.panBy.x + cursorDiff.x * (1 - zoomRatio),
+                        y: this.state.panBy.y + cursorDiff.y * (1 - zoomRatio)
+                    }
+                });
+            }
+        }, supportsPassive ? { passive: false } : false);
+    }
+
     onShapeDown = (e, moveableShape) => {
         if (e.button === 0 && !moveableShape.props.shape.locked) {  // Left mouse button
             this.setState({
@@ -118,35 +161,35 @@ class SkinBase extends React.Component {
         });
     }
 
-    onMouseScroll = e => {
-        if (e.ctrlKey) {
-            e.preventDefault();
+    // onMouseScroll = e => {
+    //     if (e.ctrlKey) {
+    //         e.preventDefault();
             
-            // Calculates the new zoom level and how much to pan by
+    //         // Calculates the new zoom level and how much to pan by
 
-            var sensitivity = 1/1500;
-            var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
+    //         var sensitivity = 1/1500;
+    //         var newZoom = this.state.zoom - (e.deltaY * this.state.zoom * sensitivity);
 
-            var zoomRatio = newZoom / this.state.zoom;
+    //         var zoomRatio = newZoom / this.state.zoom;
 
-            var center = {
-                x: window.innerWidth/2 + 175 + this.state.panBy.x,
-                y: window.innerHeight/2 + this.state.panBy.y
-            };
-            var cursorDiff = {
-                x: e.clientX - center.x,
-                y: e.clientY - center.y
-            };
+    //         var center = {
+    //             x: window.innerWidth/2 + 175 + this.state.panBy.x,
+    //             y: window.innerHeight/2 + this.state.panBy.y
+    //         };
+    //         var cursorDiff = {
+    //             x: e.clientX - center.x,
+    //             y: e.clientY - center.y
+    //         };
 
-            this.setState({
-                zoom: newZoom,
-                panBy: {
-                    x: this.state.panBy.x + cursorDiff.x * (1 - zoomRatio),
-                    y: this.state.panBy.y + cursorDiff.y * (1 - zoomRatio)
-                }
-            });
-        }
-    }
+    //         this.setState({
+    //             zoom: newZoom,
+    //             panBy: {
+    //                 x: this.state.panBy.x + cursorDiff.x * (1 - zoomRatio),
+    //                 y: this.state.panBy.y + cursorDiff.y * (1 - zoomRatio)
+    //             }
+    //         });
+    //     }
+    // }
 
     render() {
         // Set base colour to the correct display colour
@@ -182,7 +225,7 @@ class SkinBase extends React.Component {
                 onMouseDown={this.onMouseDown}
                 onMouseMove={this.onMouseMove}
                 onMouseUp={this.onMouseUp}
-                onWheel={this.onMouseScroll}
+                // onWheel={this.onMouseScroll}
             >
                 <ShapeCount />
 
