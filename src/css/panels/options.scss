@@ -7,14 +7,78 @@
     padding: 15px;
     width: 350px;
 
-    .color-picker {
+    .color-pickers {
         margin: 10px 0;
         margin-top: 15px;
 
-        .color.highlighted {
-            box-shadow: inset 0 0 0 2px #111;
+        .tab {
+            cursor: pointer;
+            background: $bl-grey-light;
+            font-size: 23px;
+            text-align: center;
+            padding: 7px 0;
+            width: 50%;
+            display: inline-block;
+
+            &.selected {
+                background: lighten($bl-grey, 10%);
+            }
+        }
+
+        .color-picker {
+            .color.highlighted {
+                box-shadow: inset 0 0 0 2px #111;
+            }
+        }
+
+        .custom-color-picker {
+            .sketch-picker {
+                background: lighten($bl-grey, 10%) !important;
+                border-radius: 0 !important;
+
+                * {
+                    font-size: 20px !important;
+                }
+
+                input {
+                    background: $bl-grey;
+                    font-size: 25px;
+                    box-shadow: none !important;
+                    box-sizing: border-box;
+                    padding: 5px 8px;
+                    border: none;
+                    margin-bottom: 5px;
+                    width: 100%;
+                    color:#ccc;
+                }
+                span {
+                    color: #ccc !important;
+                }
+
+                > div:first-child {
+                    padding-bottom: 50% !important;
+                }
+
+                > .flexbox-fix > div:first-child > div:first-child {
+                    height: 15px !important;
+                }
+
+                .hue-horizontal div div {
+                    box-shadow: none !important;
+                    border-radius: 0 !important;
+                    width: 6px !important;
+                    height: 13px !important;
+                }
+            }
+        }
+
+        .warning {
+            color: #f00;
+            font-size: 25px;
+            margin-top: 10px;
         }
     }
+    
     .layer-buttons {
         position: absolute;
         top: 15px;
