@@ -23,7 +23,7 @@ export default function(state='', action) {
             if (action.export) {
                 var username = getCookie('rmUn') || 'Bonk Leagues Skin Editor';
 
-                window.open( 'https://bonkleagues.github.io/skins.html#Skin|' + username + '|' + encodeURIComponent(skinCode) );
+                window.open( 'https://bonkleagues.io/skins.html#Skin|' + username + '|' + encodeURIComponent(skinCode) );
             }
 
             return skinCode;
