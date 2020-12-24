@@ -73,11 +73,19 @@ var mapDispatchToProps = (dispatch, props) => {
                 type: 'TOP_LAYER',
                 value: true
             });
+            dispatch({
+                type: 'SET_FOCUS',
+                focus: false
+            });
         },
         disableTopLayer: () => {
             dispatch({
                 type: 'TOP_LAYER',
                 value: false
+            });
+            dispatch({
+                type: 'SET_FOCUS',
+                focus: true
             });
         }
     };
