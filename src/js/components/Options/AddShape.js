@@ -118,7 +118,8 @@ class AddShape extends React.Component {
                         </div>
                     </Scrollbars>
                 </div>
-                <button className="add-button" onClick={this.toggleDialog}>+</button>
+
+                <button className="add-button" title="Add Shape" onClick={this.toggleDialog}>+</button>
             </div>
         );
     }

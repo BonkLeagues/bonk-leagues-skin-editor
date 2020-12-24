@@ -74,11 +74,11 @@ class Layer extends React.Component {
                     // Displays the buttons if the shape is selected
                     shape.selected &&
                     <div className="buttons">
-                        <div className="button" onClick={this.toggleVisible}>
+                        <div className="button" title="Toggle Visibility" onClick={this.toggleVisible}>
                             <img src={require('./icons/'+visibleIcon+'.svg')} draggable="false" />
                         </div>
                         <div className="spacer"></div>
-                        <div className="button" onClick={this.toggleLock}>
+                        <div className="button" title="Toggle Layer Lock" onClick={this.toggleLock}>
                             <img src={require('./icons/'+lockIcon+'.svg')} draggable="false" />
                         </div>
                     </div>

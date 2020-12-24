@@ -3,16 +3,16 @@ import React from 'react';
 // Used for moving shapes up and down a layer
 export default ({ onCopy, onPaste, onUndo, onRedo }) => (
     <div className="shortcut-buttons">
-        <button onClick={onCopy}>
+        <button title="Copy" onClick={onCopy}>
             <img src={require('./copy.svg')} />
         </button>
-        <button onClick={onPaste}>
+        <button title="Paste" onClick={onPaste}>
             <img src={require('./paste.svg')} />
         </button>
-        <button onClick={onUndo}>
+        <button title="Undo" onClick={onUndo}>
             <img src={require('./undo.svg')} />
         </button>
-        <button onClick={onRedo}>
+        <button title="Redo" onClick={onRedo}>
             <img src={require('./redo.svg')} />
         </button>
     </div>
