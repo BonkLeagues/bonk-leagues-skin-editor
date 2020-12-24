@@ -182,4 +182,20 @@
             }
         }
     }
+    .shortcut-buttons {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+
+        button {
+            font-size: 20px;
+            margin-right: 9px;
+            width: 40px;
+            height: 30px;
+
+            img {
+                height: 75%;
+            }
+        }
+    }
 }

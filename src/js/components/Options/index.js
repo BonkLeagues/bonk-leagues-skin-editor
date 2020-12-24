@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ActionCreators } from 'redux-undo';
 
 import AddShape from './AddShape';
 import ColorPicker from './ColorPicker';
 import LayerButtons from './LayerButtons';
 import AllInputs from './AllInputs';
+import ShortcutButtons from './ShortcutButtons';
+
+import copyToClipboard from '../../actions/copyToClipboard';
+import pasteFromClipboard from '../../actions/pasteFromClipboard';
 
 var Options = ({
     // I didn't realise this component has this many props
@@ -14,7 +19,9 @@ var Options = ({
     moveShapeUp, moveShapeDown,
     upDisabled, downDisabled,
 
-    disableTopLayer, enableTopLayer
+    disableTopLayer, enableTopLayer,
+
+    copyShape, pasteShape, undo, redo
 }) => (
     <div className="options-panel"
         onMouseEnter={disableTopLayer}
@@ -37,6 +44,12 @@ var Options = ({
         }
 
         <AddShape />
+        <ShortcutButtons
+            onCopy={copyShape}
+            onPaste={pasteShape}
+            onUndo={undo}
+            onRedo={redo}
+        />
     </div>
 );
 
@@ -87,6 +100,19 @@ var mapDispatchToProps = (dispatch, props) => {
                 type: 'SET_FOCUS',
                 focus: true
             });
+        },
+
+        copyShape: () => {
+            dispatch(copyToClipboard);
+        },
+        pasteShape: () => {
+            dispatch(pasteFromClipboard);
+        },
+        undo: () => {
+            dispatch(ActionCreators.undo());
+        },
+        redo: () => {
+            dispatch(ActionCreators.redo());
         }
     };
 }
